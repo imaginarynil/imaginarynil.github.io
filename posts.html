@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posts - imaginarynil</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="posts.css">
+</head>
+
+<body>
+    <main class="main-content">
+        <div class="container">
+            <h1 class="title">
+                Posts
+            </h1>
+            <div id="post-list">
+                <!-- <a href="#" class="post-item">
+                    <div class="left-container">
+                        2024-01-01
+                    </div>
+                    <div class="right-container">
+                        <div class="post-title">
+                            Post title
+                        </div>
+                        <div class="post-excerpt">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum et est atque dicta ipsum
+                            quasi unde rerum tempora? Nesciunt voluptatum dolorum voluptate et eligendi ducimus optio
+                            distinctio nulla culpa iusto.
+                        </div>
+                    </div>
+                </a> -->
+            </div>
+        </div>
+        <script>
+            function getPostItemElement(created_date, title, excerpt, url) {
+                // left container
+                const leftContainerEl = document.createElement("div")
+                leftContainerEl.classList.add("left-container")
+                leftContainerEl.appendChild(
+                    document.createTextNode(created_date)
+                )
+                // right container
+                const titleEl = document.createElement("div")
+                titleEl.classList.add("post-title")
+                titleEl.appendChild(
+                    document.createTextNode(title)
+                )
+                const excerptEl = document.createElement("div")
+                excerptEl.classList.add("post-excerpt")
+                excerptEl.appendChild(
+                    document.createTextNode(excerpt)
+                )
+                const rightContainerEl = document.createElement("div")
+                rightContainerEl.classList.add("right-container")
+                rightContainerEl.appendChild(titleEl)
+                rightContainerEl.appendChild(excerptEl)
+                // post item
+                const postItemEl = document.createElement("a")
+                postItemEl["href"] = url
+                postItemEl.classList.add("post-item")
+                postItemEl.appendChild(leftContainerEl)
+                postItemEl.appendChild(rightContainerEl)
+                return postItemEl
+            }
+            fetch("./data/post.json")
+                .then(res => res.json())
+                .then(res => {
+                    const postListEl = document.querySelector("#post-list")
+                    if (res.length === 0) {
+                        postListEl.appendChild(
+                            document.createTextNode("No posts were found")
+                        )
+                        return
+                    }
+                    for (let i = 0; i < res.length; i++) {
+                        postListEl.appendChild(
+                            getPostItemElement(
+                                res[i]["created_date"],
+                                res[i]["title"],
+                                res[i]["excerpt"],
+                                res[i]["url"],
+                            )
+                        )
+                    }
+                })
+        </script>
+    </main>
+</body>
+
+</html>
