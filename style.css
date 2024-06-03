@@ -22,7 +22,8 @@ body {
 
 .top-nav {
     display: flex;
-    position: sticky;
+    position: fixed;
+    width: 100%;
     top: 0;
     height: 4rem;
     background-color: rgba(15, 18, 20, 0.8);
@@ -107,4 +108,20 @@ body {
     .nav-toggle-btn {
         display: none;
     }
+}
+
+.main-content {
+    display: flex;
+    justify-content: center;
+    background-color: rgb(15, 18, 20);
+    padding: 5rem 0 0 0;
+    height: 100vh;
+}
+
+.container {
+    width: 900px;
+}
+
+.greetings {
+    margin: 4rem 0 0 0;
 }
