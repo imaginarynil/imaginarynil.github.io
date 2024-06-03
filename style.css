@@ -106,17 +106,6 @@ body {
     display: none;
 }
 
-@media screen and (min-width: 900px) {
-    .top-nav>.top-nav-container>.nav-links-container>.nav-links {
-        display: flex;
-        gap: 1rem;
-    }
-
-    .nav-toggle-btn {
-        display: none;
-    }
-}
-
 .main-content {
     display: flex;
     justify-content: center;
@@ -126,5 +115,26 @@ body {
 }
 
 .container {
-    width: 900px;
+    width: 300px;
+}
+
+@media screen and (min-width: 600px) {
+    .container {
+        width: 600px;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .top-nav>.top-nav-container>.nav-links-container>.nav-links {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .nav-toggle-btn {
+        display: none;
+    }
+
+    .container {
+        width: 900px;
+    }
 }
