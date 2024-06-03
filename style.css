@@ -21,13 +21,17 @@ body {
 }
 
 .top-nav {
-    display: flex;
     position: fixed;
+    display: flex;
     width: 100%;
-    top: 0;
     height: 4rem;
     background-color: rgba(15, 18, 20, 0.8);
-    padding: 0.5rem 1rem 0.5rem 1rem;
+}
+
+.top-nav-container {
+    display: flex;
+    flex-grow: 1;
+    margin: 0.5rem 1rem 0.5rem 1rem;
 }
 
 .nav-logo {
@@ -81,6 +85,9 @@ body {
 
 .active {
     display: flex;
+    position: fixed;
+    width: 100vw;
+    top: 5rem;
 }
 
 .top-nav-dropdown>.nav-links {
@@ -95,12 +102,12 @@ body {
     border-radius: 0;
 }
 
-.top-nav>.nav-links-container>.nav-links {
+.top-nav>.top-nav-container>.nav-links-container>.nav-links {
     display: none;
 }
 
 @media screen and (min-width: 900px) {
-    .top-nav>.nav-links-container>.nav-links {
+    .top-nav>.top-nav-container>.nav-links-container>.nav-links {
         display: flex;
         gap: 1rem;
     }
