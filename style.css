@@ -20,14 +20,18 @@ body {
     font-family: "IBM Plex Sans";
 }
 
-#nav-bar {
+.top-nav {
     display: flex;
+    position: sticky;
+    top: 0;
+    height: 4rem;
     background-color: rgba(15, 18, 20, 0.8);
-    border-color: rgba(61, 71, 81, 0.3);
     padding: 0.5rem 1rem 0.5rem 1rem;
 }
 
-#nav-bar>#nav-logo {
+.nav-logo {
+    display: flex;
+    align-items: center;
     color: inherit;
     text-decoration: none;
     padding: 0.5rem;
@@ -36,18 +40,71 @@ body {
     margin-right: 1rem;
 }
 
-#nav-bar>#nav-links {
+.nav-links-container {
     display: flex;
+    flex-grow: 1;
     align-items: center;
 }
 
-#nav-bar>#nav-links>.nav-link {
+.nav-link {
     color: inherit;
     text-decoration: none;
     padding: 0.5rem;
     border-radius: 0.5rem;
 }
 
-#nav-bar>#nav-links>.nav-link:hover {
+.nav-link:hover {
     background-color: rgba(144, 202, 249, 0.08);
+}
+
+.nav-toggle-btn {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+}
+
+.nav-toggle-btn:hover {
+    background-color: rgba(144, 202, 249, 0.08);
+}
+
+.nav-toggle-btn>.nav-toggle-btn-icon {
+    fill: white;
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.top-nav-dropdown {
+    display: none;
+    background-color: rgba(15, 18, 20, 0.8);
+}
+
+.active {
+    display: flex;
+}
+
+.top-nav-dropdown>.nav-links {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.top-nav-dropdown>.nav-links>.nav-link {
+    display: flex;
+    justify-content: center;
+    border-radius: 0;
+}
+
+.top-nav>.nav-links-container>.nav-links {
+    display: none;
+}
+
+@media screen and (min-width: 900px) {
+    .top-nav>.nav-links-container>.nav-links {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .nav-toggle-btn {
+        display: none;
+    }
 }
