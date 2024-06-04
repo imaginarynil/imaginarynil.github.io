@@ -12,9 +12,13 @@
     color: inherit;
     display: flex;
     border: 0.01rem solid white;
-    border-radius: 1rem;
+    border-radius: 0.25rem;
     padding: 1rem;
     text-decoration: none;
+}
+
+.post-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .post-title {
@@ -22,7 +26,13 @@
 }
 
 .left-container {
-    display: flex;
+    display: none;
     align-items: center;
     padding: 1rem;
+}
+
+@media screen and (min-width: 600px) {
+    .left-container {
+        display: flex;
+    }
 }

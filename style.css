@@ -20,7 +20,7 @@ body {
     font-family: "IBM Plex Sans";
 }
 
-.top-nav {
+.header-container {
     position: fixed;
     display: flex;
     width: 100%;
@@ -28,7 +28,7 @@ body {
     background-color: rgba(15, 18, 20, 0.8);
 }
 
-.top-nav-container {
+.top-nav {
     display: flex;
     flex-grow: 1;
     margin: 0.5rem 1rem 0.5rem 1rem;
@@ -59,7 +59,7 @@ body {
 }
 
 .nav-link:hover {
-    background-color: rgba(144, 202, 249, 0.08);
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .nav-toggle-btn {
@@ -69,7 +69,7 @@ body {
 }
 
 .nav-toggle-btn:hover {
-    background-color: rgba(144, 202, 249, 0.08);
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .nav-toggle-btn>.nav-toggle-btn-icon {
@@ -102,11 +102,11 @@ body {
     border-radius: 0;
 }
 
-.top-nav>.top-nav-container>.nav-links-container>.nav-links {
+.header-container>.top-nav>.nav-links-container>.nav-links {
     display: none;
 }
 
-.main-content {
+.main-container {
     display: flex;
     justify-content: center;
     background-color: rgb(15, 18, 20);
@@ -114,18 +114,18 @@ body {
     height: 100vh;
 }
 
-.container {
+.article-container {
     width: 300px;
 }
 
 @media screen and (min-width: 600px) {
-    .container {
+    .article-container {
         width: 600px;
     }
 }
 
 @media screen and (min-width: 900px) {
-    .top-nav>.top-nav-container>.nav-links-container>.nav-links {
+    .header-container>.top-nav>.nav-links-container>.nav-links {
         display: flex;
         gap: 1rem;
     }
@@ -134,7 +134,7 @@ body {
         display: none;
     }
 
-    .container {
+    .article-container {
         width: 900px;
     }
 }

@@ -5,33 +5,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Posts - imaginarynil</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="posts.css">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="./post-list.style.css">
 </head>
 
 <body>
-    <main class="main-content">
-        <div class="container">
-            <h1 class="title">
-                Posts
-            </h1>
-            <div id="post-list">
-                <!-- <a href="#" class="post-item">
-                    <div class="left-container">
-                        2024-01-01
-                    </div>
-                    <div class="right-container">
-                        <div class="post-title">
-                            Post title
+    <div class="main-container">
+        <div class="article-container">
+            <article>
+                <h1 class="title">
+                    Posts
+                </h1>
+                <div id="post-list">
+                    <!-- <a href="#" class="post-item">
+                        <div class="left-container">
+                            2024-01-01
                         </div>
-                        <div class="post-excerpt">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum et est atque dicta ipsum
-                            quasi unde rerum tempora? Nesciunt voluptatum dolorum voluptate et eligendi ducimus optio
-                            distinctio nulla culpa iusto.
+                        <div class="right-container">
+                            <div class="post-title">
+                                Post title
+                            </div>
+                            <div class="post-excerpt">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum et est atque dicta
+                                ipsum
+                                quasi unde rerum tempora? Nesciunt voluptatum dolorum voluptate et eligendi ducimus
+                                optio
+                                distinctio nulla culpa iusto.
+                            </div>
                         </div>
-                    </div>
-                </a> -->
-            </div>
+                    </a> -->
+                </div>
+            </article>
         </div>
         <script>
             function getPostItemElement(created_date, title, excerpt, url) {
@@ -64,7 +68,7 @@
                 postItemEl.appendChild(rightContainerEl)
                 return postItemEl
             }
-            fetch("./data/post.json")
+            fetch("../data/post.json")
                 .then(res => res.json())
                 .then(res => {
                     const postListEl = document.querySelector("#post-list")
@@ -86,7 +90,7 @@
                     }
                 })
         </script>
-    </main>
+    </div>
 </body>
 
 </html>

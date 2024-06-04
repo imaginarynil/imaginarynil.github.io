@@ -5,20 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - imaginarynil</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./home.style.css">
 </head>
 
 <body>
-    <header class="top-nav">
-        <div class="top-nav-container">
-            <a class="nav-logo" href="index.html">imaginarynil</a>
+    <div class="header-container">
+        <header class="top-nav">
+            <a class="nav-logo" href="/">imaginarynil</a>
             <div class="nav-links-container">
                 <div class="nav-links">
-                    <a class="nav-link" href="index.html">Home</a>
-                    <a class="nav-link" href="posts.html">Posts</a>
-                    <a class="nav-link" href="projects.html">Projects</a>
-                    <a class="nav-link" href="about.html">About</a>
+                    <a class="nav-link" href="/">Home</a>
+                    <a class="nav-link" href="/post">Post</a>
+                    <a class="nav-link" href="/project">Project</a>
+                    <a class="nav-link" href="/about">About</a>
                 </div>
             </div>
             <!-- toggle button -->
@@ -29,21 +29,23 @@
                         d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z" />
                 </svg>
             </a>
-        </div>
-    </header>
+        </header>
+    </div>
     <div class="top-nav-dropdown">
         <div class="nav-links">
-            <a class="nav-link" href="index.html">Home</a>
-            <a class="nav-link" href="posts.html">Posts</a>
-            <a class="nav-link" href="projects.html">Projects</a>
-            <a class="nav-link" href="about.html">About</a>
+            <a class="nav-link" href="/">Home</a>
+            <a class="nav-link" href="/post">Post</a>
+            <a class="nav-link" href="/project">Project</a>
+            <a class="nav-link" href="/about">About</a>
         </div>
     </div>
-    <main class="main-content">
-        <div class="container">
-            <h1 class="greetings">Hello, World! I'm Daniel</h1>
+    <div class="main-container">
+        <div class="article-container">
+            <article>
+                <h1 class="greetings">Hello, World! I'm Daniel</h1>
+            </article>
         </div>
-    </main>
+    </div>
     <script>
         document.querySelector(".nav-toggle-btn").onclick = function () {
             let element = document.querySelector(".top-nav-dropdown");
