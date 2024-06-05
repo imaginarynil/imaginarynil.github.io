@@ -38,7 +38,7 @@
             </article>
         </div>
         <script>
-            function getPostItemElement(created_date, title, excerpt, url) {
+            function createPostItemElement(created_date, title, excerpt, url) {
                 // left container
                 const leftContainerEl = document.createElement("div")
                 leftContainerEl.classList.add("left-container")
@@ -80,7 +80,7 @@
                     }
                     for (let i = 0; i < res.length; i++) {
                         postListEl.appendChild(
-                            getPostItemElement(
+                            createPostItemElement(
                                 res[i]["created_date"],
                                 res[i]["title"],
                                 res[i]["excerpt"],

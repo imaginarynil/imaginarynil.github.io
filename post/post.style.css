@@ -1,0 +1,54 @@
+.left-nav-container {
+    width: 15rem;
+}
+
+.left-nav {
+    position: fixed;
+    overflow: auto;
+    width: 15rem;
+    max-height: calc(100vh - 64px);
+    padding: 0 0 4rem 0;
+    box-sizing: border-box;
+}
+
+.post-container {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+}
+
+.post {
+    max-width: 300px;
+}
+
+@media screen and (min-width: 600px) {
+    .post {
+        max-width: 600px;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .post {
+        max-width: 900px;
+    }
+}
+
+.link-list {
+    display: none;
+    margin-left: 0.5rem;
+}
+
+.opened {
+    display: block
+}
+
+.link-item {
+    list-style: none;
+    margin: 0 0 1rem 0;
+}
+
+.link-item>a {
+    text-decoration: none;
+    color: inherit;
+    padding: 0.5rem;
+}

@@ -110,17 +110,17 @@ body {
     display: flex;
     justify-content: center;
     background-color: rgb(15, 18, 20);
-    padding: 5rem 0 0 0;
+    padding: 4rem 4rem 0 4rem;
     height: 100vh;
 }
 
 .article-container {
-    width: 300px;
+    max-width: 300px;
 }
 
 @media screen and (min-width: 600px) {
     .article-container {
-        width: 600px;
+        max-width: 600px;
     }
 }
 
@@ -135,6 +135,6 @@ body {
     }
 
     .article-container {
-        width: 900px;
+        max-width: 900px;
     }
 }

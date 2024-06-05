@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posts - imaginarynil</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../post.style.css">
+</head>
+
+<body>
+    <div class="main-container">
+        <div class="left-nav-container">
+            <nav class="left-nav"></nav>
+        </div>
+        <div class="post-container">
+            <article class="post">
+                <h1>Title</h1>
+                <p>Date</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate asperiores suscipit impedit
+                    officia ullam tenetur accusantium reiciendis aut pariatur eaque quo, corrupti, harum itaque saepe
+                    quis? Eos ratione voluptas sed!</p>
+                <h1 id="heading-6">Title 2</h1>
+            </article>
+        </div>
+    </div>
+    <script>
+        function fillLinkTree(array, newNode) {
+            if (array.length === 0) {
+                array.push(newNode)
+                return
+            }
+            const currNode = array[array.length - 1]
+            if (newNode.level <= currNode.level) {
+                array.push(newNode)
+                return
+            }
+            fillLinkTree(
+                currNode.children,
+                newNode
+            )
+        }
+        function createLinkTree(links) {
+            const linkTree = []
+            for (let i = 0; i < links.length; i++) {
+                const newNode = {
+                    ...links[i],
+                    children: []
+                }
+                fillLinkTree(linkTree, newNode)
+            }
+            return linkTree
+        }
+        function createLinkItemElement(name, href) {
+            const anchorEl = document.createElement("a")
+            anchorEl.appendChild(document.createTextNode(name))
+            anchorEl["href"] = href
+            const linkItemEl = document.createElement("li")
+            linkItemEl.classList.add("link-item")
+            linkItemEl.appendChild(anchorEl)
+            return linkItemEl
+        }
+        function toggleLinkList(id) {
+            const linkListEl = document.querySelector(`#${id}`)
+            linkListEl.classList.toggle("opened")
+        }
+        function generateLinkListId(i) {
+            return `child-list-${i}`
+        }
+        function fillLinkTreeElement(array, depth, data) {
+            const linkListEl = document.createElement("ol")
+            if (depth > 0) {
+                linkListEl.classList.add("link-list")
+                linkListEl.id = generateLinkListId(data.childListCount)
+                data.childListCount += 1
+            }
+            for (let i = 0; i < array.length; i++) {
+                const currNode = array[i]
+                const linkItemEl = createLinkItemElement(
+                    currNode.name,
+                    `#${currNode.id}`
+                )
+                linkListEl.appendChild(linkItemEl)
+                if (currNode.children.length !== 0) {
+                    const childListCount = data.childListCount // TODO: why this fixes the problem?
+                    linkItemEl.onclick = function () {
+                        toggleLinkList(generateLinkListId(childListCount))
+                    }
+                    linkListEl.appendChild(
+                        fillLinkTreeElement(
+                            currNode.children,
+                            depth + 1,
+                            data
+                        )
+                    )
+                }
+            }
+            return linkListEl
+        }
+        function createLinkTreeElement(links) {
+            const tree = createLinkTree(links)
+            const data = {
+                childListCount: 0
+            }
+            document.querySelector(".left-nav").appendChild(
+                fillLinkTreeElement(tree, 0, data)
+            )
+        }
+        const links = [
+            {
+                name: "heading 1",
+                level: 1,
+                id: "heading-1"
+            },
+            {
+                name: "heading 2",
+                level: 2,
+                id: "heading-2"
+            },
+            {
+                name: "heading 3",
+                level: 3,
+                id: "heading-3"
+            },
+            {
+                name: "heading 2",
+                level: 2,
+                id: "heading-4"
+            },
+            {
+                name: "heading 4",
+                level: 4,
+                id: "heading-5"
+            },
+            {
+                name: "heading 1",
+                level: 1,
+                id: "heading-6"
+            },
+        ]
+        for (let i = 0; i < 100; i++) {
+            links.push({
+                name: "heading 1",
+                level: 1,
+                id: "heading-6"
+            },)
+        }
+        createLinkTreeElement(links)
+    </script>
+</body>
+
+</html>
