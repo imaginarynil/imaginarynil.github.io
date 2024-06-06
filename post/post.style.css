@@ -1,5 +1,6 @@
 .left-nav-container {
-    width: 15rem;
+    max-width: 15rem;
+    width: 100%;
 }
 
 .left-nav {
@@ -13,12 +14,13 @@
 
 .post-container {
     display: flex;
-    flex-grow: 1;
+    width: 100%;
     justify-content: center;
 }
 
 .post {
     max-width: 300px;
+    width: 100%;
 }
 
 @media screen and (min-width: 600px) {
