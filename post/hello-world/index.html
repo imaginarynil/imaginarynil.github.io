@@ -53,18 +53,18 @@
             }
             return linkTree
         }
-        function toggleLinkList(parentLinkItemId, childLinkListId) {
-            const parentLinkItemEl = document.querySelector(`#${parentLinkItemId}`)
+        function toggleLinkList(buttonId, linkListId) {
+            const buttonEl = document.querySelector(`#${buttonId}`)
             let linkItemIcon = "▸"
-            if (parentLinkItemEl.getAttribute("opened") === null) {
-                parentLinkItemEl.setAttribute("opened", "")
+            if (buttonEl.getAttribute("opened") === null) {
+                buttonEl.setAttribute("opened", "")
                 linkItemIcon = "▾"
             } else {
-                parentLinkItemEl.removeAttribute("opened")
+                buttonEl.removeAttribute("opened")
             }
-            parentLinkItemEl.querySelector("span").innerHTML = linkItemIcon
-            const childLinkListEl = document.querySelector(`#${childLinkListId}`)
-            childLinkListEl.classList.toggle("opened")
+            buttonEl.innerHTML = linkItemIcon
+            const linkListEl = document.querySelector(`#${linkListId}`)
+            linkListEl.classList.toggle("opened")
         }
         function generateLinkListId(i) {
             return `child-list-${i}`
@@ -86,15 +86,16 @@
                 linkListEl.appendChild(linkItemEl)
                 if (currNode.children.length !== 0) {
                     const childListCount = data.childListCount // TODO: why this fixes the problem?
-                    const spanEl = document.createElement("span")
-                    spanEl.innerHTML = "▸"
-                    const linkItemId = `parent-${childListCount}`
-                    linkItemEl.id = linkItemId
-                    linkItemEl.onclick = function () {
-                        toggleLinkList(linkItemId, generateLinkListId(childListCount))
+                    const buttonEl = document.createElement("a")
+                    buttonEl.innerHTML = "▸"
+                    const buttonId = `open-btn-${childListCount}`
+                    buttonEl.id = buttonId
+                    buttonEl.onclick = function () {
+                        toggleLinkList(buttonId, generateLinkListId(childListCount))
                     }
-                    linkItemEl.appendChild(spanEl)
+                    linkItemEl.appendChild(buttonEl)
                     linkItemEl.appendChild(anchorEl)
+
                     linkListEl.appendChild(
                         fillLinkTreeElement(
                             currNode.children,
