@@ -11,6 +11,7 @@
 
 <body>
     <div class="main-container">
+        <!-- TODO: fix left nav overflow on small display -->
         <div class="left-nav-container">
             <nav class="left-nav"></nav>
         </div>
@@ -52,18 +53,18 @@
             }
             return linkTree
         }
-        function createLinkItemElement(name, href) {
-            const anchorEl = document.createElement("a")
-            anchorEl.appendChild(document.createTextNode(name))
-            anchorEl["href"] = href
-            const linkItemEl = document.createElement("li")
-            linkItemEl.classList.add("link-item")
-            linkItemEl.appendChild(anchorEl)
-            return linkItemEl
-        }
-        function toggleLinkList(id) {
-            const linkListEl = document.querySelector(`#${id}`)
-            linkListEl.classList.toggle("opened")
+        function toggleLinkList(parentLinkItemId, childLinkListId) {
+            const parentLinkItemEl = document.querySelector(`#${parentLinkItemId}`)
+            let linkItemIcon = "▸"
+            if (parentLinkItemEl.getAttribute("opened") === null) {
+                parentLinkItemEl.setAttribute("opened", "")
+                linkItemIcon = "▾"
+            } else {
+                parentLinkItemEl.removeAttribute("opened")
+            }
+            parentLinkItemEl.querySelector("span").innerHTML = linkItemIcon
+            const childLinkListEl = document.querySelector(`#${childLinkListId}`)
+            childLinkListEl.classList.toggle("opened")
         }
         function generateLinkListId(i) {
             return `child-list-${i}`
@@ -77,16 +78,23 @@
             }
             for (let i = 0; i < array.length; i++) {
                 const currNode = array[i]
-                const linkItemEl = createLinkItemElement(
-                    currNode.name,
-                    `#${currNode.id}`
-                )
+                const anchorEl = document.createElement("a")
+                anchorEl.appendChild(document.createTextNode(currNode.name))
+                anchorEl["href"] = `#${currNode.id}`
+                const linkItemEl = document.createElement("li")
+                linkItemEl.classList.add("link-item")
                 linkListEl.appendChild(linkItemEl)
                 if (currNode.children.length !== 0) {
                     const childListCount = data.childListCount // TODO: why this fixes the problem?
+                    const spanEl = document.createElement("span")
+                    spanEl.innerHTML = "▸"
+                    const linkItemId = `parent-${childListCount}`
+                    linkItemEl.id = linkItemId
                     linkItemEl.onclick = function () {
-                        toggleLinkList(generateLinkListId(childListCount))
+                        toggleLinkList(linkItemId, generateLinkListId(childListCount))
                     }
+                    linkItemEl.appendChild(spanEl)
+                    linkItemEl.appendChild(anchorEl)
                     linkListEl.appendChild(
                         fillLinkTreeElement(
                             currNode.children,
@@ -94,6 +102,8 @@
                             data
                         )
                     )
+                } else {
+                    linkItemEl.appendChild(anchorEl)
                 }
             }
             return linkListEl
@@ -112,6 +122,11 @@
                 name: "heading 1",
                 level: 1,
                 id: "heading-1"
+            },
+            {
+                name: "heading 2",
+                level: 2,
+                id: "heading-2"
             },
             {
                 name: "heading 2",
