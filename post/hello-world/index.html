@@ -79,7 +79,7 @@
                 const currNode = array[i]
                 const anchorEl = document.createElement("a")
                 anchorEl.appendChild(document.createTextNode(currNode.name))
-                anchorEl["href"] = `#${currNode.id}`
+                anchorEl.href = `#${currNode.id}`
                 const linkItemEl = document.createElement("li")
                 linkItemEl.classList.add("link-item")
                 linkListEl.appendChild(linkItemEl)
