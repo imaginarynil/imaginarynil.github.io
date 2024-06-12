@@ -25,7 +25,7 @@ function addTopNav() {
     const navLogoEl = document.createElement("a")
     navContainerEl.appendChild(navLogoEl)
     navLogoEl.classList.add("nav-logo")
-    navLogoEl.href = "./index.html"
+    navLogoEl.href = "/index.html"
     navLogoEl.appendChild(document.createTextNode("imaginarynil"))
     const navLinksContainerEl = document.createElement("div")
     navContainerEl.appendChild(navLinksContainerEl)
