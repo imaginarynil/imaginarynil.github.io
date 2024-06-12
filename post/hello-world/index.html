@@ -10,6 +10,7 @@
 </head>
 
 <body>
+    <header id="top-nav"></header>
     <div class="main-container">
         <div class="left-nav-container">
             <nav class="left-nav"></nav>
@@ -25,7 +26,9 @@
             </article>
         </div>
     </div>
+    <script src="../../component/topNav.js"></script>
     <script>
+        addTopNav()
         function fillLinkTree(array, newNode) {
             if (array.length === 0) {
                 array.push(newNode)

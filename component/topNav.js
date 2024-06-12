@@ -13,10 +13,10 @@ function createNavLinkListEl(links, listClassName, itemClassName) {
 
 function addTopNav() {
     const navLinks = [
-        { name: "Home", url: "./index.html" },
-        { name: "Post", url: "./post/index.html" },
-        { name: "Project", url: "./project/index.html" },
-        { name: "About", url: "./about/index.html" }
+        { name: "Home", url: "/index.html" },
+        { name: "Post", url: "/post/index.html" },
+        { name: "Project", url: "/project/index.html" },
+        { name: "About", url: "/about/index.html" }
     ]
     const topNavEl = document.querySelector("#top-nav")
     const navContainerEl = document.createElement("div")
