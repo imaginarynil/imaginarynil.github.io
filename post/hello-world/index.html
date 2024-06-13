@@ -11,9 +11,22 @@
 
 <body>
     <header id="top-nav"></header>
+    <div class="mobile-left-nav-container">
+        <a id="mobile-left-nav-toggle-btn" href="javascript:void(0);">
+            <svg class="toggle-btn-icon btn-active" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                <path
+                    d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
+            </svg>
+            <svg class="toggle-btn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                <path
+                    d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
+            </svg>
+        </a>
+        <nav class="left-nav" id="mobile-left-nav"></nav>
+    </div>
     <div class="main-container">
         <div class="left-nav-container">
-            <nav class="left-nav"></nav>
+            <nav class="left-nav" id="left-nav-desktop"></nav>
         </div>
         <div class="post-container">
             <article class="post">
@@ -55,7 +68,7 @@
             }
             return linkTree
         }
-        function toggleLinkList(buttonId, linkListId) {
+        function toggleLinkList(buttonId, linkListClassName) {
             const buttonEl = document.querySelector(`#${buttonId}`)
             let linkItemIcon = "▸"
             if (buttonEl.getAttribute("opened") === null) {
@@ -65,17 +78,19 @@
                 buttonEl.removeAttribute("opened")
             }
             buttonEl.innerHTML = linkItemIcon
-            const linkListEl = document.querySelector(`#${linkListId}`)
-            linkListEl.classList.toggle("opened")
+            // TODO: refactor this. this is a quick fix because there is 1 link list each for mobile and desktop
+            for (const linkListEl of document.querySelectorAll(`.${linkListClassName}`)) {
+                linkListEl.classList.toggle("opened")
+            }
         }
-        function generateLinkListId(i) {
+        function generateLinkListClassName(i) {
             return `child-list-${i}`
         }
         function fillLinkTreeElement(array, depth, data) {
             const linkListEl = document.createElement("ol")
             if (depth > 0) {
                 linkListEl.classList.add("link-list")
-                linkListEl.id = generateLinkListId(data.childListCount)
+                linkListEl.classList.add(generateLinkListClassName(data.childListCount))
                 data.childListCount += 1
             }
             for (let i = 0; i < array.length; i++) {
@@ -93,7 +108,7 @@
                     const buttonId = `open-btn-${childListCount}`
                     buttonEl.id = buttonId
                     buttonEl.onclick = function () {
-                        toggleLinkList(buttonId, generateLinkListId(childListCount))
+                        toggleLinkList(buttonId, generateLinkListClassName(childListCount))
                     }
                     linkItemEl.appendChild(buttonEl)
                     linkItemEl.appendChild(anchorEl)
@@ -111,12 +126,12 @@
             }
             return linkListEl
         }
-        function createLinkTreeElement(links) {
+        function createLinkTreeElement(links, id) {
             const tree = createLinkTree(links)
             const data = {
                 childListCount: 0
             }
-            document.querySelector(".left-nav").appendChild(
+            document.querySelector(`#${id}`).appendChild(
                 fillLinkTreeElement(tree, 0, data)
             )
         }
@@ -164,7 +179,17 @@
                 id: "heading-6"
             },)
         }
-        createLinkTreeElement(links)
+        createLinkTreeElement(links, "left-nav-desktop")
+        createLinkTreeElement(links, "mobile-left-nav")
+        const leftNavMobileToggleBtnEl = document.querySelector("#mobile-left-nav-toggle-btn")
+        leftNavMobileToggleBtnEl.onclick = function () {
+            const leftNavMobileEl = document.querySelector("#mobile-left-nav")
+            leftNavMobileEl.classList.toggle("mobile-left-nav-opened")
+            leftNavMobileToggleBtnEl.classList.toggle("mobile-left-nav-opened")
+            for (const toggleBtnIcon of document.querySelectorAll(".toggle-btn-icon")) {
+                toggleBtnIcon.classList.toggle("btn-active")
+            }
+        }
     </script>
 </body>
 

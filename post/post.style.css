@@ -1,4 +1,5 @@
 .left-nav-container {
+    display: none;
     max-width: 15rem;
     width: 100%;
 }
@@ -8,31 +9,28 @@
     overflow: auto;
     width: 15rem;
     max-height: calc(100vh - 64px);
-    padding: 1rem 0 4rem 0;
+    padding: 1rem 0 2rem 2rem;
     box-sizing: border-box;
+}
+
+.mobile-left-nav-container {
+    display: block
+}
+
+#mobile-left-nav {
+    display: none;
+    top: 4rem;
+    background-color: rgba(15, 18, 20, 0.8);
+}
+
+#mobile-left-nav.mobile-left-nav-opened {
+    display: flex;
 }
 
 .post-container {
     display: flex;
     width: 100%;
     justify-content: center;
-}
-
-.post {
-    max-width: 300px;
-    width: 100%;
-}
-
-@media screen and (min-width: 600px) {
-    .post {
-        max-width: 600px;
-    }
-}
-
-@media screen and (min-width: 900px) {
-    .post {
-        max-width: 900px;
-    }
 }
 
 .link-list {
@@ -57,4 +55,64 @@
 
 .link-item>a:hover {
     cursor: pointer;
+}
+
+#mobile-left-nav-toggle-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 4rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    text-decoration: none;
+    color: inherit;
+}
+
+#mobile-left-nav-toggle-btn.mobile-left-nav-opened {
+    left: 15rem;
+}
+
+#mobile-left-nav-toggle-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.toggle-btn-icon {
+    display: none;
+    fill: white;
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.btn-active {
+    display: block
+}
+
+.main-container {
+    padding: 4rem 0 0 0;
+}
+
+.post {
+    max-width: 300px;
+    width: 100%;
+}
+
+@media screen and (min-width: 600px) {
+    .post {
+        max-width: 600px;
+    }
+
+    .mobile-left-nav-container {
+        display: none;
+    }
+
+    .left-nav-container {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .post {
+        max-width: 900px;
+    }
 }
