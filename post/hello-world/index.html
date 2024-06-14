@@ -71,16 +71,17 @@
         function toggleLinkList(buttonId, linkListClassName) {
             const buttonEl = document.querySelector(`#${buttonId}`)
             let linkItemIcon = "▸"
-            if (buttonEl.getAttribute("opened") === null) {
-                buttonEl.setAttribute("opened", "")
+            const OPENED_ATTRIBUTE_NAME = "opened"
+            if (buttonEl.getAttribute(OPENED_ATTRIBUTE_NAME) === null) {
+                buttonEl.setAttribute(OPENED_ATTRIBUTE_NAME, "")
                 linkItemIcon = "▾"
             } else {
-                buttonEl.removeAttribute("opened")
+                buttonEl.removeAttribute(OPENED_ATTRIBUTE_NAME)
             }
             buttonEl.innerHTML = linkItemIcon
             // TODO: refactor this. this is a quick fix because there is 1 link list each for mobile and desktop
             for (const linkListEl of document.querySelectorAll(`.${linkListClassName}`)) {
-                linkListEl.classList.toggle("opened")
+                linkListEl.classList.toggle("link-list_opened")
             }
         }
         function generateLinkListClassName(i) {
@@ -105,14 +106,16 @@
                     const childListCount = data.childListCount // TODO: why this fixes the problem?
                     const buttonEl = document.createElement("a")
                     buttonEl.innerHTML = "▸"
-                    const buttonId = `open-btn-${childListCount}`
+                    const buttonId = `${data.isFirst ? "first" : "second"}-open-link-list-btn-${childListCount}`
                     buttonEl.id = buttonId
                     buttonEl.onclick = function () {
-                        toggleLinkList(buttonId, generateLinkListClassName(childListCount))
+                        toggleLinkList(
+                            buttonId,
+                            generateLinkListClassName(childListCount)
+                        )
                     }
                     linkItemEl.appendChild(buttonEl)
                     linkItemEl.appendChild(anchorEl)
-
                     linkListEl.appendChild(
                         fillLinkTreeElement(
                             currNode.children,
@@ -126,10 +129,11 @@
             }
             return linkListEl
         }
-        function createLinkTreeElement(links, id) {
+        function createLinkTreeElement(links, id, isFirst) {
             const tree = createLinkTree(links)
             const data = {
-                childListCount: 0
+                childListCount: 0,
+                isFirst: isFirst
             }
             document.querySelector(`#${id}`).appendChild(
                 fillLinkTreeElement(tree, 0, data)
@@ -179,8 +183,8 @@
                 id: "heading-6"
             },)
         }
-        createLinkTreeElement(links, "left-nav-desktop")
-        createLinkTreeElement(links, "mobile-left-nav")
+        createLinkTreeElement(links, "left-nav-desktop", true)
+        createLinkTreeElement(links, "mobile-left-nav", false)
         const leftNavMobileToggleBtnEl = document.querySelector("#mobile-left-nav-toggle-btn")
         leftNavMobileToggleBtnEl.onclick = function () {
             const leftNavMobileEl = document.querySelector("#mobile-left-nav")
