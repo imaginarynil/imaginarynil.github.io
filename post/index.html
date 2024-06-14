@@ -79,13 +79,13 @@
                         )
                         return
                     }
-                    for (let i = 0; i < res.length; i++) {
+                    for (const [key, val] of Object.entries(res)) {
                         postListEl.appendChild(
                             createPostItemElement(
-                                res[i].created_date,
-                                res[i].title,
-                                res[i].excerpt,
-                                res[i].url,
+                                val.created_date,
+                                val.title,
+                                val.excerpt,
+                                val.url,
                             )
                         )
                     }

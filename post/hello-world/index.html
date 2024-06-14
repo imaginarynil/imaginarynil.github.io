@@ -32,6 +32,7 @@
             <article class="post">
                 <h1>Title</h1>
                 <p>Date</p>
+                <ul class="tag-list"></ul>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate asperiores suscipit impedit
                     officia ullam tenetur accusantium reiciendis aut pariatur eaque quo, corrupti, harum itaque saepe
                     quis? Eos ratione voluptas sed!</p>
@@ -183,8 +184,6 @@
                 id: "heading-6"
             },)
         }
-        createLinkTreeElement(links, "left-nav-desktop", true)
-        createLinkTreeElement(links, "mobile-left-nav", false)
         const leftNavMobileToggleBtnEl = document.querySelector("#mobile-left-nav-toggle-btn")
         leftNavMobileToggleBtnEl.onclick = function () {
             const leftNavMobileEl = document.querySelector("#mobile-left-nav")
@@ -194,6 +193,30 @@
                 toggleBtnIcon.classList.toggle("btn-active")
             }
         }
+        createLinkTreeElement(links, "left-nav-desktop", true)
+        createLinkTreeElement(links, "mobile-left-nav", false)
+        const tagListEl = document.querySelector(".tag-list")
+        const postId = "1" // insert manually
+        fetch("/data/post.json")
+            .then(res => res.json())
+            .then(postTable => {
+                fetch("/data/post_tag.json")
+                    .then(res => res.json())
+                    .then(postTagTable => {
+                        fetch("/data/tag.json")
+                            .then(res => res.json())
+                            .then(tagTable => {
+                                for (const [_, val] of Object.entries(postTagTable)) {
+                                    if (val.postId === postId) {
+                                        const tagListItemEl = document.createElement("li")
+                                        tagListEl.appendChild(tagListItemEl)
+                                        tagListItemEl.classList.add("tag-list-item")
+                                        tagListItemEl.appendChild(document.createTextNode(tagTable[val.tagId].name))
+                                    }
+                                }
+                            })
+                    })
+            })
     </script>
 </body>
 

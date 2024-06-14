@@ -97,6 +97,18 @@
     width: 100%;
 }
 
+.tag-list {
+    display: flex;
+    list-style-type: none;
+    gap: 0.5rem;
+}
+
+.tag-list-item {
+    border: 0.05rem solid white;
+    border-radius: 20%;
+    padding: 0.1rem;
+}
+
 @media screen and (min-width: 600px) {
     .post {
         max-width: 600px;
