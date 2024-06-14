@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Posts - imaginarynil</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="./post-list.style.css">
 </head>
 
@@ -36,7 +36,7 @@
                 </div>
             </article>
         </div>
-        <script src="../component/topNav.js"></script>
+        <script src="/component/topNav.js"></script>
         <script>
             addTopNav()
             function createPostItemElement(created_date, title, excerpt, url) {
@@ -69,7 +69,7 @@
                 postItemEl.appendChild(rightContainerEl)
                 return postItemEl
             }
-            fetch("../data/post.json")
+            fetch("/data/post.json")
                 .then(res => res.json())
                 .then(res => {
                     const postListEl = document.querySelector("#post-list")
