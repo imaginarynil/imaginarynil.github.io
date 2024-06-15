@@ -7,9 +7,9 @@
 .left-nav {
     position: fixed;
     overflow: auto;
-    width: 15rem;
+    width: 16rem;
     max-height: calc(100vh - 64px);
-    padding: 1rem 0 2rem 2rem;
+    padding: 1rem 0 2rem 1rem;
     box-sizing: border-box;
 }
 
@@ -33,28 +33,49 @@
     justify-content: center;
 }
 
+.root-link-list {
+    font-size: 0.9rem;
+}
+
 .link-list {
     display: none;
-    margin-left: 1rem;
+    margin-left: 0.75rem;
 }
 
 .link-list_opened {
     display: block
 }
 
-.link-item {
+.link-list__item {
+    display: flex;
     list-style: none;
-    margin: 0 0 1rem 0;
 }
 
-.link-item>a {
+.link-list__anchor {
+    display: block;
     text-decoration: none;
     color: inherit;
-    margin: 0.5rem 0.5rem 0.5rem 0.25rem;
+    padding: 0.4rem 0 0.4rem 0.5rem;
+    width: 100%;
 }
 
-.link-item>a:hover {
+.link-list__anchor:hover {
     cursor: pointer;
+    background-color: rgb(255, 255, 255, 0.1);
+}
+
+.link-list__toggler {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    padding: 0.4rem;
+}
+
+.link-list__toggler:hover {
+    cursor: pointer;
+    background-color: rgb(255, 255, 255, 0.1);
 }
 
 #mobile-left-nav-toggle-btn {
@@ -70,7 +91,7 @@
 }
 
 #mobile-left-nav-toggle-btn.mobile-left-nav-opened {
-    left: 15rem;
+    left: 16rem;
 }
 
 #mobile-left-nav-toggle-btn:hover {
