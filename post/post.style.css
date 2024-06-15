@@ -105,8 +105,8 @@
 
 .tag-list-item {
     border: 0.05rem solid white;
-    border-radius: 20%;
-    padding: 0.1rem;
+    border-radius: 30px;
+    padding: 0.1rem 0.5rem 0.1rem 0.5rem;
 }
 
 @media screen and (min-width: 600px) {
