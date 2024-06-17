@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <header id="top-nav"></header>
+    <header class="app-bar"></header>
     <div class="main-container">
         <div class="article-container">
             <article>
@@ -36,9 +36,9 @@
                 </div>
             </article>
         </div>
-        <script src="/component/topNav.js"></script>
+        <script src="/component/appBar.js"></script>
         <script>
-            addTopNav()
+            addAppBar()
             function createPostItemElement(created_date, title, excerpt, url) {
                 // left container
                 const leftContainerEl = document.createElement("div")

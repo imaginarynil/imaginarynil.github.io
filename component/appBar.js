@@ -11,16 +11,16 @@ function createNavLinkListEl(links, listClassName, itemClassName) {
     return navLinksEl
 }
 
-function addTopNav() {
+function addAppBar() {
     const navLinks = [
         { name: "Home", url: "/index.html" },
         { name: "Post", url: "/post/index.html" },
         { name: "Project", url: "/project/index.html" },
         { name: "About", url: "/about/index.html" }
     ]
-    const topNavEl = document.querySelector("#top-nav")
+    const appBarEl = document.querySelector(".app-bar")
     const navContainerEl = document.createElement("div")
-    topNavEl.appendChild(navContainerEl)
+    appBarEl.appendChild(navContainerEl)
     navContainerEl.classList.add("nav-container")
     const navLogoEl = document.createElement("a")
     navContainerEl.appendChild(navLogoEl)
@@ -53,7 +53,7 @@ function addTopNav() {
         navDropdownEl.classList.toggle("nav-dropdown-opened")
     }
     const navDropdownEl = document.createElement("div")
-    topNavEl.appendChild(navDropdownEl)
+    appBarEl.appendChild(navDropdownEl)
     navDropdownEl.classList.add("nav-dropdown")
     navDropdownEl.appendChild(createNavLinkListEl(
         navLinks,

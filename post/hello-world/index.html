@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <header id="top-nav"></header>
+    <header class="app-bar"></header>
     <div class="mobile-sidebar-container">
         <a id="mobile-sidebar-toggle-btn" href="javascript:void(0);">
             <svg class="toggle-btn-icon btn-active" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
@@ -73,9 +73,9 @@
             </article>
         </div>
     </div>
-    <script src="/component/topNav.js"></script>
+    <script src="/component/appBar.js"></script>
     <script>
-        addTopNav()
+        addAppBar()
         function fillLinkTree(array, newNode) {
             if (array.length === 0) {
                 array.push(newNode)
