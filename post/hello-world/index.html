@@ -30,13 +30,46 @@
         </div>
         <div class="post-container">
             <article class="post">
-                <h1>Title</h1>
-                <p>Date</p>
+                <h1 class="heading-1" id="hello,-world!">Hello, World!</h1>
+                <p class="date">June 15, 2024</p>
                 <ul class="tag-list"></ul>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate asperiores suscipit impedit
+                <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate asperiores
+                    suscipit impedit
                     officia ullam tenetur accusantium reiciendis aut pariatur eaque quo, corrupti, harum itaque saepe
                     quis? Eos ratione voluptas sed!</p>
-                <h1 id="heading-6">Title 2</h1>
+                <h1 class="heading-2" id="introduction">Introduction</h1>
+                <p class="paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur libero,
+                    repellendus vero
+                    reprehenderit tempora non dolores est blanditiis dicta quia culpa, aliquid itaque cumque quos quam
+                    numquam laborum nisi fugit.
+                    Alias similique praesentium unde quidem beatae ea tempore, eum consectetur veritatis sapiente,
+                    officia minima odit blanditiis voluptate. Quas inventore expedita ex aut fuga ad harum adipisci,
+                    rem, ullam nobis atque?
+                    Facere repudiandae numquam tempora repellendus veritatis temporibus ducimus doloribus consequatur
+                    nihil dignissimos quae ullam explicabo atque, praesentium autem fuga nulla itaque dicta natus, quos
+                    at nobis. Laudantium id porro nulla.</p>
+                <p class="paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur libero,
+                    repellendus vero
+                    reprehenderit tempora non dolores est blanditiis dicta quia culpa, aliquid itaque cumque quos quam
+                    numquam laborum nisi fugit.
+                    Alias similique praesentium unde quidem beatae ea tempore, eum consectetur veritatis sapiente,
+                    officia minima odit blanditiis voluptate. Quas inventore expedita ex aut fuga ad harum adipisci,
+                    rem, ullam nobis atque?
+                    Facere repudiandae numquam tempora repellendus veritatis temporibus ducimus doloribus consequatur
+                    nihil dignissimos quae ullam explicabo atque, praesentium autem fuga nulla itaque dicta natus, quos
+                    at nobis. Laudantium id porro nulla.</p>
+                <h1 class="heading-3" id="program-in-c">Program in C</h1>
+                <p class="paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur libero,
+                    repellendus vero
+                    reprehenderit tempora non dolores est blanditiis dicta quia culpa, aliquid itaque cumque quos quam
+                    numquam laborum nisi fugit.
+                    Alias similique praesentium unde quidem beatae ea tempore, eum consectetur veritatis sapiente,
+                    officia minima odit blanditiis voluptate. Quas inventore expedita ex aut fuga ad harum adipisci,
+                    rem, ullam nobis atque?
+                    Facere repudiandae numquam tempora repellendus veritatis temporibus ducimus doloribus consequatur
+                    nihil dignissimos quae ullam explicabo atque, praesentium autem fuga nulla itaque dicta natus, quos
+                    at nobis. Laudantium id porro nulla.</p>
+                <div style="height: 100vh;"></div>
             </article>
         </div>
     </div>
@@ -100,13 +133,20 @@
             }
             for (let i = 0; i < array.length; i++) {
                 const currNode = array[i]
-                const anchorEl = document.createElement("a")
-                anchorEl.classList.add("link-list__anchor")
-                anchorEl.appendChild(document.createTextNode(currNode.name))
-                anchorEl.href = `#${currNode.id}`
                 const linkItemEl = document.createElement("li")
                 linkItemEl.classList.add("link-list__item")
                 linkListEl.appendChild(linkItemEl)
+                const anchorEl = document.createElement("a")
+                anchorEl.classList.add("link-list__anchor")
+                anchorEl.appendChild(document.createTextNode(currNode.name))
+                anchorEl.onclick = function () {
+                    const headingEl = document.querySelector(`#${array[i].id}`)
+                    if (!headingEl) {
+                        return
+                    }
+                    const targetY = window.scrollY + headingEl.getBoundingClientRect().top
+                    window.scrollTo(0, targetY - 64)
+                }
                 if (currNode.children.length !== 0) {
                     const childListCount = data.childListCount // TODO: why this fixes the problem?
                     const togglerEl = document.createElement("a")
@@ -147,19 +187,14 @@
         }
         const links = [
             {
-                name: "Introduction to Math",
-                level: 1,
-                id: "heading-1"
+                name: "Introduction",
+                level: 2,
+                id: "introduction"
             },
             {
-                name: "heading 2",
-                level: 2,
-                id: "heading-2"
-            },
-            {
-                name: "heading 2",
-                level: 2,
-                id: "heading-2"
+                name: "Program in C",
+                level: 3,
+                id: "program-in-c"
             },
             {
                 name: "heading 3",

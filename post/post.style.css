@@ -116,12 +116,13 @@
 .post {
     max-width: 300px;
     width: 100%;
+    padding: 2rem 0 0 0;
 }
 
 .tag-list {
     display: flex;
     list-style-type: none;
-    gap: 0.5rem;
+    gap: 0.3rem;
 }
 
 .tag-list-item {
@@ -148,4 +149,45 @@
     .post {
         max-width: 900px;
     }
+}
+
+/* https: //mui.com/material-ui/getting-started/ */
+
+.heading-1 {
+    font-size: 2.25rem;
+    font-weight: 600;
+    margin: 10px 0 10px 0;
+}
+
+.heading-2 {
+    font-size: 1.625rem;
+    font-weight: 600;
+    margin: 40px 0 4px 0;
+}
+
+.heading-3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 1.5rem 0 0.25rem 0
+}
+
+.paragraph {
+    line-height: 1.6;
+    letter-spacing: 0;
+    margin: 0 0 1rem 0;
+}
+
+.date {
+    margin: 0 0 10px 0;
+}
+
+.tag-list {
+    margin: 0 0 10px 0;
+}
+
+.description {
+    font-size: 1.125rem;
+    line-height: 1.33333;
+    letter-spacing: 0;
+    margin: 0 0 1.5rem 0;
 }
