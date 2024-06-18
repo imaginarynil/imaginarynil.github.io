@@ -9,89 +9,69 @@
     <link rel="stylesheet" href="./post-list.style.css">
 </head>
 
-<body>
+<body class="page">
     <header class="app-bar"></header>
-    <div class="main-container">
-        <div class="article-container">
-            <article>
-                <h1 class="title">Posts</h1>
-                <div id="post-list">
-                    <!-- <a href="#" class="post-item">
-                        <div class="left-container">
-                            2024-01-01
-                        </div>
-                        <div class="right-container">
-                            <div class="post-title">
-                                Post title
-                            </div>
-                            <div class="post-excerpt">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum et est atque dicta
-                                ipsum
-                                quasi unde rerum tempora? Nesciunt voluptatum dolorum voluptate et eligendi ducimus
-                                optio
-                                distinctio nulla culpa iusto.
-                            </div>
-                        </div>
-                    </a> -->
-                </div>
-            </article>
+    <main class="main page__main">
+        <div class="main__inner">
+            <h1 class="title">Posts</h1>
+            <div id="post-list"></div>
         </div>
-        <script src="/block/appBar.js"></script>
-        <script>
-            addAppBar()
-            function createPostItemElement(created_date, title, excerpt, url) {
-                // left container
-                const leftContainerEl = document.createElement("div")
-                leftContainerEl.classList.add("left-container")
-                leftContainerEl.appendChild(
-                    document.createTextNode(created_date)
-                )
-                // right container
-                const titleEl = document.createElement("div")
-                titleEl.classList.add("post-title")
-                titleEl.appendChild(
-                    document.createTextNode(title)
-                )
-                const excerptEl = document.createElement("div")
-                excerptEl.classList.add("post-excerpt")
-                excerptEl.appendChild(
-                    document.createTextNode(excerpt)
-                )
-                const rightContainerEl = document.createElement("div")
-                rightContainerEl.classList.add("right-container")
-                rightContainerEl.appendChild(titleEl)
-                rightContainerEl.appendChild(excerptEl)
-                // post item
-                const postItemEl = document.createElement("a")
-                postItemEl.href = url
-                postItemEl.classList.add("post-item")
-                postItemEl.appendChild(leftContainerEl)
-                postItemEl.appendChild(rightContainerEl)
-                return postItemEl
-            }
-            fetch("/data/post.json")
-                .then(res => res.json())
-                .then(res => {
-                    const postListEl = document.querySelector("#post-list")
-                    if (res.length === 0) {
-                        postListEl.appendChild(
-                            document.createTextNode("No posts were found")
+    </main>
+    <script src="/block/appBar.js"></script>
+    <script>
+        addAppBar()
+        function createPostItemElement(created_date, title, excerpt, url) {
+            // left container
+            const leftContainerEl = document.createElement("div")
+            leftContainerEl.classList.add("left-container")
+            leftContainerEl.appendChild(
+                document.createTextNode(created_date)
+            )
+            // right container
+            const titleEl = document.createElement("div")
+            titleEl.classList.add("post-title")
+            titleEl.appendChild(
+                document.createTextNode(title)
+            )
+            const excerptEl = document.createElement("div")
+            excerptEl.classList.add("post-excerpt")
+            excerptEl.appendChild(
+                document.createTextNode(excerpt)
+            )
+            const rightContainerEl = document.createElement("div")
+            rightContainerEl.classList.add("right-container")
+            rightContainerEl.appendChild(titleEl)
+            rightContainerEl.appendChild(excerptEl)
+            // post item
+            const postItemEl = document.createElement("a")
+            postItemEl.href = url
+            postItemEl.classList.add("post-item")
+            postItemEl.appendChild(leftContainerEl)
+            postItemEl.appendChild(rightContainerEl)
+            return postItemEl
+        }
+        fetch("/data/post.json")
+            .then(res => res.json())
+            .then(res => {
+                const postListEl = document.querySelector("#post-list")
+                if (res.length === 0) {
+                    postListEl.appendChild(
+                        document.createTextNode("No posts were found")
+                    )
+                    return
+                }
+                for (const [key, val] of Object.entries(res)) {
+                    postListEl.appendChild(
+                        createPostItemElement(
+                            val.created_date,
+                            val.title,
+                            val.excerpt,
+                            val.url,
                         )
-                        return
-                    }
-                    for (const [key, val] of Object.entries(res)) {
-                        postListEl.appendChild(
-                            createPostItemElement(
-                                val.created_date,
-                                val.title,
-                                val.excerpt,
-                                val.url,
-                            )
-                        )
-                    }
-                })
-        </script>
-    </div>
+                    )
+                }
+            })
+    </script>
 </body>
 
 </html>
