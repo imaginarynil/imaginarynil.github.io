@@ -13,57 +13,54 @@
     <header class="app-bar"></header>
     <main class="main page__main">
         <div class="main__inner">
-            <h1 class="title">Posts</h1>
-            <div id="post-list"></div>
+            <h1 class="heading-1 main__title">Posts</h1>
+            <div class="post-list"></div>
         </div>
     </main>
     <script src="/block/appBar.js"></script>
     <script>
         addAppBar()
-        function createPostItemElement(created_date, title, excerpt, url) {
-            // left container
-            const leftContainerEl = document.createElement("div")
-            leftContainerEl.classList.add("left-container")
-            leftContainerEl.appendChild(
-                document.createTextNode(created_date)
-            )
-            // right container
-            const titleEl = document.createElement("div")
-            titleEl.classList.add("post-title")
-            titleEl.appendChild(
-                document.createTextNode(title)
-            )
-            const excerptEl = document.createElement("div")
-            excerptEl.classList.add("post-excerpt")
-            excerptEl.appendChild(
-                document.createTextNode(excerpt)
-            )
-            const rightContainerEl = document.createElement("div")
-            rightContainerEl.classList.add("right-container")
-            rightContainerEl.appendChild(titleEl)
-            rightContainerEl.appendChild(excerptEl)
-            // post item
+        function createPostItemEl(createdDate, title, excerpt, url) {
             const postItemEl = document.createElement("a")
             postItemEl.href = url
             postItemEl.classList.add("post-item")
-            postItemEl.appendChild(leftContainerEl)
-            postItemEl.appendChild(rightContainerEl)
+            const createdDateEl = document.createElement("div")
+            postItemEl.appendChild(createdDateEl)
+            createdDateEl.classList.add("post-item__created-date")
+            createdDateEl.appendChild(
+                document.createTextNode(createdDate)
+            )
+            const divEl = document.createElement("div")
+            postItemEl.appendChild(divEl)
+            const postItem__titleEl = document.createElement("h2")
+            divEl.appendChild(postItem__titleEl)
+            postItem__titleEl.classList.add("heading-2", "post-item__title")
+            postItem__titleEl.appendChild(
+                document.createTextNode(title)
+            )
+            const postItem__excerptEl = document.createElement("p")
+            divEl.appendChild(postItem__excerptEl)
+            postItem__excerptEl.classList.add("post-item__excerpt")
+            postItem__excerptEl.appendChild(
+                document.createTextNode(excerpt)
+            )
             return postItemEl
         }
         fetch("/data/post.json")
             .then(res => res.json())
             .then(res => {
-                const postListEl = document.querySelector("#post-list")
-                if (res.length === 0) {
+                const postListEl = document.querySelector(".post-list")
+                const posts = Object.entries(res)
+                if (posts.length === 0) {
                     postListEl.appendChild(
                         document.createTextNode("No posts were found")
                     )
                     return
                 }
-                for (const [key, val] of Object.entries(res)) {
+                for (const [key, val] of posts) {
                     postListEl.appendChild(
-                        createPostItemElement(
-                            val.created_date,
+                        createPostItemEl(
+                            val.createdDate,
                             val.title,
                             val.excerpt,
                             val.url,

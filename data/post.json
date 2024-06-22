@@ -3,12 +3,12 @@
         "url": "/post/hello-world/index.html",
         "title": "Hello, World!",
         "excerpt": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum rem quae quam distinctio! Obcaecati unde ut molestiae labore voluptatum maiores, quidem corporis adipisci optio nostrum eveniet assumenda libero cum ipsa.",
-        "created_date": "2024-06-03"
+        "createdDate": "2024-06-03"
     },
     "2": {
         "url": "/post-2.html",
         "title": "Lorem ipsum 2",
         "excerpt": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum rem quae quam distinctio! Obcaecati unde ut molestiae labore voluptatum maiores, quidem corporis adipisci optio nostrum eveniet assumenda libero cum ipsa.",
-        "created_date": "2024-06-03"
+        "createdDate": "2024-06-03"
     }
 }

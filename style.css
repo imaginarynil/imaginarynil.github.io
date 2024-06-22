@@ -126,6 +126,32 @@
     width: 100%;
 }
 
+.main__title {
+    margin: 4rem 0 2rem 0;
+}
+
+/* https: //mui.com/material-ui/getting-started/ */
+
+.heading-1 {
+    font-size: 2.25rem;
+    font-weight: 600;
+}
+
+.heading-2 {
+    font-size: 1.625rem;
+    font-weight: 600;
+}
+
+.heading-3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.paragraph {
+    line-height: 1.6;
+    letter-spacing: 0;
+}
+
 @media screen and (min-width: 600px) {
     .main__inner {
         max-width: 600px;

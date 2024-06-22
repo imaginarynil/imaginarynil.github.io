@@ -24,20 +24,20 @@
         </a>
         <nav class="sidebar" id="mobile-sidebar"></nav>
     </div>
-    <main class="main main_page_post-item">
+    <main class="main page__main_route_post-item">
         <div class="sidebar-container">
             <nav class="sidebar" id="sidebar-desktop"></nav>
         </div>
         <div class="post-container">
             <article class="post">
-                <h1 class="heading-1" id="hello,-world!">Hello, World!</h1>
-                <p class="date">June 15, 2024</p>
-                <ul class="tag-list"></ul>
+                <h1 class="heading-1 post__heading-1" id="hello,-world!">Hello, World!</h1>
+                <p class="post__date">June 15, 2024</p>
+                <ul class="tag-list post__tag-list"></ul>
                 <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate asperiores
                     suscipit impedit
                     officia ullam tenetur accusantium reiciendis aut pariatur eaque quo, corrupti, harum itaque saepe
                     quis? Eos ratione voluptas sed!</p>
-                <h1 class="heading-2" id="introduction">Introduction</h1>
+                <h1 class="heading-2 post__heading-2" id="introduction">Introduction</h1>
                 <p class="paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur libero,
                     repellendus vero
                     reprehenderit tempora non dolores est blanditiis dicta quia culpa, aliquid itaque cumque quos quam
@@ -48,7 +48,8 @@
                     Facere repudiandae numquam tempora repellendus veritatis temporibus ducimus doloribus consequatur
                     nihil dignissimos quae ullam explicabo atque, praesentium autem fuga nulla itaque dicta natus, quos
                     at nobis. Laudantium id porro nulla.</p>
-                <p class="paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur libero,
+                <p class="paragraph post__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur
+                    libero,
                     repellendus vero
                     reprehenderit tempora non dolores est blanditiis dicta quia culpa, aliquid itaque cumque quos quam
                     numquam laborum nisi fugit.
@@ -58,8 +59,9 @@
                     Facere repudiandae numquam tempora repellendus veritatis temporibus ducimus doloribus consequatur
                     nihil dignissimos quae ullam explicabo atque, praesentium autem fuga nulla itaque dicta natus, quos
                     at nobis. Laudantium id porro nulla.</p>
-                <h1 class="heading-3" id="program-in-c">Program in C</h1>
-                <p class="paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur libero,
+                <h1 class="heading-3 post__heading-3" id="program-in-c">Program in C</h1>
+                <p class="paragraph post__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur
+                    libero,
                     repellendus vero
                     reprehenderit tempora non dolores est blanditiis dicta quia culpa, aliquid itaque cumque quos quam
                     numquam laborum nisi fugit.
@@ -250,7 +252,7 @@
                                     if (val.postId === postId) {
                                         const tagListItemEl = document.createElement("li")
                                         tagListEl.appendChild(tagListItemEl)
-                                        tagListItemEl.classList.add("tag-list-item")
+                                        tagListItemEl.classList.add("tag-item")
                                         tagListItemEl.appendChild(document.createTextNode(tagTable[val.tagId].name))
                                     }
                                 }
