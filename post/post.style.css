@@ -48,7 +48,7 @@
 
 .link-list__item {
     display: flex;
-    list-style: none;
+    list-style-type: none;
 }
 
 .link-list__anchor {

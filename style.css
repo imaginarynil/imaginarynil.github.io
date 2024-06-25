@@ -26,9 +26,10 @@
     width: 100%;
     height: 4rem;
     background-color: rgba(15, 18, 20, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.app-bar__inner {
+.app-bar__layout {
     display: flex;
     align-items: center;
     height: 100%;
@@ -118,16 +119,36 @@
 }
 
 .page__main {
-    padding: 4rem 4rem 0 4rem;
+    padding: 4rem 0 0 0;
 }
 
-.main__inner {
-    max-width: 300px;
+.main__layout {
     width: 100%;
+    max-width: 300px;
 }
 
 .main__title {
     margin: 4rem 0 2rem 0;
+}
+
+.footer__layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1.5rem;
+}
+
+.footer__account-list {
+    list-style-type: none;
+}
+
+.footer__account-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.footer__account-link:hover {
+    color: rgba(255, 255, 255, 0.8);
 }
 
 /* https: //mui.com/material-ui/getting-started/ */
@@ -153,8 +174,17 @@
 }
 
 @media screen and (min-width: 600px) {
-    .main__inner {
+    .main__layout {
         max-width: 600px;
+    }
+
+    .footer__layout {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .page__main {
+        padding: 4rem 4rem 0 4rem;
     }
 }
 
@@ -168,7 +198,7 @@
         display: none;
     }
 
-    .main__inner {
+    .main__layout {
         max-width: 900px;
     }
 }

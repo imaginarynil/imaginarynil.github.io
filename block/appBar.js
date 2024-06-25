@@ -19,21 +19,21 @@ function addAppBar() {
         { name: "About", url: "/about/index.html" }
     ]
     const appBarEl = document.querySelector(".app-bar")
-    const appBar_innerEl = document.createElement("div")
-    appBarEl.appendChild(appBar_innerEl)
-    appBar_innerEl.classList.add("app-bar__inner")
+    const appBar_layoutEl = document.createElement("div")
+    appBarEl.appendChild(appBar_layoutEl)
+    appBar_layoutEl.classList.add("app-bar__layout")
     const logoEl = document.createElement("a")
-    appBar_innerEl.appendChild(logoEl)
+    appBar_layoutEl.appendChild(logoEl)
     logoEl.classList.add("logo", "app-bar__logo")
     logoEl.href = "/index.html"
     logoEl.appendChild(document.createTextNode("imaginarynil"))
-    appBar_innerEl.appendChild(createNavigationEl(
+    appBar_layoutEl.appendChild(createNavigationEl(
         navLinks,
         "navigation",
         "navigation__link"
     ))
     const appBar_togglerEl = document.createElement("a")
-    appBar_innerEl.appendChild(appBar_togglerEl)
+    appBar_layoutEl.appendChild(appBar_togglerEl)
     appBar_togglerEl.classList.add("app-bar__toggler")
     appBar_togglerEl.href = "javascript:void(0);"
     appBar_togglerEl.innerHTML = `

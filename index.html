@@ -12,13 +12,46 @@
 <body class="page">
     <header class="app-bar"></header>
     <main class="main page__main">
-        <div class="main__inner">
-            <h1 class="greeting">Hello, World! I'm Daniel</h1>
+        <div class="main__layout">
+            <div class="hero">
+                <article class="hero__greeting">
+                    <h1 class="heading-1 hero__title">Hello, World!<br />I'm Daniel</h1>
+                    <p class="paragraph hero__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Dolorem natus ut iusto
+                        corrupti ea at ducimus, ratione exercitationem nihil optio non, amet cupiditate, necessitatibus
+                        quo
+                        minus ex in accusantium voluptatibus.
+                        Quo voluptatibus dolor fugiat dicta obcaecati, architecto ut! Rem a distinctio unde accusantium
+                        deserunt provident, quae aut error velit sint qui amet voluptatibus, ex aperiam, reprehenderit
+                        aliquam similique minima ab!</p>
+                    <a class="contact-me-button" href="#">Contact me</a>
+                </article>
+                <div class="hero__logo">
+                    <div class="dummy-logo"></div>
+                </div>
+            </div>
         </div>
     </main>
+    <footer class="footer">
+        <div class="footer__layout">
+            <ul class="footer__account-list">
+                <li class="footer__account-item">
+                    <a class="footer__account-link" href="https://github.com/imaginarynil">Github</a>
+                </li>
+            </ul>
+            <div class="footer__message">
+                Built using vanilla HTML, CSS, and JS
+            </div>
+            <div class="footer__copyright">
+                Created by Daniel Sugianto <span class="footer__year"></span>
+            </div>
+        </div>
+    </footer>
     <script src="/block/appBar.js"></script>
     <script>
         addAppBar()
+        const footer__yearEl = document.querySelector(".footer__year")
+        footer__yearEl.innerHTML = `(${new Date().getFullYear()})`;
     </script>
 </body>
 
