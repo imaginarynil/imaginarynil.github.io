@@ -122,12 +122,12 @@
 .tag-list {
     display: flex;
     list-style-type: none;
-    gap: 0.3rem;
+    gap: 0.25rem;
 }
 
-.tag-item {
+.tag-list__item {
     border: 0.05rem solid white;
-    border-radius: 30px;
+    border-radius: 16px;
     padding: 0.1rem 0.5rem 0.1rem 0.5rem;
 }
 

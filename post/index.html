@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Posts - imaginarynil</title>
     <link rel="stylesheet" href="/style.css">
-    <link rel="stylesheet" href="./post-list.style.css">
+    <link rel="stylesheet" href="/post/post-list.style.css">
 </head>
 
 <body class="page">
@@ -48,9 +48,9 @@
         }
         fetch("/data/post.json")
             .then(res => res.json())
-            .then(res => {
+            .then(postTable => {
                 const postListEl = document.querySelector(".post-list")
-                const posts = Object.entries(res)
+                const posts = Object.entries(postTable)
                 if (posts.length === 0) {
                     postListEl.appendChild(
                         document.createTextNode("No posts were found")

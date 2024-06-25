@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Posts - imaginarynil</title>
+    <title>Hello, World! - imaginarynil</title>
     <link rel="stylesheet" href="/style.css">
-    <link rel="stylesheet" href="../post.style.css">
+    <link rel="stylesheet" href="/post/post.style.css">
 </head>
 
 <body class="page">
@@ -76,6 +76,7 @@
         </div>
     </main>
     <script src="/block/appBar.js"></script>
+    <script src="/block/tagList.js"></script>
     <script>
         addAppBar()
         function fillLinkTree(array, newNode) {
@@ -123,7 +124,7 @@
         function generateLinkListClassName(i) {
             return `child-list-${i}`
         }
-        function fillLinkTreeElement(array, depth, data) {
+        function fillLinkTreeEl(array, depth, data) {
             const linkListEl = document.createElement("ol")
             if (depth > 0) {
                 linkListEl.classList.add("link-list")
@@ -165,7 +166,7 @@
                     linkItemEl.appendChild(togglerEl)
                     linkItemEl.appendChild(anchorEl)
                     linkListEl.appendChild(
-                        fillLinkTreeElement(
+                        fillLinkTreeEl(
                             currNode.children,
                             depth + 1,
                             data
@@ -177,14 +178,14 @@
             }
             return linkListEl
         }
-        function createLinkTreeElement(links, id, isFirst) {
+        function createLinkTreeEl(links, id, isFirst) {
             const tree = createLinkTree(links)
             const data = {
                 childListCount: 0,
                 isFirst: isFirst
             }
             document.querySelector(`#${id}`).appendChild(
-                fillLinkTreeElement(tree, 0, data)
+                fillLinkTreeEl(tree, 0, data)
             )
         }
         const links = [
@@ -235,30 +236,9 @@
                 toggleBtnIcon.classList.toggle("btn-active")
             }
         }
-        createLinkTreeElement(links, "sidebar-desktop", true)
-        createLinkTreeElement(links, "mobile-sidebar", false)
-        const tagListEl = document.querySelector(".tag-list")
-        const postId = "1" // insert manually
-        fetch("/data/post.json")
-            .then(res => res.json())
-            .then(postTable => {
-                fetch("/data/post_tag.json")
-                    .then(res => res.json())
-                    .then(postTagTable => {
-                        fetch("/data/tag.json")
-                            .then(res => res.json())
-                            .then(tagTable => {
-                                for (const [_, val] of Object.entries(postTagTable)) {
-                                    if (val.postId === postId) {
-                                        const tagListItemEl = document.createElement("li")
-                                        tagListEl.appendChild(tagListItemEl)
-                                        tagListItemEl.classList.add("tag-item")
-                                        tagListItemEl.appendChild(document.createTextNode(tagTable[val.tagId].name))
-                                    }
-                                }
-                            })
-                    })
-            })
+        createLinkTreeEl(links, "sidebar-desktop", true)
+        createLinkTreeEl(links, "mobile-sidebar", false)
+        addTagList("1")
     </script>
 </body>
 
