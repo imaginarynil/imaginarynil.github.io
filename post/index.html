@@ -18,55 +18,70 @@
         </div>
     </main>
     <script src="/block/appBar.js"></script>
+    <script src="/block/tagList.js"></script>
     <script>
         addAppBar()
-        function createPostItemEl(createdDate, title, excerpt, url) {
-            const postItemEl = document.createElement("a")
-            postItemEl.href = url
-            postItemEl.classList.add("post-item")
-            const createdDateEl = document.createElement("div")
-            postItemEl.appendChild(createdDateEl)
-            createdDateEl.classList.add("post-item__created-date")
-            createdDateEl.appendChild(
+        function createPostItemEl(createdDate, title, excerpt, url, tagListEl) {
+            const postList__itemEl = document.createElement("a")
+            postList__itemEl.href = url
+            postList__itemEl.classList.add("post-list__item")
+            const postList__createdDateEl = document.createElement("div")
+            postList__itemEl.appendChild(postList__createdDateEl)
+            postList__createdDateEl.classList.add("post-list__created-date")
+            postList__createdDateEl.appendChild(
                 document.createTextNode(createdDate)
             )
-            const divEl = document.createElement("div")
-            postItemEl.appendChild(divEl)
-            const postItem__titleEl = document.createElement("h2")
-            divEl.appendChild(postItem__titleEl)
-            postItem__titleEl.classList.add("heading-2", "post-item__title")
-            postItem__titleEl.appendChild(
+            const postList__layoutEl = document.createElement("div")
+            postList__itemEl.appendChild(postList__layoutEl)
+            postList__layoutEl.classList.add("post-list__layout")
+            const postList__titleEl = document.createElement("h2")
+            postList__layoutEl.appendChild(postList__titleEl)
+            postList__titleEl.classList.add("heading-2", "post-list__title")
+            postList__titleEl.appendChild(
                 document.createTextNode(title)
             )
-            const postItem__excerptEl = document.createElement("p")
-            divEl.appendChild(postItem__excerptEl)
-            postItem__excerptEl.classList.add("post-item__excerpt")
-            postItem__excerptEl.appendChild(
+            const postList__excerptEl = document.createElement("p")
+            postList__layoutEl.appendChild(postList__excerptEl)
+            postList__excerptEl.classList.add("post-list__excerpt")
+            postList__excerptEl.appendChild(
                 document.createTextNode(excerpt)
             )
-            return postItemEl
+            postList__layoutEl.appendChild(tagListEl)
+            return postList__itemEl
         }
         fetch("/data/post.json")
             .then(res => res.json())
             .then(postTable => {
                 const postListEl = document.querySelector(".post-list")
-                const posts = Object.entries(postTable)
-                if (posts.length === 0) {
+                const postTableArray = Object.entries(postTable)
+                if (postTableArray.length === 0) {
                     postListEl.appendChild(
                         document.createTextNode("No posts were found")
                     )
                     return
                 }
-                for (const [key, val] of posts) {
-                    postListEl.appendChild(
-                        createPostItemEl(
-                            val.createdDate,
-                            val.title,
-                            val.excerpt,
-                            val.url,
-                        )
-                    )
-                }
+                fetch("/data/post_tag.json")
+                    .then(res => res.json())
+                    .then(postTagTable => {
+                        fetch("/data/tag.json")
+                            .then(res => res.json())
+                            .then(tagTable => {
+                                for (const [postId, postRow] of postTableArray) {
+                                    postListEl.appendChild(
+                                        createPostItemEl(
+                                            postRow.createdDate,
+                                            postRow.title,
+                                            postRow.excerpt,
+                                            postRow.url,
+                                            createTagListEl(postId, postTagTable, tagTable)
+                                        )
+                                    )
+                                }
+
+                            })
+                    })
+
+
             })
     </script>
 </body>

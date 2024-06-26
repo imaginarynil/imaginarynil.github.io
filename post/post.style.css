@@ -1,13 +1,14 @@
 .sidebar-container {
     display: none;
-    max-width: 15rem;
+    max-width: 16rem;
     width: 100%;
 }
 
 .sidebar {
     position: fixed;
     overflow: auto;
-    width: 16rem;
+    max-width: 16rem;
+    width: 100%;
     max-height: calc(100vh - 64px);
     padding: 1rem 0 2rem 1rem;
     box-sizing: border-box;
@@ -109,26 +110,15 @@
     display: block
 }
 
-.page__main_route_post-item {
-    padding: 4rem 0 0 0;
+.main_route_post-detail {
+    padding-right: 0;
+    padding-left: 0;
 }
 
 .post {
     max-width: 300px;
     width: 100%;
     padding: 2rem 0 0 0;
-}
-
-.tag-list {
-    display: flex;
-    list-style-type: none;
-    gap: 0.25rem;
-}
-
-.tag-list__item {
-    border: 0.05rem solid white;
-    border-radius: 16px;
-    padding: 0.1rem 0.5rem 0.1rem 0.5rem;
 }
 
 .post__tag-list {

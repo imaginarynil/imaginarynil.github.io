@@ -3,7 +3,7 @@
     flex-direction: column;
 }
 
-.post-item {
+.post-list__item {
     color: inherit;
     display: flex;
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
@@ -11,22 +11,28 @@
     text-decoration: none;
 }
 
-.post-item:hover {
+.post-list__item:hover {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-.post-item__created-date {
+.post-list__layout {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.post-list__created-date {
     display: none;
     align-items: center;
     padding: 1rem;
 }
 
-.post-item__title {
+.post-list__title {
     font-size: 1.25rem;
 }
 
 @media screen and (min-width: 600px) {
-    .post-item__created-date {
+    .post-list__created-date {
         display: flex;
     }
 }

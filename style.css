@@ -173,6 +173,18 @@
     letter-spacing: 0;
 }
 
+.tag-list {
+    display: flex;
+    list-style-type: none;
+    gap: 0.25rem;
+}
+
+.tag-list__item {
+    border: 0.05rem solid rgba(255, 255, 255, 0.3);
+    border-radius: 16px;
+    padding: 0.1rem 0.5rem 0.1rem 0.5rem;
+}
+
 @media screen and (min-width: 600px) {
     .main__layout {
         max-width: 600px;
