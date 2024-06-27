@@ -91,12 +91,7 @@
     background-color: rgba(15, 18, 20, 0.8);
     flex-direction: column;
     width: 100%;
-}
-
-.mobile-navigation_opened {
-    display: flex;
     position: fixed;
-    width: 100vw;
     top: 4rem;
 }
 
@@ -190,6 +185,15 @@
         max-width: 600px;
     }
 
+    .navigation {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .app-bar__toggler {
+        display: none;
+    }
+
     .footer__layout {
         flex-direction: row;
         justify-content: space-between;
@@ -201,16 +205,17 @@
 }
 
 @media screen and (min-width: 900px) {
-    .navigation {
-        display: flex;
-        gap: 1rem;
-    }
-
-    .app-bar__toggler {
-        display: none;
-    }
-
     .main__layout {
         max-width: 900px;
     }
+}
+
+/* utility */
+
+.display_block {
+    display: block !important;
+}
+
+.display_flex {
+    display: flex !important;
 }

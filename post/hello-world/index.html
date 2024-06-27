@@ -11,25 +11,11 @@
 
 <body class="page">
     <header class="app-bar"></header>
-    <div class="mobile-sidebar-container">
-        <a id="mobile-sidebar-toggle-btn" href="javascript:void(0);">
-            <svg class="toggle-btn-icon btn-active" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
-                <path
-                    d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
-            </svg>
-            <svg class="toggle-btn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
-                <path
-                    d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
-            </svg>
-        </a>
-        <nav class="sidebar" id="mobile-sidebar"></nav>
-    </div>
+    <div class="mobile-sidebar"></div>
     <main class="main page__main main_route_post-detail">
-        <div class="sidebar-container">
-            <nav class="sidebar" id="sidebar-desktop"></nav>
-        </div>
-        <div class="post-container">
-            <article class="post">
+        <div class="desktop-sidebar"></div>
+        <div class="post">
+            <article class="post__layout">
                 <h1 class="heading-1 post__heading-1" id="hello,-world!">Hello, World!</h1>
                 <p class="post__date">June 15, 2024</p>
                 <ul class="tag-list post__tag-list"></ul>
@@ -77,118 +63,11 @@
     </main>
     <script src="/block/appBar.js"></script>
     <script src="/block/tagList.js"></script>
+    <script src="/block/sidebar.js"></script>
     <script>
+        // TODO: update headings for sidebar and postId for tag-list manually for each post
         addAppBar()
-        function fillLinkTree(array, newNode) {
-            if (array.length === 0) {
-                array.push(newNode)
-                return
-            }
-            const currNode = array[array.length - 1]
-            if (newNode.level <= currNode.level) {
-                array.push(newNode)
-                return
-            }
-            fillLinkTree(
-                currNode.children,
-                newNode
-            )
-        }
-        function createLinkTree(links) {
-            const linkTree = []
-            for (let i = 0; i < links.length; i++) {
-                const newNode = {
-                    ...links[i],
-                    children: []
-                }
-                fillLinkTree(linkTree, newNode)
-            }
-            return linkTree
-        }
-        function toggleLinkList(buttonId, linkListClassName) {
-            const buttonEl = document.querySelector(`#${buttonId}`)
-            let linkItemIcon = "▸"
-            const OPENED_ATTRIBUTE_NAME = "opened"
-            if (buttonEl.getAttribute(OPENED_ATTRIBUTE_NAME) === null) {
-                buttonEl.setAttribute(OPENED_ATTRIBUTE_NAME, "")
-                linkItemIcon = "▾"
-            } else {
-                buttonEl.removeAttribute(OPENED_ATTRIBUTE_NAME)
-            }
-            buttonEl.innerHTML = linkItemIcon
-            // TODO: refactor this. this is a quick fix because there is 1 link list each for mobile and desktop
-            for (const linkListEl of document.querySelectorAll(`.${linkListClassName}`)) {
-                linkListEl.classList.toggle("link-list_opened")
-            }
-        }
-        function generateLinkListClassName(i) {
-            return `child-list-${i}`
-        }
-        function fillLinkTreeEl(array, depth, data) {
-            const linkListEl = document.createElement("ol")
-            if (depth > 0) {
-                linkListEl.classList.add("link-list")
-                linkListEl.classList.add(generateLinkListClassName(data.childListCount))
-                data.childListCount += 1
-            }
-            else {
-                linkListEl.classList.add("root-link-list")
-            }
-            for (let i = 0; i < array.length; i++) {
-                const currNode = array[i]
-                const linkItemEl = document.createElement("li")
-                linkItemEl.classList.add("link-list__item")
-                linkListEl.appendChild(linkItemEl)
-                const anchorEl = document.createElement("a")
-                anchorEl.classList.add("link-list__anchor")
-                anchorEl.appendChild(document.createTextNode(currNode.name))
-                anchorEl.onclick = function () {
-                    const headingEl = document.querySelector(`#${array[i].id}`)
-                    if (!headingEl) {
-                        return
-                    }
-                    const targetY = window.scrollY + headingEl.getBoundingClientRect().top
-                    window.scrollTo(0, targetY - 64)
-                }
-                if (currNode.children.length !== 0) {
-                    const childListCount = data.childListCount // TODO: why this fixes the problem?
-                    const togglerEl = document.createElement("a")
-                    togglerEl.classList.add("link-list__toggler")
-                    togglerEl.innerHTML = "▸"
-                    const buttonId = `${data.isFirst ? "first" : "second"}-open-link-list-btn-${childListCount}`
-                    togglerEl.id = buttonId
-                    togglerEl.onclick = function () {
-                        toggleLinkList(
-                            buttonId,
-                            generateLinkListClassName(childListCount)
-                        )
-                    }
-                    linkItemEl.appendChild(togglerEl)
-                    linkItemEl.appendChild(anchorEl)
-                    linkListEl.appendChild(
-                        fillLinkTreeEl(
-                            currNode.children,
-                            depth + 1,
-                            data
-                        )
-                    )
-                } else {
-                    linkItemEl.appendChild(anchorEl)
-                }
-            }
-            return linkListEl
-        }
-        function createLinkTreeEl(links, id, isFirst) {
-            const tree = createLinkTree(links)
-            const data = {
-                childListCount: 0,
-                isFirst: isFirst
-            }
-            document.querySelector(`#${id}`).appendChild(
-                fillLinkTreeEl(tree, 0, data)
-            )
-        }
-        const links = [
+        addSidebar([
             {
                 name: "Introduction",
                 level: 2,
@@ -198,6 +77,11 @@
                 name: "Program in C",
                 level: 3,
                 id: "program-in-c"
+            },
+            {
+                name: "heading 4",
+                level: 4,
+                id: "heading-5"
             },
             {
                 name: "heading 3",
@@ -219,25 +103,7 @@
                 level: 1,
                 id: "heading-6"
             },
-        ]
-        for (let i = 0; i < 100; i++) {
-            links.push({
-                name: "heading 1",
-                level: 1,
-                id: "heading-6"
-            },)
-        }
-        const sidebarMobileToggleBtnEl = document.querySelector("#mobile-sidebar-toggle-btn")
-        sidebarMobileToggleBtnEl.onclick = function () {
-            const sidebarMobileEl = document.querySelector("#mobile-sidebar")
-            sidebarMobileEl.classList.toggle("mobile-sidebar-opened")
-            sidebarMobileToggleBtnEl.classList.toggle("mobile-sidebar-opened")
-            for (const toggleBtnIcon of document.querySelectorAll(".toggle-btn-icon")) {
-                toggleBtnIcon.classList.toggle("btn-active")
-            }
-        }
-        createLinkTreeEl(links, "sidebar-desktop", true)
-        createLinkTreeEl(links, "mobile-sidebar", false)
+        ])
         addTagList("1")
     </script>
 </body>

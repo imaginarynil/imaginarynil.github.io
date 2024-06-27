@@ -44,7 +44,7 @@ function addAppBar() {
             `
     appBar_togglerEl.onclick = function () {
         let mobileNavigationEl = document.querySelector(".mobile-navigation");
-        mobileNavigationEl.classList.toggle("mobile-navigation_opened")
+        mobileNavigationEl.classList.toggle("display_flex")
     }
     appBarEl.appendChild(createNavigationEl(
         navLinks,
