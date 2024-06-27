@@ -32,26 +32,12 @@
             </div>
         </div>
     </main>
-    <footer class="footer">
-        <div class="footer__layout">
-            <ul class="footer__account-list">
-                <li class="footer__account-item">
-                    <a class="footer__account-link" href="https://github.com/imaginarynil">Github</a>
-                </li>
-            </ul>
-            <div class="footer__message">
-                Built using vanilla HTML, CSS, and JS
-            </div>
-            <div class="footer__copyright">
-                Created by Daniel Sugianto <span class="footer__year"></span>
-            </div>
-        </div>
-    </footer>
+    <footer class="footer"></footer>
     <script src="/block/appBar.js"></script>
+    <script src="/block/footer.js"></script>
     <script>
         addAppBar()
-        const footer__yearEl = document.querySelector(".footer__year")
-        footer__yearEl.innerHTML = `(${new Date().getFullYear()})`;
+        addFooter()
     </script>
 </body>
 
