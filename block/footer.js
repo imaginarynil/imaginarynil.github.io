@@ -29,22 +29,16 @@ function addFooter() {
     footer__layoutEl.classList.add("footer__layout")
     const footer__accountListEl = createAccountListEl()
     footer__layoutEl.appendChild(footer__accountListEl)
-    const footer__messageEl = document.createElement("div")
-    footer__layoutEl.appendChild(footer__messageEl)
-    footer__messageEl.classList.add("footer__message")
-    footer__messageEl.appendChild(
-        document.createTextNode("Built using vanilla HTML, CSS, and JS")
-    )
     const footer__copyrightEl = document.createElement("div")
     footer__layoutEl.appendChild(footer__copyrightEl)
     footer__copyrightEl.classList.add("footer__copyright")
     footer__copyrightEl.appendChild(
-        document.createTextNode("Created by Daniel Sugianto ")
+        document.createTextNode("© Daniel Sugianto ")
     )
     const footer__yearEl = document.createElement("span")
     footer__copyrightEl.appendChild(
         footer__yearEl
     )
     footer__yearEl.classList.add("footer__year")
-    footer__yearEl.innerHTML = `(${new Date().getFullYear()})`;
+    footer__yearEl.innerHTML = new Date().getFullYear();
 }
