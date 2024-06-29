@@ -31,8 +31,16 @@
     font-size: 1.25rem;
 }
 
+.post-list__mobile-created-date {
+    display: flex;
+}
+
 @media screen and (min-width: 600px) {
     .post-list__created-date {
         display: flex;
+    }
+
+    .post-list__mobile-created-date {
+        display: none;
     }
 }

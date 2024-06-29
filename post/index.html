@@ -42,6 +42,12 @@
             postList__titleEl.appendChild(
                 document.createTextNode(title)
             )
+            const postList__mobileCreatedDateEl = document.createElement("p")
+            postList__layoutEl.appendChild(postList__mobileCreatedDateEl)
+            postList__mobileCreatedDateEl.classList.add("post-list__mobile-created-date")
+            postList__mobileCreatedDateEl.appendChild(
+                document.createTextNode(createdDate)
+            )
             const postList__excerptEl = document.createElement("p")
             postList__layoutEl.appendChild(postList__excerptEl)
             postList__excerptEl.classList.add("post-list__excerpt")
