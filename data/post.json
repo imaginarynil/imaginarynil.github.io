@@ -9,6 +9,12 @@
         "url": "/post-2.html",
         "title": "Lorem ipsum 2",
         "excerpt": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum rem quae quam distinctio! Obcaecati unde ut molestiae labore voluptatum maiores, quidem corporis adipisci optio nostrum eveniet assumenda libero cum ipsa.",
-        "createdDate": "2024-06-03"
+        "createdDate": "2024-06-04"
+    },
+    "3": {
+        "url": "/post-3.html",
+        "title": "Lorem ipsum 3",
+        "excerpt": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum rem quae quam distinctio! Obcaecati unde ut molestiae labore voluptatum maiores, quidem corporis adipisci optio nostrum eveniet assumenda libero cum ipsa.",
+        "createdDate": "2024-06-05"
     }
 }

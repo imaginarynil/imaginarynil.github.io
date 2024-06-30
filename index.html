@@ -13,7 +13,7 @@
     <header class="app-bar"></header>
     <main class="main page__main">
         <div class="main__layout">
-            <div class="hero">
+            <div class="hero main__hero">
                 <article class="hero__greeting">
                     <h1 class="heading-1 hero__title">Hello, World!<br />I'm Daniel</h1>
                     <p class="paragraph hero__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -42,13 +42,18 @@
                     <div class="dummy-logo"></div>
                 </div>
             </div>
+            <h2 class="heading-2 main__post-list-title">New Posts</h2>
+            <div class="post-list main__post-list"></div>
         </div>
     </main>
     <footer class="footer"></footer>
     <script src="/block/appBar.js"></script>
+    <script src="/block/postList.js"></script>
+    <script src="/block/tagList.js"></script>
     <script src="/block/footer.js"></script>
     <script>
         addAppBar()
+        addPostList(2)
         addFooter() 
     </script>
 </body>

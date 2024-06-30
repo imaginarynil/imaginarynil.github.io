@@ -5,7 +5,11 @@
     align-items: center;
     width: 100%;
     padding: 4rem 0 0 0;
-    height: calc(100vh - 64px);
+    /* height: calc(100vh - 64px); */
+}
+
+.main__hero {
+    margin: 0 0 1.5rem 0;
 }
 
 .hero__title {
@@ -54,6 +58,14 @@
     border: white solid 4px;
     width: 128px;
     height: 128px;
+}
+
+.main__post-list-title {
+    margin: 0 0 1rem 0;
+}
+
+.main__post-list {
+    margin: 0 0 4rem 0;
 }
 
 @media screen and (min-width: 600px) {

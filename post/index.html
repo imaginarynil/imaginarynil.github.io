@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Posts - imaginarynil</title>
     <link rel="stylesheet" href="/style.css">
-    <link rel="stylesheet" href="/post/post-list.style.css">
 </head>
 
 <body class="page">
@@ -19,78 +18,12 @@
     </main>
     <footer class="footer"></footer>
     <script src="/block/appBar.js"></script>
+    <script src="/block/postList.js"></script>
     <script src="/block/tagList.js"></script>
     <script src="/block/footer.js"></script>
     <script>
         addAppBar()
-        function createPostItemEl(createdDate, title, excerpt, url, tagListEl) {
-            const postList__itemEl = document.createElement("a")
-            postList__itemEl.href = url
-            postList__itemEl.classList.add("post-list__item")
-            const postList__createdDateEl = document.createElement("div")
-            postList__itemEl.appendChild(postList__createdDateEl)
-            postList__createdDateEl.classList.add("post-list__created-date")
-            postList__createdDateEl.appendChild(
-                document.createTextNode(createdDate)
-            )
-            const postList__layoutEl = document.createElement("div")
-            postList__itemEl.appendChild(postList__layoutEl)
-            postList__layoutEl.classList.add("post-list__layout")
-            const postList__titleEl = document.createElement("h2")
-            postList__layoutEl.appendChild(postList__titleEl)
-            postList__titleEl.classList.add("heading-2", "post-list__title")
-            postList__titleEl.appendChild(
-                document.createTextNode(title)
-            )
-            const postList__mobileCreatedDateEl = document.createElement("p")
-            postList__layoutEl.appendChild(postList__mobileCreatedDateEl)
-            postList__mobileCreatedDateEl.classList.add("post-list__mobile-created-date")
-            postList__mobileCreatedDateEl.appendChild(
-                document.createTextNode(createdDate)
-            )
-            const postList__excerptEl = document.createElement("p")
-            postList__layoutEl.appendChild(postList__excerptEl)
-            postList__excerptEl.classList.add("post-list__excerpt")
-            postList__excerptEl.appendChild(
-                document.createTextNode(excerpt)
-            )
-            postList__layoutEl.appendChild(tagListEl)
-            return postList__itemEl
-        }
-        fetch("/data/post.json")
-            .then(res => res.json())
-            .then(postTable => {
-                const postListEl = document.querySelector(".post-list")
-                const postTableArray = Object.entries(postTable)
-                if (postTableArray.length === 0) {
-                    postListEl.appendChild(
-                        document.createTextNode("No posts were found")
-                    )
-                    return
-                }
-                fetch("/data/post_tag.json")
-                    .then(res => res.json())
-                    .then(postTagTable => {
-                        fetch("/data/tag.json")
-                            .then(res => res.json())
-                            .then(tagTable => {
-                                for (const [postId, postRow] of postTableArray) {
-                                    postListEl.appendChild(
-                                        createPostItemEl(
-                                            postRow.createdDate,
-                                            postRow.title,
-                                            postRow.excerpt,
-                                            postRow.url,
-                                            createTagListEl(postId, postTagTable, tagTable)
-                                        )
-                                    )
-                                }
-
-                            })
-                    })
-
-
-            })
+        addPostList(-1)
         addFooter()
     </script>
 </body>
