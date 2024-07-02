@@ -127,6 +127,10 @@
     margin: 4rem 0 2rem 0;
 }
 
+.footer {
+    width: 100%;
+}
+
 .footer__layout {
     display: flex;
     flex-direction: column;
@@ -167,6 +171,10 @@
 .paragraph {
     line-height: 1.6;
     letter-spacing: 0;
+}
+
+.list {
+    padding: 0 0 0 2rem;
 }
 
 .tag-list {
