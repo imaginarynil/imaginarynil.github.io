@@ -1,4 +1,4 @@
-function appendItemsToList(tagListEl, postId, postTagTable, tagTable) {
+function appendTagItems(tagListEl, postId, postTagTable, tagTable) {
     for (const [_, postTagRow] of Object.entries(postTagTable)) {
         if (postTagRow.postId === postId) {
             const tagListItemEl = document.createElement("li")
@@ -12,19 +12,18 @@ function appendItemsToList(tagListEl, postId, postTagTable, tagTable) {
 function createTagListEl(postId, postTagTable, tagTable) {
     const tagListEl = document.createElement("ul")
     tagListEl.classList.add("tag-list")
-    appendItemsToList(tagListEl, postId, postTagTable, tagTable)
+    appendTagItems(tagListEl, postId, postTagTable, tagTable)
     return tagListEl
 }
 
 function addTagList(postId) {
     const tagListEl = document.querySelector(".tag-list")
-    fetch("/data/post_tag.json")
-        .then(res => res.json())
-        .then(postTagTable => {
-            fetch("/data/tag.json")
-                .then(res => res.json())
-                .then(tagTable => {
-                    appendItemsToList(tagListEl, postId, postTagTable, tagTable)
-                })
-        })
+    Promise.all([
+        fetch("/data/post_tag.json").then(res => res.json()),
+        fetch("/data/tag.json").then(res => res.json())
+    ]).then((values) => {
+        const postTagTable = values[0]
+        const tagTable = values[1]
+        appendTagItems(tagListEl, postId, postTagTable, tagTable)
+    })
 }

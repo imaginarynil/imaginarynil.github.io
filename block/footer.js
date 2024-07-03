@@ -13,7 +13,7 @@ function createAccountListEl() {
         footer__accountItemEl.classList.add("footer__account-item")
         const footer__accountLinkEl = document.createElement("a")
         footer__accountItemEl.appendChild(footer__accountLinkEl)
-        footer__accountLinkEl.classList.add("footer__account-link")
+        footer__accountLinkEl.classList.add("link", "footer__account-link")
         footer__accountLinkEl.href = accounts[i].url
         footer__accountLinkEl.appendChild(
             document.createTextNode(accounts[i].name)
