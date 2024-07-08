@@ -6,10 +6,125 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects - imaginarynil</title>
     <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/project/project.style.css">
 </head>
 
-<body>
-    <!-- TODO: project page is posts with tag "project" -->
+<body class="page">
+    <header class="app-bar"></header>
+    <main class="main page__main">
+        <div class="main__layout">
+            <h1 class="heading-1 main__title">Projects</h1>
+            <div class="project-list"></div>
+        </div>
+    </main>
+    <footer class="footer"></footer>
+    <script src="/block/appBar.js"></script>
+    <script src="/block/footer.js"></script>
+    <script>
+        addAppBar()
+        addFooter()
+        function createToolListEl(tools) {
+            const projectList__toolList = document.createElement("ul")
+            projectList__toolList.classList.add("project-list__tool-list")
+            for (let i = 0; i < tools.length; i++) {
+                const projectList__toolListItem = document.createElement("li")
+                projectList__toolList.appendChild(projectList__toolListItem)
+                projectList__toolListItem.classList.add("project-list__tool-list-item")
+                projectList__toolListItem.appendChild(document.createTextNode(
+                    tools[i]
+                ))
+            }
+            return projectList__toolList
+        }
+        function createProjectList__itemEl(
+            url,
+            imgUrl,
+            title,
+            tools,
+            description
+        ) {
+            const projectList__itemEl = document.createElement("a")
+            projectList__itemEl.classList.add("project-list__item")
+            projectList__itemEl.href = url
+            const projectList__image = document.createElement("img")
+            projectList__itemEl.appendChild(projectList__image)
+            projectList__image.classList.add("project-list__image")
+            projectList__image.src = imgUrl
+            const projectList__textLayout = document.createElement("div")
+            projectList__itemEl.appendChild(projectList__textLayout)
+            projectList__textLayout.classList.add("project-list__text-layout")
+            const projectList__title = document.createElement("h2")
+            projectList__textLayout.appendChild(projectList__title)
+            projectList__title.classList.add("heading-2", "project-list__title")
+            projectList__title.appendChild(document.createTextNode(
+                title
+            ))
+            const projectList__toolList = createToolListEl(tools)
+            projectList__textLayout.appendChild(projectList__toolList)
+            const projectList__description = document.createElement("p")
+            projectList__textLayout.appendChild(projectList__description)
+            projectList__description.classList.add("project-list__description")
+            projectList__description.appendChild(document.createTextNode(
+                description
+            ))
+            return projectList__itemEl
+        }
+        function isProject(postTagTable, postId, tagTable) {
+            for (const [postTagId, postTagRow] of Object.entries(postTagTable)) {
+                if (
+                    postId === postTagRow.postId &&
+                    tagTable[postTagRow.tagId].name === "project"
+                ) {
+                    return true
+                }
+            }
+            return false
+        }
+        function getProjectTools(postTagTable, postId, tagTable, tagCategoryTable) {
+            const tools = []
+            for (const [postTagId, postTagRow] of Object.entries(postTagTable)) {
+                if (
+                    postId === postTagRow.postId &&
+                    tagCategoryTable[tagTable[postTagRow.tagId].tagCategoryId].name === "tool"
+                ) {
+                    tools.push(tagTable[postTagRow.tagId].name)
+                }
+            }
+            return tools
+        }
+        function addProjectList() {
+            const projectListEl = document.querySelector(".project-list")
+            Promise.all([
+                fetch("/data/post.json").then(res => res.json()),
+                fetch("/data/post_tag.json").then(res => res.json()),
+                fetch("/data/tag.json").then(res => res.json()),
+                fetch("/data/tag_category.json").then(res => res.json()),
+            ]).then((values) => {
+                const postTable = values[0]
+                const postTagTable = values[1]
+                const tagTable = values[2]
+                const tagCategoryTable = values[3]
+                for (const [postId, postRow] of Object.entries(postTable)) {
+                    if (isProject(postTagTable, postId, tagTable)) {
+                        const tools = getProjectTools(
+                            postTagTable,
+                            postId,
+                            tagTable,
+                            tagCategoryTable
+                        )
+                        projectListEl.appendChild(createProjectList__itemEl(
+                            postRow.url,
+                            postRow.imgUrl,
+                            postRow.title,
+                            tools,
+                            postRow.excerpt
+                        ))
+                    }
+                }
+            })
+        }
+        addProjectList()
+    </script>
 </body>
 
 </html>

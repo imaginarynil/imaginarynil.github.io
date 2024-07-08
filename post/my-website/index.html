@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{description}}">
+    <meta name="keywords" content="my website,blog,personal website,html,css,js">
+    <title>My Website - imaginarynil</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/post/post-detail.style.css">
+</head>
+
+<body class="page">
+    <header class="app-bar"></header>
+    <div class="mobile-sidebar"></div>
+    <main class="main page__main main_route_post-detail">
+        <div class="desktop-sidebar"></div>
+        <div class="post">
+            <article class="post__layout">
+                <p class="post__date-created">July 3, 2024</p>
+                <h1 class="heading-1 post__heading-1" id="My-Website">My Website</h1>
+                <p class="post__author-name">Daniel Sugianto</p>
+                <ul class="tag-list post__tag-list"></ul>
+                <p class="post__description">My website is built using HTML, CSS, JS without any frameworks. I will
+                    explain why I created this website, what tools did I use, and how I built it. I will also explain
+                    the future of this website</p>
+                <h2 class="heading-2 post__heading-2" id="Why-I-Built-This-Wesbite">Why I Built This Wesbite?</h2>
+                <p class="paragraph post__paragraph">
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium maiores tenetur cum consequatur
+                    explicabo, rem dignissimos similique, praesentium ducimus deleniti qui expedita officiis, fugiat
+                    voluptates molestias! Repudiandae eligendi distinctio explicabo.
+                </p>
+            </article>
+            <footer class="footer"></footer>
+        </div>
+    </main>
+
+    <script src="/block/appBar.js"></script>
+    <script src="/block/sidebar.js"></script>
+    <script src="/block/tagList.js"></script>
+    <script src="/block/footer.js"></script>
+    <script>
+        addAppBar()
+        addSidebar([
+            {
+                name: "Why I Built This Wesbite?",
+                level: 2,
+                id: "Why-I-Built-This-Wesbite"
+            },
+            {
+                name: "What Tools Did I Use?",
+                level: 2,
+                id: "What-Tools-Did-I-Use"
+            }
+        ])
+        addTagList("1")
+        addFooter()
+    </script>
+</body>
+
+</html>

@@ -1,11 +1,26 @@
 {
     "1": {
-        "name": "idea"
+        "name": "idea",
+        "tagCategoryId": "1"
     },
     "2": {
-        "name": "tutorial"
+        "name": "tutorial",
+        "tagCategoryId": "1"
     },
     "3": {
-        "name": "project"
+        "name": "project",
+        "tagCategoryId": "1"
+    },
+    "4": {
+        "name": "html",
+        "tagCategoryId": "2"
+    },
+    "5": {
+        "name": "css",
+        "tagCategoryId": "2"
+    },
+    "6": {
+        "name": "js",
+        "tagCategoryId": "2"
     }
 }

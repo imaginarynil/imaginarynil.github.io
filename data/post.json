@@ -1,8 +1,9 @@
 {
     "1": {
-        "url": "/post/hello-world/index.html",
-        "title": "Hello, World!",
-        "excerpt": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum rem quae quam distinctio! Obcaecati unde ut molestiae labore voluptatum maiores, quidem corporis adipisci optio nostrum eveniet assumenda libero cum ipsa.",
-        "dateCreated": "2024-06-07"
+        "url": "/post/my-website/index.html",
+        "title": "My Website",
+        "excerpt": "Hello, World! I have finished the first version of my website. I want to explain why I made this website, what technologies I used, and how I built it.",
+        "dateCreated": "2024/07/03",
+        "imgUrl": "/post/my-website/thumbnail.png"
     }
 }
