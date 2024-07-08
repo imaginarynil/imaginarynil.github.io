@@ -66,7 +66,7 @@ function addPostList(limit) {
         }
         for (const [postId, postRow] of postTableArray) {
             const dateCreated = new Date(postRow.dateCreated)
-            const dateCreatedStr = `${dateCreated.toLocaleString("default", { month: "long" })} ${dateCreated.getDay()}, ${dateCreated.getFullYear()}`
+            const dateCreatedStr = `${dateCreated.toLocaleString("default", { month: "long" })} ${dateCreated.getDate()}, ${dateCreated.getFullYear()}`
             const authorNames = []
             const postAuthorTableArray = Object.entries(postAuthorTable)
             for (const [_, postAuthorRow] of postAuthorTableArray) {

@@ -14,8 +14,8 @@ function createNavigationEl(links, listClassName, itemClassName) {
 function addAppBar() {
     const navLinks = [
         { name: "Home", url: "/index.html" },
-        { name: "Post", url: "/post/index.html" },
-        { name: "Project", url: "/project/index.html" },
+        { name: "Posts", url: "/post/index.html" },
+        { name: "Projects", url: "/project/index.html" },
         { name: "About", url: "/about/index.html" }
     ]
     const appBarEl = document.querySelector(".app-bar")

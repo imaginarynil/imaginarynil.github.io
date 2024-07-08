@@ -29,6 +29,12 @@ function addFooter() {
     footer__layoutEl.classList.add("footer__layout")
     const footer__accountListEl = createAccountListEl()
     footer__layoutEl.appendChild(footer__accountListEl)
+    const footer__messageEl = document.createElement("div")
+    footer__layoutEl.appendChild(footer__messageEl)
+    footer__messageEl.classList.add("footer__message")
+    footer__messageEl.appendChild(
+        document.createTextNode(`"The world opens itself before those with noble hearts" —Genshin Impact`)
+    )
     const footer__copyrightEl = document.createElement("div")
     footer__layoutEl.appendChild(footer__copyrightEl)
     footer__copyrightEl.classList.add("footer__copyright")

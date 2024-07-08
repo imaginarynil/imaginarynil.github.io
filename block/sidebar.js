@@ -48,7 +48,7 @@ function getSubtreeClassName(i) {
 }
 
 function fillHeadingTreeEl(array, depth, data) {
-    const headingTreeEl = document.createElement("ol")
+    const headingTreeEl = document.createElement("ul")
     if (depth > 0) {
         headingTreeEl.classList.add("heading-tree__subtree")
         headingTreeEl.classList.add(getSubtreeClassName(data.subtreeCount))
