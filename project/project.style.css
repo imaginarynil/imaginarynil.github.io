@@ -1,6 +1,6 @@
 .project-list {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 1rem;
     margin: 0 0 4rem 0;
 }
@@ -13,6 +13,10 @@
     color: inherit;
     border: 0.05rem solid rgba(255, 255, 255, 0.3);
     border-radius: 0.25rem;
+}
+
+.project-list__item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .project-list__image {
@@ -55,4 +59,16 @@
     border-radius: 0.25rem;
     padding: 0.1rem 0.5rem 0.1rem 0.5rem;
     font-size: 0.9rem;
+}
+
+@media screen and (min-width: 600px) {
+    .project-list {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .project-list {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
 }

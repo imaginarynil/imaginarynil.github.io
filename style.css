@@ -30,7 +30,7 @@
     background-color: rgba(15, 18, 20, 0.8);
     border-bottom: 1px solid rgba(61, 71, 81, 0.3);
     backdrop-filter: blur(4px);
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
 }
 
 .app-bar__layout {
@@ -50,6 +50,13 @@
     text-decoration: none;
     font-weight: 600;
     font-size: 1.25rem;
+}
+
+.logo__version {
+    font-size: 0.75rem;
+    align-self: flex-end;
+    font-weight: 400;
+    margin: 0 0 0 0.25rem
 }
 
 .app-bar__logo {
@@ -116,9 +123,7 @@
 .main {
     display: flex;
     justify-content: center;
-}
-
-.page__main {
+    min-height: 100vh;
     padding: 4rem 0 0 0;
 }
 
@@ -140,6 +145,7 @@
     flex-direction: column;
     align-items: center;
     margin: 1.5rem;
+    text-align: center;
 }
 
 .footer__account-list {
@@ -234,6 +240,10 @@
 }
 
 @media screen and (min-width: 600px) {
+    .main {
+        padding: 4rem 4rem 0 4rem;
+    }
+
     .main__layout {
         max-width: 600px;
     }
@@ -246,18 +256,14 @@
     .app-bar__toggler {
         display: none;
     }
+}
 
+@media screen and (min-width: 900px) {
     .footer__layout {
         flex-direction: row;
         justify-content: space-between;
     }
 
-    .page__main {
-        padding: 4rem 4rem 0 4rem;
-    }
-}
-
-@media screen and (min-width: 900px) {
     .main__layout {
         max-width: 900px;
     }
