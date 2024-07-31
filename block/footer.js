@@ -32,7 +32,7 @@ function addFooter() {
     const footer__messageEl = document.createElement("div")
     footer__layoutEl.appendChild(footer__messageEl)
     footer__messageEl.classList.add("footer__message")
-    footer__messageEl.innerHTML = `"The world opens itself before those with noble hearts"</br>—Genshin Impact `
+    footer__messageEl.innerHTML = `"The world opens itself before those who do not forget their dreams and nobility."</br>—Genshin Impact `
     const footer__copyrightEl = document.createElement("div")
     footer__layoutEl.appendChild(footer__copyrightEl)
     footer__copyrightEl.classList.add("footer__copyright")
