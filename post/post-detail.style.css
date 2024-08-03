@@ -50,6 +50,10 @@
     list-style-type: none;
 }
 
+.heading-tree__subtree_opened {
+    display: block;
+}
+
 .heading-tree__node {
     display: flex;
 }
@@ -74,6 +78,10 @@
     text-decoration: none;
     color: inherit;
     padding: 0.4rem;
+}
+
+.heading-tree__toggler_opened {
+    display: block;
 }
 
 .heading-tree__toggler:hover {
@@ -147,6 +155,10 @@
     line-height: 1.33333;
     letter-spacing: 0;
     margin: 0 0 1.5rem 0;
+}
+
+.post__list {
+    margin: 0 0 1rem 0;
 }
 
 @media screen and (min-width: 600px) {

@@ -29,17 +29,16 @@ function createHeadingTree(headings) {
 function toggleSubtree(togglerClassName, subtreeClassName) {
     const headingTree__togglerEl = document.querySelector(`.${togglerClassName}`)
     let headingTree__togglerInnerHTML = "▸"
-    const OPENED_ATTRIBUTE_NAME = "opened"
-    if (headingTree__togglerEl.getAttribute(OPENED_ATTRIBUTE_NAME) === null) {
-        headingTree__togglerEl.setAttribute(OPENED_ATTRIBUTE_NAME, "")
+    if (!headingTree__togglerEl.classList.contains("heading-tree__toggler_opened")) {
+        headingTree__togglerEl.classList.add("heading-tree__toggler_opened")
         headingTree__togglerInnerHTML = "▾"
     } else {
-        headingTree__togglerEl.removeAttribute(OPENED_ATTRIBUTE_NAME)
+        headingTree__togglerEl.classList.remove("heading-tree__toggler_opened")
     }
     headingTree__togglerEl.innerHTML = headingTree__togglerInnerHTML
     // TODO: refactor this. this is a quick fix because there is 1 link list each for mobile and desktop
     for (const headingTree__subtreeEl of document.querySelectorAll(`.${subtreeClassName}`)) {
-        headingTree__subtreeEl.classList.toggle("display_block")
+        headingTree__subtreeEl.classList.toggle("heading-tree__subtree_opened")
     }
 }
 
@@ -50,7 +49,7 @@ function getSubtreeClassName(i) {
 function fillHeadingTreeEl(array, depth, data) {
     const headingTreeEl = document.createElement("ul")
     if (depth > 0) {
-        headingTreeEl.classList.add("heading-tree__subtree")
+        headingTreeEl.classList.add("heading-tree__subtree", "heading-tree__subtree_opened")
         headingTreeEl.classList.add(getSubtreeClassName(data.subtreeCount))
         data.subtreeCount += 1
     }
@@ -75,18 +74,18 @@ function fillHeadingTreeEl(array, depth, data) {
         }
         if (currNode.children.length !== 0) {
             const subtreeCount = data.subtreeCount // TODO: why this fixes the problem?
-            const togglerEl = document.createElement("a")
-            togglerEl.classList.add("heading-tree__toggler")
-            togglerEl.innerHTML = "▸"
-            const togglerClassName = `heading-tree__${data.prefix}-toggler-${subtreeCount}`
-            togglerEl.classList.add(togglerClassName)
-            togglerEl.onclick = function () {
+            const headingTree__togglerEl = document.createElement("a")
+            headingTree__togglerEl.classList.add("heading-tree__toggler", "heading-tree__toggler_opened")
+            headingTree__togglerEl.innerHTML = "▾"
+            const headingTree__togglerClassName = `heading-tree__${data.prefix}-toggler-${subtreeCount}`
+            headingTree__togglerEl.classList.add(headingTree__togglerClassName)
+            headingTree__togglerEl.onclick = function () {
                 toggleSubtree(
-                    togglerClassName,
+                    headingTree__togglerClassName,
                     getSubtreeClassName(subtreeCount)
                 )
             }
-            headingTree__nodeEl.appendChild(togglerEl)
+            headingTree__nodeEl.appendChild(headingTree__togglerEl)
             headingTree__nodeEl.appendChild(headingTree__linkEl)
             headingTreeEl.appendChild(
                 fillHeadingTreeEl(
