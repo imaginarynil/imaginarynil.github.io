@@ -1,9 +1,9 @@
 {
     "1": {
-        "url": "/post/my-website/index.html",
-        "title": "My Website",
-        "excerpt": "Hello, World! I have finished the first version of my website. I want to explain why I made this website, what technologies I used, and how I built it.",
-        "dateCreated": "2024/07/03",
-        "imgUrl": "/post/my-website/thumbnail.png"
+        "url": "/post/personal-website/index.html",
+        "title": "Personal Website",
+        "excerpt": "Hello, World! I have finished my personal website. I want to explain why I made this website, what is this website about, and how I built it.",
+        "dateCreated": "2024/08/3",
+        "imgUrl": "/post/personal-website/thumbnail.png"
     }
 }
