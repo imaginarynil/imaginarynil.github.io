@@ -99,17 +99,17 @@
 }
 
 .cube__top {
-  background: #90E0EF;
+  background: #90e0ef;
   transform: rotate(210deg) skewX(-30deg) scaleY(0.864);
 }
 
 .cube__front {
-  background: #00B4D8;
+  background: #00b4d8;
   transform: rotate(-30deg) skewX(-30deg) scaleY(0.864);
 }
 
 .cube__side {
-  background: #0077B6;
+  background: #0077b6;
   transform: rotate(90deg) skewX(-30deg) scaleY(0.864);
 }
 
@@ -122,9 +122,13 @@
 }
 
 .hero__about-link-icon {
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 1.75rem;
+  height: 1.75rem;
   fill: rgb(66, 179, 255);
+}
+
+.hero__about-link-icon:hover {
+  fill: rgb(66, 233, 255);
 }
 
 @media screen and (min-width: 600px) {
