@@ -18,7 +18,6 @@ function addAppBar() {
         { name: "Projects", url: "/project/index.html" },
         { name: "About", url: "/about/index.html" }
     ]
-    const websiteVersion = "1.0.0"
     const appBarEl = document.querySelector(".app-bar")
     const appBar__layoutEl = document.createElement("div")
     appBarEl.appendChild(appBar__layoutEl)
@@ -28,10 +27,6 @@ function addAppBar() {
     logoEl.classList.add("logo", "app-bar__logo")
     logoEl.href = "/index.html"
     logoEl.appendChild(document.createTextNode("imaginarynil"))
-    const logo__versionEl = document.createElement("span")
-    logoEl.appendChild(logo__versionEl)
-    logo__versionEl.classList.add("logo__version")
-    logo__versionEl.appendChild(document.createTextNode(`v${websiteVersion}`))
     appBar__layoutEl.appendChild(createNavigationEl(
         navLinks,
         "navigation",
