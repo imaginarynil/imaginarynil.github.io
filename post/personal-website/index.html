@@ -50,7 +50,7 @@
             document them on this website, so people can better understand my
             projects and be inspired to create new softwares. Software projects
             that I have created can be seen on the
-            <a class="link" href="/project/index.html"> Projects </a>
+            <a class="link" href="/project/index.html">Projects</a>
             page.
           </p>
           <h3
@@ -67,6 +67,7 @@
             <a class="link" href="https://developer.mozilla.org/en-US/docs/Web">
               MDN Web Docs
             </a>
+            <span class="citation" data-id="wikipedia-2025-1"></span>
             as reference when developing a website. Equally important is that I
             challenge myself to not use a web framework because I want to
             understand how to build user interface components, arrange layouts
@@ -183,6 +184,7 @@
             for deciding component names and understanding a component's
             structure, style, and behaviors.
           </p>
+          <div class="reference-list"></div>
         </article>
         <footer class="footer"></footer>
       </div>
@@ -190,8 +192,10 @@
     <script src="/block/appBar.js"></script>
     <script src="/block/sidebar.js"></script>
     <script src="/block/tagList.js"></script>
+    <script src="/block/referenceList.js"></script>
     <script src="/block/footer.js"></script>
     <script>
+      const postId = "1";
       addAppBar();
       addSidebar([
         {
@@ -235,7 +239,22 @@
           id: "Read-Documentation-and-Experiment",
         },
       ]);
-      addTagList("1");
+      addTagList(postId);
+      const referencePresenter = new ReferencePresenter(
+        new ReferenceRepository([
+          new ReferenceItem(
+            "wikipedia-2025-1",
+            ["Wikipedia"],
+            "Computer science",
+            "",
+            "https://en.wikipedia.org/wiki/Computer_science",
+            "https://en.wikipedia.org/wiki/Computer_science"
+          ),
+        ])
+      );
+
+      referencePresenter.updateCitations();
+      referencePresenter.addReferenceList();
       addFooter();
     </script>
   </body>
