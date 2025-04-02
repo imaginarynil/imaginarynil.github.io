@@ -81,7 +81,7 @@
 }
 
 .heading-tree__toggler_opened {
-  display: block;
+  display: flex;
 }
 
 .heading-tree__toggler:hover {
