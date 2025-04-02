@@ -112,9 +112,7 @@ class ReferenceRepository {
 class ReferencePresenter {
   constructor(referenceRepository) {
     this.referenceRepository = referenceRepository;
-    this.selectedReferenceItem = null;
     this.UNKNOWN_INDEX = "?";
-    this.REFERENCE_ITEM_SELECTED_CLASS_NAME = "reference-list__item_selected";
   }
   getIndexByIdentifier(identifier) {
     const row = this.referenceRepository.getByIdentifier(identifier);
@@ -136,27 +134,18 @@ class ReferencePresenter {
         citation__linkEl.href = `#${identifier}`;
       }
       citation__linkEl.appendChild(document.createTextNode(citationText));
-      // const markSelectedReferenceItem = function (this, identifier) {
-      //   // all reset, then mark
-      //   const selectedReferenceItemEl = document.querySelector(
-      //     `#${identifier}`
-      //   );
-      //   if (!selectedReferenceItemEl) {
-      //     return;
-      //   }
-      //   if (!this.selectedReferenceItem) {
-      //     this.selectedReferenceItem.classList.remove(
-      //       REFERENCE_ITEM_SELECTED_CLASS_NAME
-      //     );
-      //   }
-      //   this.selectedReferenceItem = selectedReferenceItemEl;
-      //   selectedReferenceItemEl.classList.add(
-      //     REFERENCE_ITEM_SELECTED_CLASS_NAME
-      //   );
-      // };
-      // citation__linkEl.onclick = function () {
-      //   markSelectedReferenceItem(this, identifier);
-      // };
+      const REFERENCE_ITEM_SELECTED_CLASS_NAME =
+        "reference-list__item_selected";
+      const clearReferenceItemHighlight = function () {
+        for (const el of document.querySelectorAll(".reference-list__item")) {
+          el.classList.remove(REFERENCE_ITEM_SELECTED_CLASS_NAME);
+        }
+      };
+      citation__linkEl.onclick = function () {
+        clearReferenceItemHighlight();
+        const selectedItemEl = document.querySelector(`#${identifier}`);
+        selectedItemEl.classList.add(REFERENCE_ITEM_SELECTED_CLASS_NAME);
+      };
     }
   }
   createReferenceList__itemEl(htmlId, htmlElements, linkText, linkAddress) {

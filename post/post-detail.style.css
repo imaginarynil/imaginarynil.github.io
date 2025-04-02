@@ -165,6 +165,10 @@
   padding: 0 0 0 2.5rem;
 }
 
+.reference-list__item_selected {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
 /* disable color change after anchor is visited */
 .citation {
   color: rgb(66, 179, 255);
