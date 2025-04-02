@@ -32,7 +32,7 @@ function addFooter() {
   const footer__messageEl = document.createElement("div");
   footer__layoutEl.appendChild(footer__messageEl);
   footer__messageEl.classList.add("footer__message");
-  footer__messageEl.innerHTML = ``;
+  footer__messageEl.innerHTML = `"For a genius, nothing is more precious than failure." -The Herta, Honkai: Star Rail`;
   const footer__copyrightEl = document.createElement("div");
   footer__layoutEl.appendChild(footer__copyrightEl);
   footer__copyrightEl.classList.add("footer__copyright");
