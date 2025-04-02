@@ -1,5 +1,3 @@
-UNKNOWN_INDEX = "?";
-
 class ReferenceItem {
   constructor(identifier, authors, title, year, linkText, linkAddress) {
     this.identifier = identifier;
@@ -10,6 +8,8 @@ class ReferenceItem {
     this.linkText = linkText;
     this.linkAddress = linkAddress;
     this.index = 0;
+    this.TEXT_STYLE_NORMAL = "normal";
+    this.TEXT_STYLE_ITALIC = "italic";
   }
   getAuthorStr(authors) {
     if (authors.length === 0) {
@@ -28,16 +28,46 @@ class ReferenceItem {
   setIndex(index) {
     this.index = index;
   }
-  getString() {
-    const items = [this.authorStr, this.title, this.year];
-    const tokens = [];
-    for (let i = 0; i < items.length; i++) {
-      if (!items[i]) {
+  getHtmlElements() {
+    const items = {
+      authorStr: {
+        val: this.authorStr,
+        style: this.TEXT_STYLE_NORMAL,
+      },
+      title: {
+        val: this.title,
+        style: this.TEXT_STYLE_ITALIC,
+      },
+      year: {
+        val: this.year,
+        style: this.TEXT_STYLE_NORMAL,
+      },
+    };
+    const cleanedItems = {};
+    for (const [key, val] of Object.entries(items)) {
+      const text = val.val;
+      if (!text) {
         continue;
       }
-      tokens.push(items[i]);
+      cleanedItems[key] = val;
     }
-    return `${tokens.join(". ")}.`;
+    const htmlElements = [];
+    const cleanedItemEntries = Object.entries(cleanedItems);
+    for (let i = 0; i < cleanedItemEntries.length; i++) {
+      const [_, value] = cleanedItemEntries[i];
+      const rawText = value.val;
+      let text = `${rawText}. `;
+      switch (value.style) {
+        case this.TEXT_STYLE_ITALIC:
+          const italicEl = document.createElement("em");
+          italicEl.innerText = text;
+          htmlElements.push(italicEl);
+          break;
+        default:
+          htmlElements.push(document.createTextNode(text));
+      }
+    }
+    return htmlElements;
   }
 }
 
@@ -78,15 +108,18 @@ class ReferenceRepository {
   }
 }
 
-// TODO: add return to citations like wikipedia
+// TODO: add backlinks like wikipedia
 class ReferencePresenter {
   constructor(referenceRepository) {
     this.referenceRepository = referenceRepository;
+    this.selectedReferenceItem = null;
+    this.UNKNOWN_INDEX = "?";
+    this.REFERENCE_ITEM_SELECTED_CLASS_NAME = "reference-list__item_selected";
   }
   getIndexByIdentifier(identifier) {
     const row = this.referenceRepository.getByIdentifier(identifier);
     if (!row) {
-      return UNKNOWN_INDEX;
+      return this.UNKNOWN_INDEX;
     }
     return row.index;
   }
@@ -99,19 +132,40 @@ class ReferencePresenter {
       citation__linkEl.href = "javascript: void(0)";
       const index = this.getIndexByIdentifier(identifier);
       const citationText = `[${index}]`;
-      if (index !== UNKNOWN_INDEX) {
+      if (index !== this.UNKNOWN_INDEX) {
         citation__linkEl.href = `#${identifier}`;
       }
       citation__linkEl.appendChild(document.createTextNode(citationText));
+      // const markSelectedReferenceItem = function (this, identifier) {
+      //   // all reset, then mark
+      //   const selectedReferenceItemEl = document.querySelector(
+      //     `#${identifier}`
+      //   );
+      //   if (!selectedReferenceItemEl) {
+      //     return;
+      //   }
+      //   if (!this.selectedReferenceItem) {
+      //     this.selectedReferenceItem.classList.remove(
+      //       REFERENCE_ITEM_SELECTED_CLASS_NAME
+      //     );
+      //   }
+      //   this.selectedReferenceItem = selectedReferenceItemEl;
+      //   selectedReferenceItemEl.classList.add(
+      //     REFERENCE_ITEM_SELECTED_CLASS_NAME
+      //   );
+      // };
+      // citation__linkEl.onclick = function () {
+      //   markSelectedReferenceItem(this, identifier);
+      // };
     }
   }
-  createReferenceList__itemEl(htmlId, referenceStr, linkText, linkAddress) {
+  createReferenceList__itemEl(htmlId, htmlElements, linkText, linkAddress) {
     const referenceList__itemEl = document.createElement("li");
     referenceList__itemEl.id = htmlId;
     referenceList__itemEl.classList.add("reference-list__item");
-    referenceList__itemEl.appendChild(
-      document.createTextNode(`${referenceStr} `)
-    );
+    for (const htmlElement of htmlElements) {
+      referenceList__itemEl.appendChild(htmlElement);
+    }
     const referenceList__linkEl = document.createElement("a");
     referenceList__itemEl.appendChild(referenceList__linkEl);
     referenceList__linkEl.classList.add("link", "reference-list__link");
@@ -138,7 +192,7 @@ class ReferencePresenter {
       referenceList__orderedListEl.appendChild(
         this.createReferenceList__itemEl(
           referenceRows[i].identifier,
-          referenceRows[i].getString(),
+          referenceRows[i].getHtmlElements(),
           referenceRows[i].linkText,
           referenceRows[i].linkAddress
         )

@@ -63,18 +63,18 @@
             Building this website has taught me many things about web
             development. I learned how to make a maintainable web project so
             that it is easier to make changes and add features in the future. I
-            have learned how to use the
-            <a class="link" href="https://developer.mozilla.org/en-US/docs/Web">
-              MDN Web Docs
-            </a>
-            <span class="citation" data-id="wikipedia-2025-1"></span>
-            as reference when developing a website. Equally important is that I
-            challenge myself to not use a web framework because I want to
-            understand how to build user interface components, arrange layouts
-            and style elements using CSS, and add behaviors to the elements
-            using JavaScript. Next, I hosted this site on GitHub Pages because I
-            can store my code and deploy it on the same platform. I can also see
-            the changes on my website after I push my code to GitHub.
+            have learned how to use the MDN Web Docs as reference when
+            developing a website. Clear and comprehensive explanations for HTML
+            elements, CSS rules, and JavaScript features are available on the
+            MDN Web Docs
+            <sup class="citation" data-id="mozilla-docs"></sup>
+            . Equally important is that I challenge myself to not use a web
+            framework because I want to understand how to build user interface
+            components, arrange layouts and style elements using CSS, and add
+            behaviors to the elements using JavaScript. Next, I hosted this site
+            on GitHub Pages because I can store my code and deploy it on the
+            same platform. I can also see the changes on my website after I push
+            my code to GitHub.
           </p>
           <h2
             class="heading-2 post__heading-2"
@@ -90,19 +90,21 @@
             browser and GitHub to save my code online.
           </p>
           <p class="paragraph post__paragraph">
-            To manage HTML elements and CSS classes, I used the
-            <a class="link" href="https://en.bem.info/methodology/quick-start/">
-              BEM (Block, Element, Modifier) Methodology
-            </a>
-            made by Yandex. A block is a component that can be reused on
-            different pages. An element is a part of a block that cannot be used
-            independently. A modifier is a variant, such as style, state, or
-            behavior, of a block or an element. I followed the BEM approach
-            because it is the first method that I found, and it provides clear
-            instructions on how to organize HTML elements and CSS rules. In
-            addition, BEM documentation provides many examples and cases that
-            make it easier to understand and implement. I can also inspect the
-            BEM website to learn how the developers use the method.
+            To manage HTML elements and CSS classes, I used the BEM (Block,
+            Element, Modifier) Methodology made by Yandex. BEM is one of the
+            approaches to structure the class names and HTML elements .
+            According to BEM, A block is a component that can be reused on
+            different pages, while an element is a part of a block that cannot
+            be used independently
+            <sup class="citation" data-id="yandex-docs"></sup>
+            . An element has to be inside a block. Further, a modifier is a
+            variant, such as style, state, or behavior, of a block or an
+            element. I followed the BEM approach because it is the first method
+            that I found, and it provides clear instructions on how to name
+            elements. In addition, BEM documentation provides many examples and
+            cases that make it easier to understand and implement. Additionally,
+            I can inspect the BEM website to learn more how the developers apply
+            the method.
           </p>
           <h2
             class="heading-2 post__heading-2"
@@ -117,23 +119,24 @@
             Inspect Element and Study Patterns
           </h3>
           <p class="paragraph post__paragraph">
-            I used
-            <a href="https://mui.com/material-ui/getting-started/" class="link">
-              Material UI Documentation
-            </a>
-            and
-            <a href="https://mui.com/blog/" class="link"> MUI Blog </a>
-            as my main references. As a starting point to style my website, I
-            used MUI's dark mode style, emulated MUI components, and modified
-            the components according to my needs. For the heading tree sidebar
-            on post detail page, I was inspired by the sidebar on
-            <a class="link" href="https://developer.mozilla.org/en-US/docs/Web">
-              MDN Web Docs
-            </a>
+            Material UI is a React component library that offers production
+            grade UI widgets to develop app faster. Its documentation presents a
+            rich amount of UI component names and specification on the
+            component's style and behavior
+            <sup class="citation" data-id="mui-docs"></sup>
+            . As such, I used Material UI Documentation as a guide to create
+            view components and MUI Blog as a reference for formatting my
+            articles and post list.
+            <sup class="citation" data-id="mui-blog"></sup>
+            As a starting point to style my website, I used MUI's dark mode
+            style, emulated MUI components, and modified the components
+            according to my needs. For the heading tree sidebar on post detail
+            page, I was inspired by the sidebar on MDN Web Docs
+            <sup class="citation" data-id="mozilla-docs"></sup>
             and Firefox PDF Reader. Hero title on the home page is inspired by
-            the title on
-            <a class="link" href="https://getbem.com/"> BEM Quick Start </a>
-            . I got my SVG icons from
+            the title on the home page of BEM Quick Start
+            <sup class="citation" data-id="yandex-intro"></sup>
+            . Moreover, I got free icons from
             <a class="link" href="https://fontawesome.com/"> Font Awesome </a>
             and
             <a class="link" href="https://github.com/logos"> GitHub Logos </a>
@@ -145,26 +148,18 @@
             Follow Tutorials and Working Solutions
           </h3>
           <p class="paragraph post__paragraph">
-            To solve web development problems, such as
-            <a
-              class="link"
-              href="https://www.w3schools.com/howto/howto_js_toggle_hide_show.asp"
-            >
-              how to toggle an HTML element
-            </a>
-            I used
-            <a class="link" href="https://www.w3schools.com"> W3Schools </a>
-            and
-            <a class="link" href="https://stackoverflow.com/">
-              Stack Overflow
-            </a>
-            . The database design of this website was inspired by the
-            <a
-              href="https://codex.wordpress.org/Database_Description"
-              class="link"
-            >
-              Wordpress Database Description
-            </a>
+            The W3Schools provides many small tutorials in using HTML, CSS, JS
+            to create web elements. One of the problems in developing this
+            website was HTML element toggling, where if a user clicks on a
+            button, another element will show up or disappear
+            <sup class="citation" data-id="w3schools-toggle"></sup>
+            . To solve web development problems, I synthesized techniques from
+            Stack Overflow and W3Schools. Next, since I'm creating a blog, I can
+            reference a field-tested blog engine as a starting point. I need to
+            know how the article data are stored and retrieved, so I used the
+            database design of WordPress in developing this blog's database
+            <sup class="citation" data-id="wordpress-db"></sup>
+            .
           </p>
           <h3
             class="heading-3 post__heading-3"
@@ -243,12 +238,60 @@
       const referencePresenter = new ReferencePresenter(
         new ReferenceRepository([
           new ReferenceItem(
-            "wikipedia-2025-1",
-            ["Wikipedia"],
-            "Computer science",
+            "mozilla-docs",
+            ["Mozilla"],
+            "MDN Web Docs",
             "",
-            "https://en.wikipedia.org/wiki/Computer_science",
-            "https://en.wikipedia.org/wiki/Computer_science"
+            "https://developer.mozilla.org/en-US/docs/Web",
+            "https://developer.mozilla.org/en-US/docs/Web"
+          ),
+          new ReferenceItem(
+            "yandex-docs",
+            ["Yandex"],
+            "BEM",
+            "",
+            "https://en.bem.info/methodology/quick-start/",
+            "https://en.bem.info/methodology/quick-start/"
+          ),
+          new ReferenceItem(
+            "mui-docs",
+            ["MUI"],
+            "Material UI Documentation",
+            "",
+            "https://mui.com/material-ui/getting-started/",
+            "https://mui.com/material-ui/getting-started/"
+          ),
+          new ReferenceItem(
+            "mui-blog",
+            ["MUI"],
+            "MUI Blog",
+            "",
+            "https://mui.com/blog/",
+            "https://mui.com/blog/"
+          ),
+          new ReferenceItem(
+            "yandex-intro",
+            ["Yandex"],
+            "BEM Quick Start",
+            "",
+            "https://getbem.com/",
+            "https://getbem.com/"
+          ),
+          new ReferenceItem(
+            "w3schools-toggle",
+            ["W3Schools"],
+            "How To - Toggle Hide and Show",
+            "",
+            "https://www.w3schools.com/howto/howto_js_toggle_hide_show.asp",
+            "https://www.w3schools.com/howto/howto_js_toggle_hide_show.asp"
+          ),
+          new ReferenceItem(
+            "wordpress-db",
+            ["WordPress"],
+            "WordPress Database Description",
+            "",
+            "https://codex.wordpress.org/Database_Description",
+            "https://codex.wordpress.org/Database_Description"
           ),
         ])
       );
