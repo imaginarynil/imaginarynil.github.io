@@ -182,6 +182,12 @@
   color: rgb(124, 203, 255);
 }
 
+.reference-list__backlink-list {
+  display: inline-flex;
+  gap: 0.15rem;
+  margin: 0 0.25rem 0 0;
+}
+
 @media screen and (min-width: 600px) {
   .post__layout {
     max-width: 400px;

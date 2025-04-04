@@ -59,6 +59,7 @@ function fillHeadingTreeEl(array, depth, data) {
   } else {
     headingTreeEl.classList.add("heading-tree");
   }
+  const APP_BAR_HEIGHT_PX = 64;
   for (let i = 0; i < array.length; i++) {
     const currNode = array[i];
     const headingTree__nodeEl = document.createElement("li");
@@ -73,7 +74,7 @@ function fillHeadingTreeEl(array, depth, data) {
         return;
       }
       const targetY = window.scrollY + headingEl.getBoundingClientRect().top;
-      window.scrollTo(0, targetY - 64);
+      window.scrollTo(0, targetY - APP_BAR_HEIGHT_PX);
     };
     if (currNode.children.length !== 0) {
       const subtreeCount = data.subtreeCount; // TODO: why this fixes the problem?

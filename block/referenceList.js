@@ -8,6 +8,7 @@ class ReferenceItem {
     this.linkText = linkText;
     this.linkAddress = linkAddress;
     this.index = 0;
+    this.citationHtmlIds = [];
     this.TEXT_STYLE_NORMAL = "normal";
     this.TEXT_STYLE_ITALIC = "italic";
   }
@@ -28,6 +29,13 @@ class ReferenceItem {
   setIndex(index) {
     this.index = index;
   }
+  addCitation(htmlId) {
+    this.citationHtmlIds.push(htmlId);
+  }
+  getCitationHtmlIds() {
+    return this.citationHtmlIds;
+  }
+  // TODO: move this to presenter
   getHtmlElements() {
     const items = {
       authorStr: {
@@ -108,7 +116,6 @@ class ReferenceRepository {
   }
 }
 
-// TODO: add backlinks like wikipedia
 class ReferencePresenter {
   constructor(referenceRepository) {
     this.referenceRepository = referenceRepository;
@@ -121,17 +128,25 @@ class ReferencePresenter {
     }
     return row.index;
   }
+  registerCitation(identifier, citationHtmlId) {
+    const row = this.referenceRepository.getByIdentifier(identifier);
+    row.addCitation(citationHtmlId);
+  }
   updateCitations() {
-    for (const citationEl of document.querySelectorAll(".citation")) {
+    const citationElements = document.querySelectorAll(".citation");
+    for (let i = 0; i < citationElements.length; i++) {
       const citation__linkEl = document.createElement("a");
-      citationEl.appendChild(citation__linkEl);
+      citationElements[i].appendChild(citation__linkEl);
       citation__linkEl.classList.add("link", "citation__link");
-      const identifier = citationEl.dataset.id;
-      citation__linkEl.href = "javascript: void(0)";
+      const identifier = citationElements[i].dataset.id;
+      citation__linkEl.href = "javascript:void(0);";
       const index = this.getIndexByIdentifier(identifier);
       const citationText = `[${index}]`;
       if (index !== this.UNKNOWN_INDEX) {
         citation__linkEl.href = `#${identifier}`;
+        const citationHtmlId = `citation-${i}`;
+        citationElements[i].id = citationHtmlId;
+        this.registerCitation(identifier, citationHtmlId);
       }
       citation__linkEl.appendChild(document.createTextNode(citationText));
       const REFERENCE_ITEM_SELECTED_CLASS_NAME =
@@ -148,10 +163,61 @@ class ReferencePresenter {
       };
     }
   }
+  createReferenceList__backLinkEl(citationHtmlId) {
+    const referenceList__backLinkEl = document.createElement("a");
+    referenceList__backLinkEl.classList.add("link", "reference-list__backlink");
+    referenceList__backLinkEl.href = "javascript:void(0);";
+    const APP_BAR_HEIGHT_PX = 64;
+    referenceList__backLinkEl.onclick = function () {
+      const citationEl = document.querySelector(`#${citationHtmlId}`);
+      const targetY = window.scrollY + citationEl.getBoundingClientRect().top;
+      window.scrollTo(0, targetY - APP_BAR_HEIGHT_PX);
+    };
+    return referenceList__backLinkEl;
+  }
+  createReferenceList__backLinkListEl(identifier) {
+    const referenceList__backLinkListEl = document.createElement("span");
+    referenceList__backLinkListEl.classList.add(
+      "reference-list__backlink-list"
+    );
+    const row = this.referenceRepository.getByIdentifier(identifier);
+    if (!row) {
+      return referenceList__backLinkListEl;
+    }
+    const citationHtmlIds = row.getCitationHtmlIds();
+    if (citationHtmlIds.length === 1) {
+      const referenceList__backLinkEl = this.createReferenceList__backLinkEl(
+        citationHtmlIds[0]
+      );
+      referenceList__backLinkListEl.appendChild(referenceList__backLinkEl);
+      const boldEl = document.createElement("b");
+      referenceList__backLinkEl.appendChild(boldEl);
+      boldEl.appendChild(document.createTextNode("^"));
+    } else if (citationHtmlIds.length > 1) {
+      referenceList__backLinkListEl.appendChild(document.createTextNode("^"));
+      for (let i = 0; i < citationHtmlIds.length; i++) {
+        const referenceList__backLinkEl = this.createReferenceList__backLinkEl(
+          citationHtmlIds[i]
+        );
+        referenceList__backLinkListEl.appendChild(referenceList__backLinkEl);
+        const supEl = document.createElement("sup");
+        referenceList__backLinkEl.appendChild(supEl);
+        const boldEl = document.createElement("b");
+        supEl.appendChild(boldEl);
+        const italicEl = document.createElement("i");
+        boldEl.appendChild(italicEl);
+        italicEl.appendChild(document.createTextNode(`${i + 1}`));
+      }
+    }
+    return referenceList__backLinkListEl;
+  }
   createReferenceList__itemEl(htmlId, htmlElements, linkText, linkAddress) {
     const referenceList__itemEl = document.createElement("li");
     referenceList__itemEl.id = htmlId;
     referenceList__itemEl.classList.add("reference-list__item");
+    referenceList__itemEl.appendChild(
+      this.createReferenceList__backLinkListEl(htmlId)
+    );
     for (const htmlElement of htmlElements) {
       referenceList__itemEl.appendChild(htmlElement);
     }
