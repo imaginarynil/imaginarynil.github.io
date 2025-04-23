@@ -1,5 +1,6 @@
 .desktop-sidebar {
   display: none;
+  width: 0;
 }
 
 .sidebar__layout {
