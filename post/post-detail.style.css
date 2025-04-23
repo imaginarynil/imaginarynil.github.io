@@ -1,7 +1,5 @@
 .desktop-sidebar {
   display: none;
-  max-width: 16rem;
-  width: 100%;
 }
 
 .sidebar__layout {
@@ -199,6 +197,8 @@
 
   .desktop-sidebar {
     display: flex;
+    max-width: 16rem;
+    width: 100%;
   }
 }
 
