@@ -165,7 +165,7 @@
   padding: 0 0 0 2.5rem;
 }
 
-.reference-list__link {
+.reference-list__item::before {
   display: inline-block;
 }
 
