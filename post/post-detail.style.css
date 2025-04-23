@@ -1,6 +1,7 @@
 .desktop-sidebar {
   display: none;
-  width: 0;
+  max-width: 16rem;
+  width: 100%;
 }
 
 .sidebar__layout {
@@ -187,6 +188,10 @@
   margin: 0 0.25rem 0 0;
 }
 
+.reference-list {
+  max-width: 100%;
+}
+
 @media screen and (min-width: 600px) {
   .post__layout {
     max-width: 400px;
@@ -198,8 +203,6 @@
 
   .desktop-sidebar {
     display: flex;
-    max-width: 16rem;
-    width: 100%;
   }
 }
 
