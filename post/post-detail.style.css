@@ -165,8 +165,8 @@
   padding: 0 0 0 2.5rem;
 }
 
-.reference-list__item::before {
-  display: inline-block;
+.reference-list__item {
+  overflow-wrap: break-word;
 }
 
 .reference-list__item_selected {
