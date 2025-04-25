@@ -33,6 +33,10 @@
   color: hsl(215, 15%, 75%); /* override color */
 }
 
+.footer {
+  color: rgb(255, 255, 255);
+}
+
 .post__layout {
   max-width: 300px;
   width: 100%;
