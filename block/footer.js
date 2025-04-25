@@ -6,6 +6,10 @@ function createAccountListEl() {
       name: "Github",
       url: "https://github.com/imaginarynil",
     },
+    {
+      name: "Linkedin",
+      url: "https://www.linkedin.com/in/sugianto-daniel/",
+    },
   ];
   for (let i = 0; i < accounts.length; i++) {
     const footer__accountItemEl = document.createElement("li");
