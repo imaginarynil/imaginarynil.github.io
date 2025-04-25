@@ -30,6 +30,7 @@
   flex-direction: column;
   width: 100%;
   align-items: center;
+  color: hsl(215, 15%, 75%); /* override color */
 }
 
 .post__layout {
@@ -116,21 +117,24 @@
   height: 1.25rem;
 }
 
-.main_route_post-detail {
+.main_route_post {
   padding-right: 0;
   padding-left: 0;
 }
 
 .post__heading-1 {
   margin: 10px 0 10px 0;
+  color: hsl(215, 15%, 97%);
 }
 
 .post__heading-2 {
   margin: 40px 0 4px 0;
+  color: hsl(215, 15%, 97%);
 }
 
 .post__heading-3 {
   margin: 1.5rem 0 0.25rem 0;
+  color: hsl(215, 15%, 97%);
 }
 
 .post__paragraph {
