@@ -1,5 +1,5 @@
 function createPostList__itemEl(
-  dateCreated,
+  creationDate,
   authorName,
   title,
   excerpt,
@@ -17,10 +17,10 @@ function createPostList__itemEl(
   postList__itemEl.appendChild(postList__authorName);
   postList__authorName.classList.add("post-list__author-name");
   postList__authorName.appendChild(document.createTextNode(authorName));
-  const postList__dateCreatedEl = document.createElement("p");
-  postList__itemEl.appendChild(postList__dateCreatedEl);
-  postList__dateCreatedEl.classList.add("post-list__date-created");
-  postList__dateCreatedEl.appendChild(document.createTextNode(dateCreated));
+  const postList__creationDateEl = document.createElement("p");
+  postList__itemEl.appendChild(postList__creationDateEl);
+  postList__creationDateEl.classList.add("post-list__creation-date");
+  postList__creationDateEl.appendChild(document.createTextNode(creationDate));
   const postList__excerptEl = document.createElement("p");
   postList__itemEl.appendChild(postList__excerptEl);
   postList__excerptEl.classList.add("post-list__excerpt");
@@ -49,8 +49,8 @@ function addPostList(limit) {
       return;
     }
     postTableArray.sort(function (item1, item2) {
-      const date1 = new Date(item1[1].dateCreated);
-      const date2 = new Date(item2[1].dateCreated);
+      const date1 = new Date(item1[1].creationDate);
+      const date2 = new Date(item2[1].creationDate);
       if (date1.getTime() < date2.getTime()) {
         return 1;
       } else if (date1.getTime() > date2.getTime()) {
@@ -62,10 +62,10 @@ function addPostList(limit) {
       postTableArray = postTableArray.slice(0, limit);
     }
     for (const [postId, postRow] of postTableArray) {
-      const dateCreated = new Date(postRow.dateCreated);
-      const dateCreatedStr = `${dateCreated.toLocaleString("default", {
+      const creationDate = new Date(postRow.creationDate);
+      const creationDateStr = `${creationDate.toLocaleString("default", {
         month: "long",
-      })} ${dateCreated.getDate()}, ${dateCreated.getFullYear()}`;
+      })} ${creationDate.getDate()}, ${creationDate.getFullYear()}`;
       const authorNames = [];
       const postAuthorTableArray = Object.entries(postAuthorTable);
       for (const [_, postAuthorRow] of postAuthorTableArray) {
@@ -81,7 +81,7 @@ function addPostList(limit) {
       }
       postListEl.appendChild(
         createPostList__itemEl(
-          dateCreatedStr,
+          creationDateStr,
           authorNameStr,
           postRow.title,
           postRow.excerpt,

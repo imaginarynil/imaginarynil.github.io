@@ -121,10 +121,6 @@
   padding-left: 0;
 }
 
-.post__tag-list {
-  margin: 0 0 10px 0;
-}
-
 .post__heading-1 {
   margin: 10px 0 10px 0;
 }
@@ -139,22 +135,39 @@
 
 .post__paragraph {
   margin: 0 0 1rem 0;
+  color: hsl(215, 15%, 75%);
 }
 
-.post__date-created {
-  font-size: 0.8rem;
-}
-
-.post__author-name {
+.post__title {
   margin: 0 0 10px 0;
-  font-size: 0.9rem;
+  color: rgb(255, 255, 255);
 }
 
-.post__description {
+.post__subtitle {
   font-size: 1.125rem;
-  line-height: 1.33333;
+  line-height: 1.33;
   letter-spacing: 0;
-  margin: 0 0 1.5rem 0;
+  margin: 0 0 1rem 0;
+  color: hsl(215, 15%, 89%);
+}
+
+.post__details {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  align-items: center;
+  font-size: 0.875rem;
+  flex-wrap: wrap;
+  color: hsl(215, 15%, 75%);
+}
+
+.post__detail_has-right-border {
+  border-right: 1px solid rgba(241, 245, 249, 0.3);
+  padding-right: 0.5rem;
+}
+
+.post__tag-list {
+  margin: 0 0 1rem 0;
 }
 
 .post__list {
@@ -171,19 +184,6 @@
 
 .reference-list__item_selected {
   background-color: rgba(255, 255, 255, 0.1);
-}
-
-/* disable color change after anchor is visited */
-.citation {
-  color: rgb(66, 179, 255);
-}
-
-.citation:visited {
-  color: rgb(66, 179, 255);
-}
-
-.citation:hover {
-  color: rgb(124, 203, 255);
 }
 
 .reference-list__backlink-list {

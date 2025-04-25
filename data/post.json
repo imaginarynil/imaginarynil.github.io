@@ -3,7 +3,8 @@
     "url": "/post/personal-website/index.html",
     "title": "Personal Website",
     "excerpt": "Hello, World! I have finished my personal website. I want to explain why I made this website, what is this website about, and how I built it.",
-    "dateCreated": "2024/08/3",
+    "creationDate": "2025/04/05",
+    "updateDate": "2025/04/05",
     "imgUrl": "/post/personal-website/thumbnail.png"
   }
 }

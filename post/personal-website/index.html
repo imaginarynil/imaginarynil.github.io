@@ -23,15 +23,17 @@
       <div class="desktop-sidebar"></div>
       <div class="post">
         <article class="post__layout">
-          <p class="post__date-created">August 3, 2024</p>
-          <h1 class="heading-1 post__heading-1" id="My-Website">
+          <h1 class="heading-1 post__title" id="My-Website">
             Personal Website
           </h1>
-          <p class="post__author-name">Daniel Sugianto</p>
-          <ul class="tag-list post__tag-list"></ul>
-          <p class="post__description">
+          <p class="post__subtitle">
             Blog built with vanilla HTML, CSS, and JS.
           </p>
+          <div class="post__details">
+            <p class="post__author-name">Daniel Sugianto</p>
+            <p class="post__creation-date">Created on January 1, 1970</p>
+            <p class="post__update-date">Updated on January 1, 1970</p>
+          </div>
           <h2 class="heading-2 post__heading-2" id="Why-I-Built-This-Wesbite">
             Why I Built This Wesbite?
           </h2>
@@ -179,6 +181,7 @@
             for deciding component names and understanding a component's
             structure, style, and behaviors.
           </p>
+          <ul class="tag-list post__tag-list"></ul>
           <div class="reference-list"></div>
         </article>
         <footer class="footer"></footer>
@@ -189,9 +192,10 @@
     <script src="/block/tagList.js"></script>
     <script src="/block/referenceList.js"></script>
     <script src="/block/footer.js"></script>
+    <script src="/util/stylePostDetails.js"></script>
     <script>
-      const postId = "1";
       addAppBar();
+      stylePostDetails();
       addSidebar([
         {
           name: "Why I Built This Wesbite?",
@@ -234,7 +238,6 @@
           id: "Read-Documentation-and-Experiment",
         },
       ]);
-      addTagList(postId);
       const referencePresenter = new ReferencePresenter(
         new ReferenceRepository([
           new ReferenceItem(
@@ -297,6 +300,8 @@
       );
       referencePresenter.updateCitations();
       referencePresenter.addReferenceList();
+      const postId = "1";
+      addTagList(postId);
       addFooter();
     </script>
   </body>

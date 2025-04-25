@@ -188,11 +188,15 @@
 
 .link {
   text-decoration: none;
-  color: rgb(66, 179, 255);
+  color: hsl(210, 100%, 70%);
+}
+
+.link:visited {
+  color: hsl(210, 100%, 70%);
 }
 
 .link:hover {
-  color: rgb(124, 203, 255);
+  color: hsl(210, 100%, 75%);
 }
 
 .tag-list {
@@ -235,7 +239,7 @@
   font-size: 0.9rem;
 }
 
-.post-list__date-created {
+.post-list__creation-date {
   font-size: 0.8rem;
 }
 
