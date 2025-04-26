@@ -1,18 +1,14 @@
 {
   "1": {
     "postId": "1",
-    "tagId": "3"
+    "tagId": "1"
   },
   "2": {
     "postId": "1",
-    "tagId": "4"
+    "tagId": "2"
   },
   "3": {
     "postId": "1",
-    "tagId": "5"
-  },
-  "4": {
-    "postId": "1",
-    "tagId": "6"
+    "tagId": "3"
   }
 }
