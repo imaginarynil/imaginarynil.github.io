@@ -125,11 +125,11 @@
 .hero__about-link-icon {
   width: 1.75rem;
   height: 1.75rem;
-  fill: rgb(66, 179, 255);
+  fill: var(--primary-300);
 }
 
 .hero__about-link-icon:hover {
-  fill: rgb(66, 233, 255);
+  fill: var(--primary-200);
 }
 
 @media screen and (min-width: 600px) {
