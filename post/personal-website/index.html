@@ -186,7 +186,10 @@
             for deciding component names and understanding a component's
             structure, style, and behaviors.
           </p>
-          <ul class="tag-list post__tag-list"></ul>
+          <div class="post__tag-list">
+            <p class="paragraph post__tag-title">Tags:</p>
+            <ul class="tag-list"></ul>
+          </div>
           <div class="reference-list"></div>
         </article>
         <footer class="footer"></footer>
@@ -243,68 +246,66 @@
           id: "Read-Documentation-and-Experiment",
         },
       ]);
-      const referencePresenter = new ReferencePresenter(
-        new ReferenceRepository([
-          new ReferenceItem(
-            "mozilla-docs",
-            ["Mozilla"],
-            "MDN Web Docs",
-            "",
-            "https://developer.mozilla.org/en-US/docs/Web",
-            "https://developer.mozilla.org/en-US/docs/Web"
-          ),
-          new ReferenceItem(
-            "yandex-docs",
-            ["Yandex"],
-            "BEM",
-            "",
-            "https://en.bem.info/methodology/quick-start/",
-            "https://en.bem.info/methodology/quick-start/"
-          ),
-          new ReferenceItem(
-            "mui-docs",
-            ["MUI"],
-            "Material UI Documentation",
-            "",
-            "https://mui.com/material-ui/getting-started/",
-            "https://mui.com/material-ui/getting-started/"
-          ),
-          new ReferenceItem(
-            "mui-blog",
-            ["MUI"],
-            "MUI Blog",
-            "",
-            "https://mui.com/blog/",
-            "https://mui.com/blog/"
-          ),
-          new ReferenceItem(
-            "yandex-intro",
-            ["Yandex"],
-            "BEM Quick Start",
-            "",
-            "https://getbem.com/",
-            "https://getbem.com/"
-          ),
-          new ReferenceItem(
-            "w3schools-toggle",
-            ["W3Schools"],
-            "How To - Toggle Hide and Show",
-            "",
+      addReferenceList([
+        {
+          identifier: "mozilla-docs",
+          authors: ["Mozilla"],
+          title: "MDN Web Docs",
+          year: "",
+          linkText: "https://developer.mozilla.org/en-US/docs/Web",
+          linkAddress: "https://developer.mozilla.org/en-US/docs/Web",
+        },
+        {
+          identifier: "yandex-docs",
+          authors: ["Yandex"],
+          title: "BEM",
+          year: "",
+          linkText: "https://en.bem.info/methodology/quick-start/",
+          linkAddress: "https://en.bem.info/methodology/quick-start/",
+        },
+        {
+          identifier: "mui-docs",
+          authors: ["MUI"],
+          title: "Material UI Documentation",
+          year: "",
+          linkText: "https://mui.com/material-ui/getting-started/",
+          linkAddress: "https://mui.com/material-ui/getting-started/",
+        },
+        {
+          identifier: "mui-blog",
+          authors: ["MUI"],
+          title: "MUI Blog",
+          year: "",
+          linkText: "https://mui.com/blog/",
+          linkAddress: "https://mui.com/blog/",
+        },
+        {
+          identifier: "yandex-intro",
+          authors: ["Yandex"],
+          title: "BEM Quick Start",
+          year: "",
+          linkText: "https://getbem.com/",
+          linkAddress: "https://getbem.com/",
+        },
+        {
+          identifier: "w3schools-toggle",
+          authors: ["W3Schools"],
+          title: "How To - Toggle Hide and Show",
+          year: "",
+          linkText:
             "https://www.w3schools.com/howto/howto_js_toggle_hide_show.asp",
-            "https://www.w3schools.com/howto/howto_js_toggle_hide_show.asp"
-          ),
-          new ReferenceItem(
-            "wordpress-db",
-            ["WordPress"],
-            "WordPress Database Description",
-            "",
-            "https://codex.wordpress.org/Database_Description",
-            "https://codex.wordpress.org/Database_Description"
-          ),
-        ])
-      );
-      referencePresenter.updateCitations();
-      referencePresenter.addReferenceList();
+          linkAddress:
+            "https://www.w3schools.com/howto/howto_js_toggle_hide_show.asp",
+        },
+        {
+          identifier: "wordpress-db",
+          authors: ["WordPress"],
+          title: "WordPress Database Description",
+          year: "",
+          linkText: "https://codex.wordpress.org/Database_Description",
+          linkAddress: "https://codex.wordpress.org/Database_Description",
+        },
+      ]);
       const postId = "1";
       addTagList(postId);
       addFooter();

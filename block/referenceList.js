@@ -255,3 +255,19 @@ class ReferencePresenter {
     }
   }
 }
+
+function addReferenceList(items) {
+  const referenceItems = [];
+  for (let i = 0; i < items.length; i++) {
+    const { identifier, authors, title, year, linkText, linkAddress } =
+      items[i];
+    referenceItems.push(
+      new ReferenceItem(identifier, authors, title, year, linkText, linkAddress)
+    );
+  }
+  const referencePresenter = new ReferencePresenter(
+    new ReferenceRepository(referenceItems)
+  );
+  referencePresenter.updateCitations();
+  referencePresenter.addReferenceList();
+}
