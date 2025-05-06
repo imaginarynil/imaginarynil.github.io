@@ -30,14 +30,18 @@
   flex-direction: column;
   width: 100%;
   align-items: center;
+  padding: 0 1rem 0 1rem;
+  box-sizing: border-box;
 }
 
 .post__layout {
-  margin: 4rem 1rem 4rem 1rem;
+  width: 100%;
+  margin: 4rem 0 4rem 0;
+  box-sizing: border-box;
 }
 
 .footer {
-  color: rgb(255, 255, 255);
+  color: var(--text-primary);
 }
 
 .heading-tree {
@@ -208,9 +212,7 @@
 
 @media screen and (min-width: 600px) {
   .post__layout {
-    width: 100%;
     max-width: 400px;
-    margin: 4rem 0 4rem 0;
   }
 
   .mobile-sidebar {
@@ -223,6 +225,10 @@
 }
 
 @media screen and (min-width: 900px) {
+  .post {
+    padding: 0 0 0 0;
+  }
+
   .post__layout {
     max-width: 600px;
   }
