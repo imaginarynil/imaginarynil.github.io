@@ -2,7 +2,7 @@ function createProjectList__itemEl(
   url,
   imgUrl,
   title,
-  updateDate,
+  creationDate,
   description
 ) {
   const projectList__itemEl = document.createElement("a");
@@ -19,11 +19,11 @@ function createProjectList__itemEl(
   projectList__textLayout.appendChild(projectList__title);
   projectList__title.classList.add("heading-2", "project-list__title");
   projectList__title.appendChild(document.createTextNode(title));
-  const projectList__updateDate = document.createElement("p");
-  projectList__textLayout.appendChild(projectList__updateDate);
-  projectList__updateDate.classList.add("paragraph");
-  projectList__updateDate.classList.add("project-list__update-date");
-  projectList__updateDate.appendChild(document.createTextNode(updateDate));
+  const projectList__creationDate = document.createElement("p");
+  projectList__textLayout.appendChild(projectList__creationDate);
+  projectList__creationDate.classList.add("paragraph");
+  projectList__creationDate.classList.add("project-list__creation-date");
+  projectList__creationDate.appendChild(document.createTextNode(creationDate));
   const projectList__description = document.createElement("p");
   projectList__textLayout.appendChild(projectList__description);
   projectList__description.classList.add("paragraph");
@@ -51,21 +51,19 @@ export function addProjectList() {
     fetch("/data/post_tag.json").then((res) => res.json()),
     fetch("/data/tag.json").then((res) => res.json()),
   ]).then((values) => {
-    const postTable = values[0];
-    const postTagTable = values[1];
-    const tagTable = values[2];
+    const [postTable, postTagTable, tagTable] = values;
     for (const [postId, postRow] of Object.entries(postTable)) {
-      const updateDate = new Date(postRow.updateDate);
-      const updateDateStr = `${updateDate.toLocaleString("default", {
+      const creationDate = new Date(postRow.creationDate);
+      const creationDateStr = `${creationDate.toLocaleString("default", {
         month: "long",
-      })} ${updateDate.getDate()}, ${updateDate.getFullYear()}`;
+      })} ${creationDate.getDate()}, ${creationDate.getFullYear()}`;
       if (isProject(postTagTable, postId, tagTable)) {
         projectListEl.appendChild(
           createProjectList__itemEl(
             postRow.url,
             postRow.imgUrl,
             postRow.title,
-            updateDateStr,
+            creationDateStr,
             postRow.excerpt
           )
         );
