@@ -41,6 +41,7 @@
 }
 
 .project-list__update-date {
+  color: var(--grey-500);
   font-size: 0.8rem;
   margin: 0 0 0.25rem 0;
 }

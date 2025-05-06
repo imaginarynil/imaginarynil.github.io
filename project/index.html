@@ -44,12 +44,14 @@
         projectList__title.appendChild(document.createTextNode(title));
         const projectList__updateDate = document.createElement("p");
         projectList__textLayout.appendChild(projectList__updateDate);
+        projectList__updateDate.classList.add("paragraph");
         projectList__updateDate.classList.add("project-list__update-date");
         projectList__updateDate.appendChild(
           document.createTextNode(updateDate)
         );
         const projectList__description = document.createElement("p");
         projectList__textLayout.appendChild(projectList__description);
+        projectList__description.classList.add("paragraph");
         projectList__description.classList.add("project-list__description");
         projectList__description.appendChild(
           document.createTextNode(description)
