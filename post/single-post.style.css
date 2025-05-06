@@ -170,7 +170,11 @@
 }
 
 .post__tag-list {
-  margin: 0 0 1rem 0;
+  display: flex;
+}
+
+.post__tag-title {
+  margin: 0 0.25rem 0 0;
 }
 
 .post__list {
