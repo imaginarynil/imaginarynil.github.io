@@ -15,14 +15,17 @@ function createPostList__itemEl(
   postList__titleEl.appendChild(document.createTextNode(title));
   const postList__authorName = document.createElement("p");
   postList__itemEl.appendChild(postList__authorName);
+  postList__authorName.classList.add("paragraph");
   postList__authorName.classList.add("post-list__author-name");
   postList__authorName.appendChild(document.createTextNode(authorName));
   const postList__creationDateEl = document.createElement("p");
   postList__itemEl.appendChild(postList__creationDateEl);
+  postList__creationDateEl.classList.add("paragraph");
   postList__creationDateEl.classList.add("post-list__creation-date");
   postList__creationDateEl.appendChild(document.createTextNode(creationDate));
   const postList__excerptEl = document.createElement("p");
   postList__itemEl.appendChild(postList__excerptEl);
+  postList__excerptEl.classList.add("paragraph");
   postList__excerptEl.classList.add("post-list__excerpt");
   postList__excerptEl.appendChild(document.createTextNode(excerpt));
   postList__itemEl.appendChild(tagListEl);

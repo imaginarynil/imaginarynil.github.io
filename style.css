@@ -15,8 +15,18 @@
   padding: 0;
 }
 
+:root {
+  --text-primary: #fff;
+  --text-secondary: hsl(215, 15%, 75%);
+  --primary-200: hsl(210, 100%, 80%);
+  --primary-300: hsl(210, 100%, 70%);
+  --secondary-200: hsl(215, 15%, 89%);
+  --grey-50: hsl(215, 15%, 97%);
+  --grey-500: hsl(215, 15%, 65%);
+}
+
 .page {
-  color: rgb(255, 255, 255);
+  color: var(--text-primary);
   font-family: "IBM Plex Sans";
   background: linear-gradient(
     180deg,
@@ -168,21 +178,25 @@
 .heading-1 {
   font-size: 2.25rem;
   font-weight: 600;
+  color: var(--grey-50);
 }
 
 .heading-2 {
   font-size: 1.625rem;
   font-weight: 600;
+  color: var(--grey-50);
 }
 
 .heading-3 {
   font-size: 1.25rem;
   font-weight: 600;
+  color: var(--grey-50);
 }
 
 .paragraph {
   line-height: 1.6;
   letter-spacing: 0;
+  color: var(--text-secondary);
 }
 
 .list {
@@ -191,15 +205,15 @@
 
 .link {
   text-decoration: none;
-  color: hsl(210, 100%, 70%);
+  color: var(--primary-300);
 }
 
 .link:visited {
-  color: hsl(210, 100%, 70%);
+  color: var(--primary-300);
 }
 
 .link:hover {
-  color: hsl(210, 100%, 75%);
+  color: var(--primary-200);
 }
 
 .tag-list {
@@ -224,7 +238,6 @@
   color: inherit;
   display: flex;
   flex-direction: column;
-  gap: 7px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   padding: 1rem 1rem 1rem 1rem;
   text-decoration: none;
@@ -236,14 +249,23 @@
 
 .post-list__title {
   font-size: 1.25rem;
+  margin: 0 0 0.25rem 0;
 }
 
 .post-list__author-name {
+  color: var(--text-primary);
   font-size: 0.9rem;
+  margin: 0 0 0.1rem 0;
 }
 
 .post-list__creation-date {
+  color: var(--grey-500);
   font-size: 0.8rem;
+  margin: 0 0 0.1rem 0;
+}
+
+.post-list__excerpt {
+  margin: 0 0 0.25rem 0;
 }
 
 .main__post-list {

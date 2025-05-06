@@ -39,6 +39,7 @@ function addFooter() {
   footer__messageEl.innerHTML = `"For a genius, nothing is more precious than failure." -The Herta, Honkai: Star Rail`;
   const footer__copyrightEl = document.createElement("div");
   footer__layoutEl.appendChild(footer__copyrightEl);
+  footer__copyrightEl.classList.add("paragraph");
   footer__copyrightEl.classList.add("footer__copyright");
   footer__copyrightEl.appendChild(
     document.createTextNode("© Daniel Sugianto ")
