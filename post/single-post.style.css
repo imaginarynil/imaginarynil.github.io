@@ -163,7 +163,6 @@
   align-items: center;
   font-size: 0.875rem;
   flex-wrap: wrap;
-  color: var(--text-secondary);
 }
 
 .post__detail_has-right-border {
@@ -171,7 +170,7 @@
   padding-right: 0.5rem;
 }
 
-.post__tag-list {
+.tags {
   display: flex;
 }
 

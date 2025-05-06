@@ -162,7 +162,7 @@ function addDesktopSidebar(headings) {
   addHeadingTreeEl(headings, desktopSidebar__layoutEl, "desktop");
 }
 
-function addSidebar(headings) {
+export function addSidebar(headings) {
   addMobileSidebar(headings);
   addDesktopSidebar(headings);
 }

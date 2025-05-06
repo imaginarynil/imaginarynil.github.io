@@ -22,11 +22,9 @@
       </div>
     </main>
     <footer class="footer"></footer>
-    <script src="/block/appBar.js"></script>
-    <script src="/block/footer.js"></script>
-    <script>
-      addAppBar();
-      addFooter();
+    <script type="module">
+      import { initAboutPage } from "/module/initAboutPage.js";
+      initAboutPage();
     </script>
   </body>
 </html>

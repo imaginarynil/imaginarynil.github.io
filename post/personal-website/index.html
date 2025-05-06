@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="imaginarynil.github.io is a personal website mainly built with vanilla HTML, CSS, and JS "
+      content="A personal website mainly built with vanilla HTML, CSS, and JS "
     />
     <meta
       name="keywords"
@@ -29,9 +29,13 @@
             Blog built with vanilla HTML, CSS, and JS.
           </p>
           <div class="post__details">
-            <p class="post__author-name">Daniel Sugianto</p>
-            <p class="post__creation-date">Created on January 1, 1970</p>
-            <p class="post__update-date">Updated on January 1, 1970</p>
+            <p class="paragraph post__author-name">Daniel Sugianto</p>
+            <p class="paragraph post__creation-date">
+              Created on January 1, 1970
+            </p>
+            <p class="paragraph post__update-date">
+              Updated on January 1, 1970
+            </p>
           </div>
           <h2 class="heading-2 post__heading-2" id="Why-I-Built-This-Wesbite">
             Why I Built This Wesbite?
@@ -186,7 +190,7 @@
             for deciding component names and understanding a component's
             structure, style, and behaviors.
           </p>
-          <div class="post__tag-list">
+          <div class="tags">
             <p class="paragraph post__tag-title">Tags:</p>
             <ul class="tag-list"></ul>
           </div>
@@ -195,120 +199,113 @@
         <footer class="footer"></footer>
       </div>
     </main>
-    <script src="/block/appBar.js"></script>
-    <script src="/block/sidebar.js"></script>
-    <script src="/block/tagList.js"></script>
-    <script src="/block/referenceList.js"></script>
-    <script src="/block/footer.js"></script>
-    <script src="/util/stylePostDetails.js"></script>
-    <script>
-      addAppBar();
-      stylePostDetails();
-      addSidebar([
-        {
-          name: "Why I Built This Wesbite?",
-          level: 2,
-          id: "Why-I-Built-This-Wesbite",
-        },
-        {
-          name: "Share Ideas and Showcase Projects",
-          level: 3,
-          id: "Share-Ideas-and-Showcase-Projects",
-        },
-        {
-          name: "Learn Building and Hosting a Website",
-          level: 3,
-          id: "Learn-Building-and-Hosting-a-Website",
-        },
-        {
-          name: "What Tools and Methods Did I Use?",
-          level: 2,
-          id: "What-Tools-and-Methods-Did-I-Use",
-        },
-        {
-          name: "How Did I Build This Website?",
-          level: 2,
-          id: "How-Did-I-Build-This-Website",
-        },
-        {
-          name: "Inspect Element and Study Patterns",
-          level: 3,
-          id: "Inspect-Element-and-Study-Patterns",
-        },
-        {
-          name: "Follow Tutorials and Working Solutions",
-          level: 3,
-          id: "Follow-Tutorials-and-Working-Solutions",
-        },
-        {
-          name: "Read Documentation and Experiment",
-          level: 3,
-          id: "Read-Documentation-and-Experiment",
-        },
-      ]);
-      addReferenceList([
-        {
-          identifier: "mozilla-docs",
-          authors: ["Mozilla"],
-          title: "MDN Web Docs",
-          year: "",
-          linkText: "https://developer.mozilla.org/en-US/docs/Web",
-          linkAddress: "https://developer.mozilla.org/en-US/docs/Web",
-        },
-        {
-          identifier: "yandex-docs",
-          authors: ["Yandex"],
-          title: "BEM",
-          year: "",
-          linkText: "https://en.bem.info/methodology/quick-start/",
-          linkAddress: "https://en.bem.info/methodology/quick-start/",
-        },
-        {
-          identifier: "mui-docs",
-          authors: ["MUI"],
-          title: "Material UI Documentation",
-          year: "",
-          linkText: "https://mui.com/material-ui/getting-started/",
-          linkAddress: "https://mui.com/material-ui/getting-started/",
-        },
-        {
-          identifier: "mui-blog",
-          authors: ["MUI"],
-          title: "MUI Blog",
-          year: "",
-          linkText: "https://mui.com/blog/",
-          linkAddress: "https://mui.com/blog/",
-        },
-        {
-          identifier: "yandex-intro",
-          authors: ["Yandex"],
-          title: "BEM Quick Start",
-          year: "",
-          linkText: "https://getbem.com/",
-          linkAddress: "https://getbem.com/",
-        },
-        {
-          identifier: "w3schools-toggle",
-          authors: ["W3Schools"],
-          title: "How To - Toggle Hide and Show",
-          year: "",
-          linkText:
-            "https://www.w3schools.com/howto/howto_js_toggle_hide_show.asp",
-          linkAddress:
-            "https://www.w3schools.com/howto/howto_js_toggle_hide_show.asp",
-        },
-        {
-          identifier: "wordpress-db",
-          authors: ["WordPress"],
-          title: "WordPress Database Description",
-          year: "",
-          linkText: "https://codex.wordpress.org/Database_Description",
-          linkAddress: "https://codex.wordpress.org/Database_Description",
-        },
-      ]);
-      const postId = "1";
-      addTagList(postId);
-      addFooter();
+    <script type="module">
+      import { initSinglePostPage } from "/module/initSinglePostPage.js";
+      initSinglePostPage({
+        postId: "1",
+        headings: [
+          {
+            name: "Why I Built This Wesbite?",
+            level: 2,
+            id: "Why-I-Built-This-Wesbite",
+          },
+          {
+            name: "Share Ideas and Showcase Projects",
+            level: 3,
+            id: "Share-Ideas-and-Showcase-Projects",
+          },
+          {
+            name: "Learn Building and Hosting a Website",
+            level: 3,
+            id: "Learn-Building-and-Hosting-a-Website",
+          },
+          {
+            name: "What Tools and Methods Did I Use?",
+            level: 2,
+            id: "What-Tools-and-Methods-Did-I-Use",
+          },
+          {
+            name: "How Did I Build This Website?",
+            level: 2,
+            id: "How-Did-I-Build-This-Website",
+          },
+          {
+            name: "Inspect Element and Study Patterns",
+            level: 3,
+            id: "Inspect-Element-and-Study-Patterns",
+          },
+          {
+            name: "Follow Tutorials and Working Solutions",
+            level: 3,
+            id: "Follow-Tutorials-and-Working-Solutions",
+          },
+          {
+            name: "Read Documentation and Experiment",
+            level: 3,
+            id: "Read-Documentation-and-Experiment",
+          },
+        ],
+        references: [
+          {
+            identifier: "mozilla-docs",
+            authors: ["Mozilla"],
+            title: "MDN Web Docs",
+            year: "",
+            linkText: "https://developer.mozilla.org/en-US/docs/Web",
+            linkAddress: "https://developer.mozilla.org/en-US/docs/Web",
+          },
+          {
+            identifier: "yandex-docs",
+            authors: ["Yandex"],
+            title: "BEM",
+            year: "",
+            linkText: "https://en.bem.info/methodology/quick-start/",
+            linkAddress: "https://en.bem.info/methodology/quick-start/",
+          },
+          {
+            identifier: "mui-docs",
+            authors: ["MUI"],
+            title: "Material UI Documentation",
+            year: "",
+            linkText: "https://mui.com/material-ui/getting-started/",
+            linkAddress: "https://mui.com/material-ui/getting-started/",
+          },
+          {
+            identifier: "mui-blog",
+            authors: ["MUI"],
+            title: "MUI Blog",
+            year: "",
+            linkText: "https://mui.com/blog/",
+            linkAddress: "https://mui.com/blog/",
+          },
+          {
+            identifier: "yandex-intro",
+            authors: ["Yandex"],
+            title: "BEM Quick Start",
+            year: "",
+            linkText: "https://getbem.com/",
+            linkAddress: "https://getbem.com/",
+          },
+          {
+            identifier: "w3schools-toggle",
+            authors: ["W3Schools"],
+            title: "How To - Toggle Hide and Show",
+            year: "",
+            linkText:
+              "https://www.w3schools.com/howto/howto_js_toggle_hide_show.asp",
+            linkAddress:
+              "https://www.w3schools.com/howto/howto_js_toggle_hide_show.asp",
+          },
+          {
+            identifier: "wordpress-db",
+            authors: ["WordPress"],
+            title: "WordPress Database Description",
+            year: "",
+            linkText: "https://codex.wordpress.org/Database_Description",
+            linkAddress: "https://codex.wordpress.org/Database_Description",
+          },
+        ],
+      });
     </script>
   </body>
 </html>

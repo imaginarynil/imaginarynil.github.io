@@ -1,3 +1,5 @@
+import { createTagListEl } from "/block/tagList.js";
+
 function createPostList__itemEl(
   creationDate,
   authorName,
@@ -32,7 +34,7 @@ function createPostList__itemEl(
   return postList__itemEl;
 }
 
-function addPostList(limit) {
+export function addPostList(limit) {
   Promise.all([
     fetch("/data/post.json").then((res) => res.json()),
     fetch("/data/post_author.json").then((res) => res.json()),

@@ -11,7 +11,7 @@ function createNavigationEl(links, listClassName, itemClassName) {
   return navigationEl;
 }
 
-function addAppBar() {
+export function addAppBar() {
   const navLinks = [
     { name: "Home", url: "/index.html" },
     { name: "Posts", url: "/post/index.html" },

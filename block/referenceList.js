@@ -256,7 +256,7 @@ class ReferencePresenter {
   }
 }
 
-function addReferenceList(items) {
+export function addReferenceList(items) {
   const referenceItems = [];
   for (let i = 0; i < items.length; i++) {
     const { identifier, authors, title, year, linkText, linkAddress } =

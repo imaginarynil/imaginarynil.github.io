@@ -11,14 +11,14 @@ function appendTagItems(tagListEl, postId, postTagTable, tagTable) {
   }
 }
 
-function createTagListEl(postId, postTagTable, tagTable) {
+export function createTagListEl(postId, postTagTable, tagTable) {
   const tagListEl = document.createElement("ul");
   tagListEl.classList.add("tag-list");
   appendTagItems(tagListEl, postId, postTagTable, tagTable);
   return tagListEl;
 }
 
-function addTagList(postId) {
+export function addTagList(postId) {
   const tagListEl = document.querySelector(".tag-list");
   Promise.all([
     fetch("/data/post_tag.json").then((res) => res.json()),

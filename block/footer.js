@@ -26,7 +26,7 @@ function createAccountListEl() {
   return footer__accountListEl;
 }
 
-function addFooter() {
+export function addFooter() {
   const footerEl = document.querySelector(".footer");
   const footer__layoutEl = document.createElement("div");
   footerEl.appendChild(footer__layoutEl);

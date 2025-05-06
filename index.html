@@ -6,7 +6,6 @@
     <title>Home - imaginarynil</title>
     <link rel="stylesheet" href="/style.css" />
     <link rel="stylesheet" href="/home.style.css" />
-    <script type="module" src="/script/star.js"></script>
   </head>
   <body class="page">
     <header class="app-bar"></header>
@@ -81,14 +80,9 @@
       </div>
     </main>
     <footer class="footer"></footer>
-    <script src="/block/appBar.js"></script>
-    <script src="/block/postList.js"></script>
-    <script src="/block/tagList.js"></script>
-    <script src="/block/footer.js"></script>
-    <script>
-      addAppBar();
-      addPostList(2);
-      addFooter();
+    <script type="module">
+      import { initHomePage } from "/module/initHomePage.js";
+      initHomePage({ postLimit: 2 });
     </script>
   </body>
 </html>

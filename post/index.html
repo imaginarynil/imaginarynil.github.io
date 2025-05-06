@@ -15,14 +15,9 @@
       </div>
     </main>
     <footer class="footer"></footer>
-    <script src="/block/appBar.js"></script>
-    <script src="/block/postList.js"></script>
-    <script src="/block/tagList.js"></script>
-    <script src="/block/footer.js"></script>
-    <script>
-      addAppBar();
-      addPostList(-1);
-      addFooter();
+    <script type="module">
+      import { initPostPage } from "/module/initPostPage.js";
+      initPostPage({ postLimit: -1 });
     </script>
   </body>
 </html>
