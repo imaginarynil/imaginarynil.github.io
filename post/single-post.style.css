@@ -11,7 +11,7 @@
   width: 100%;
   max-height: calc(100vh - 64px);
   height: 100%;
-  padding: 1rem 2rem 2rem 1rem;
+  padding: 1rem 1rem 1rem 1rem;
   box-sizing: border-box;
   background-color: rgba(15, 18, 20, 0.8);
   border-right: 1px solid rgba(61, 71, 81, 0.3);
@@ -30,6 +30,7 @@
   flex-direction: column;
   width: 100%;
   align-items: center;
+  padding: 0 1rem 0 1rem;
 }
 
 .footer {
@@ -37,7 +38,6 @@
 }
 
 .post__layout {
-  max-width: 300px;
   width: 100%;
   margin: 4rem 0 4rem 0;
 }
@@ -219,6 +219,10 @@
 }
 
 @media screen and (min-width: 900px) {
+  .post {
+    padding: 0 0 0 0;
+  }
+
   .post__layout {
     max-width: 600px;
   }
