@@ -201,7 +201,7 @@
   border: 1px solid hsl(215, 15%, 25%);
   border-left-width: 0.25rem;
   border-left-color: var(--primary-300);
-  border-radius: 0.25rem;
+  border-radius: var(--radius-sm);
 }
 
 @media screen and (min-width: 600px) {
