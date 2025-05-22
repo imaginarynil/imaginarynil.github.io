@@ -171,7 +171,17 @@
 }
 
 .footer__message {
+  text-decoration: none;
   font-style: italic;
+  color: var(--text-primary) !important;
+}
+
+.footer__message:hover {
+  color: var(--text-primary);
+}
+
+.footer__message:visited {
+  color: var(--text-primary);
 }
 
 /* https: //mui.com/material-ui/getting-started/ */
