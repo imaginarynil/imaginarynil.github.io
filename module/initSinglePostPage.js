@@ -31,8 +31,12 @@ function updatePostDetails(postId) {
       authorNames.push(authorTable[postAuthorRow.authorId].name);
     }
     const authorStr = authorNames.join(", ");
-    const { creationDate, updateDate } = postTable[postId];
+    const { title, excerpt, creationDate, updateDate } = postTable[postId];
     const items = [];
+    document.title = title;
+    document
+      .querySelector("meta[name=description]")
+      .setAttribute("content", excerpt);
     for (const item of [
       authorStr,
       `Created on ${getDateLocaleStr(creationDate)}`,
