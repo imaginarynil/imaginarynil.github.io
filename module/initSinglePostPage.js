@@ -4,13 +4,7 @@ import { addReferenceList } from "/block/referenceList.js";
 import { addTagList } from "/block/tagList.js";
 import { addFooter } from "/block/footer.js";
 import { updateDocumentTitle } from "/module/updateDocumentTitle.js";
-
-function getDateLocaleStr(dateStr) {
-  const date = new Date(dateStr);
-  return `${date.toLocaleString("default", {
-    month: "long",
-  })} ${date.getDate()}, ${date.getFullYear()}`;
-}
+import { getDateLocaleStr } from "/util/getDateLocaleStr.js";
 
 function updatePostDetails(postId) {
   const post__detailsEl = document.querySelector(".post__details");
@@ -31,12 +25,14 @@ function updatePostDetails(postId) {
       authorNames.push(authorTable[postAuthorRow.authorId].name);
     }
     const authorStr = authorNames.join(", ");
-    const { title, excerpt, creationDate, updateDate } = postTable[postId];
+    const { title, subtitle, creationDate, updateDate } = postTable[postId];
     const items = [];
     document.title = title;
     document
       .querySelector("meta[name=description]")
-      .setAttribute("content", excerpt);
+      .setAttribute("content", subtitle);
+    const post__subtitleEl = document.querySelector(".post__subtitle");
+    post__subtitleEl.appendChild(document.createTextNode(subtitle));
     for (const item of [
       authorStr,
       `Created on ${getDateLocaleStr(creationDate)}`,

@@ -1,5 +1,15 @@
+import { getDateLocaleStr } from "/util/getDateLocaleStr.js";
+
 class ReferenceItem {
-  constructor(identifier, authors, title, year, linkText, linkAddress) {
+  constructor(
+    identifier,
+    authors,
+    title,
+    year,
+    linkText,
+    linkAddress,
+    retrievalDate
+  ) {
     this.identifier = identifier;
     this.authors = [...authors]; // copy object
     this.authorStr = this.getAuthorStr(authors);
@@ -7,6 +17,11 @@ class ReferenceItem {
     this.year = year;
     this.linkText = linkText;
     this.linkAddress = linkAddress;
+    this.retrievalDate = retrievalDate;
+    this.retrievalDateStr = "";
+    if (retrievalDate) {
+      this.retrievalDateStr = `Retrieved ${getDateLocaleStr(retrievalDate)}`;
+    }
     this.index = 0;
     this.citationHtmlIds = [];
     this.TEXT_STYLE_NORMAL = "normal";
@@ -211,7 +226,13 @@ class ReferencePresenter {
     }
     return referenceList__backLinkListEl;
   }
-  createReferenceList__itemEl(htmlId, htmlElements, linkText, linkAddress) {
+  createReferenceList__itemEl(
+    htmlId,
+    htmlElements,
+    linkText,
+    linkAddress,
+    retrievalDateStr
+  ) {
     const referenceList__itemEl = document.createElement("li");
     referenceList__itemEl.id = htmlId;
     referenceList__itemEl.classList.add("reference-list__item");
@@ -226,7 +247,12 @@ class ReferencePresenter {
     referenceList__linkEl.classList.add("link", "reference-list__link");
     referenceList__linkEl.appendChild(document.createTextNode(linkText));
     referenceList__linkEl.href = linkAddress;
-    referenceList__itemEl.appendChild(document.createTextNode("."));
+    referenceList__itemEl.appendChild(document.createTextNode(". "));
+    if (retrievalDateStr) {
+      referenceList__itemEl.appendChild(
+        document.createTextNode(retrievalDateStr)
+      );
+    }
     return referenceList__itemEl;
   }
   addReferenceList() {
@@ -238,6 +264,7 @@ class ReferencePresenter {
       "heading-2",
       "post__heading-2"
     );
+    referenceList__titleEl.id = "reference-list";
     referenceList__titleEl.appendChild(document.createTextNode("References"));
     const referenceList__orderedListEl = document.createElement("ol");
     referenceListEl.appendChild(referenceList__orderedListEl);
@@ -249,7 +276,8 @@ class ReferencePresenter {
           referenceRows[i].identifier,
           referenceRows[i].getHtmlElements(),
           referenceRows[i].linkText,
-          referenceRows[i].linkAddress
+          referenceRows[i].linkAddress,
+          referenceRows[i].retrievalDateStr
         )
       );
     }
@@ -259,10 +287,25 @@ class ReferencePresenter {
 export function addReferenceList(items) {
   const referenceItems = [];
   for (let i = 0; i < items.length; i++) {
-    const { identifier, authors, title, year, linkText, linkAddress } =
-      items[i];
+    const {
+      identifier,
+      authors,
+      title,
+      year,
+      linkText,
+      linkAddress,
+      retrievalDate,
+    } = items[i];
     referenceItems.push(
-      new ReferenceItem(identifier, authors, title, year, linkText, linkAddress)
+      new ReferenceItem(
+        identifier,
+        authors,
+        title,
+        year,
+        linkText,
+        linkAddress,
+        retrievalDate
+      )
     );
   }
   const referencePresenter = new ReferencePresenter(
