@@ -10,6 +10,18 @@
   font-weight: 600;
 }
 
+@font-face {
+  font-family: "Space Mono";
+  src: url("/font/SpaceMono-Regular.ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Space Mono";
+  src: url("/font/SpaceMono-Bold.ttf");
+  font-weight: 600;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -22,6 +34,7 @@
   --primary-300: hsl(210, 100%, 70%);
   --secondary-200: hsl(215, 15%, 89%);
   --grey-50: hsl(215, 15%, 97%);
+  --grey-300: hsl(215, 15%, 82%);
   --grey-500: hsl(215, 15%, 65%);
   --radius-sm: 4px;
   --radius-xl: 12px;
@@ -204,6 +217,12 @@
   color: var(--grey-50);
 }
 
+.heading-4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--grey-50);
+}
+
 .paragraph {
   line-height: 1.6;
   letter-spacing: 0;
@@ -212,6 +231,34 @@
 
 .list {
   padding: 0 0 0 2rem;
+}
+
+.list__item {
+  color: var(--text-secondary);
+}
+
+.strong {
+  color: var(--grey-300);
+}
+
+/* error-200 */
+.highlight_color_red {
+  background-color: hsla(355, 98%, 66%, 25%);
+}
+
+/* warning-500 */
+.highlight_color_yellow {
+  background-color: hsla(48, 100%, 44%, 25%);
+}
+
+/* success-600 */
+.highlight_color_green {
+  background-color: hsla(144, 72%, 41%, 25%);
+}
+
+/* primary-400 */
+.highlight_color_blue {
+  background-color: hsla(210, 100%, 60%, 25%);
 }
 
 .link {
@@ -225,6 +272,22 @@
 
 .link:hover {
   color: var(--primary-200);
+}
+
+.code {
+  font-family: "Space Mono";
+  font-size: 0.925rem;
+  color: var(--text-primary);
+}
+
+.code-block {
+  font-family: "Space Mono";
+  font-size: 0.925rem;
+  width: 100%;
+  padding: 1rem 1rem 1rem 1rem;
+  color: var(--text-primary);
+  background-color: hsla(210, 14%, 13%, 0.4);
+  border-radius: 12px 12px 0 0;
 }
 
 .tag-list {
@@ -281,6 +344,30 @@
 
 .main__post-list {
   margin: 0 0 4rem 0;
+}
+
+.table {
+  width: 100%;
+  text-align: center;
+  table-layout: fixed;
+  background-color: hsla(210, 14%, 13%, 0.4);
+  border-radius: 12px 12px 0 0;
+  color: var(--text-primary);
+  border-collapse: collapse;
+}
+
+.table__data_align_left {
+  text-align: left;
+}
+
+.table__heading {
+  padding: 1rem 1rem 1rem 1rem;
+  border-bottom: 1px solid rgba(81, 81, 81, 1);
+}
+
+.table__data {
+  padding: 1rem 1rem 1rem 1rem;
+  border-bottom: 1px solid rgba(81, 81, 81, 1);
 }
 
 @media screen and (min-width: 600px) {

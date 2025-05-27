@@ -3,7 +3,7 @@ import { addSidebar } from "/block/sidebar.js";
 import { addReferenceList } from "/block/referenceList.js";
 import { addTagList } from "/block/tagList.js";
 import { addFooter } from "/block/footer.js";
-import { updateDocumentTitle } from "/module/updateDocumentTitle.js";
+import { getFormattedTitle } from "/module/updateDocumentTitle.js";
 import { getDateLocaleStr } from "/util/getDateLocaleStr.js";
 
 function updatePostDetails(postId) {
@@ -27,7 +27,7 @@ function updatePostDetails(postId) {
     const authorStr = authorNames.join(", ");
     const { title, subtitle, creationDate, updateDate } = postTable[postId];
     const items = [];
-    document.title = title;
+    document.title = getFormattedTitle(title);
     document
       .querySelector("meta[name=description]")
       .setAttribute("content", subtitle);
@@ -56,7 +56,6 @@ function updatePostDetails(postId) {
 }
 
 export function initSinglePostPage({ postId, headings, references }) {
-  updateDocumentTitle();
   addAppBar();
   updatePostDetails(postId);
   addSidebar(headings);

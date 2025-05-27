@@ -1,3 +1,7 @@
+export function getFormattedTitle(title) {
+  return `${title} - imaginarynil`;
+}
+
 export function updateDocumentTitle() {
-  document.title = `${document.title} - imaginarynil`;
+  document.title = getFormattedTitle(document.title);
 }

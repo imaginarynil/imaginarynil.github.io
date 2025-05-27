@@ -7,5 +7,17 @@
   },
   "3": {
     "name": "blog"
+  },
+  "4": {
+    "name": "utility"
+  },
+  "5": {
+    "name": "finance"
+  },
+  "6": {
+    "name": "python"
+  },
+  "7": {
+    "name": "literature"
   }
 }

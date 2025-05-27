@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <title></title>
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/post/single-post.style.css" />
+  </head>
+  <body class="page">
+    <header class="app-bar"></header>
+    <div class="mobile-sidebar"></div>
+    <main class="main main_route_post">
+      <div class="desktop-sidebar"></div>
+      <div class="post">
+        <article class="post__layout">
+          <h1 class="heading-1 post__title">Bank Statement Cleaner</h1>
+          <p class="post__subtitle"></p>
+          <div class="post__details"></div>
+          <h2 class="heading-2 post__heading-2" id="Abstract">Abstract</h2>
+          <p class="paragraph post__paragraph">
+            Bank statements can be utilized to unveil our financial situation as
+            they contain almost the complete history of our financial
+            activities. However, they cannot be used raw as complications, such
+            as double counting and nonatomic data, still exist. This program
+            organizes bank statements such that users can perform more advanced
+            financial analysis to create a personal cash flow statement. Before
+            use, download the CIBC chequing, savings, and credit CSV files. Run
+            this program following this <a class="link" href="#Usage">guide</a>,
+            and users will obtain structured data in an Excel sheet.
+          </p>
+          <h2 class="heading-2 post__heading-2" id="Introduction">
+            Introduction
+          </h2>
+          <p class="paragraph post__paragraph">
+            Bank statements are one of the richest information sources on your
+            financial activities. Bank statement cleaner is a program that
+            processes statements and produces structured data that can be used
+            to create a personal cash flow statement, which is the foundation of
+            a budget. The program combines transactions from debit and credit
+            accounts and yields pure inflows to and outflows from your bank
+            account. The source code is available at
+            <a
+              class="link"
+              href="https://github.com/imaginarynil/bank-statement-cleaner"
+              >bank-statement-cleaner</a
+            >. You can run the software on Windows and test the features using
+            the synthetic data.
+          </p>
+          <p class="paragraph post__paragraph">
+            A cash flow statement is different from a budget. A cash flow
+            statement is a financial document that tracks cash going in and out
+            of a business over a specific period .<sup
+              class="citation"
+              data-id="cash-flow-statements"
+            ></sup>
+            It shows the ability of a company to maintain its operations,
+            invest, and pay its debts. In the context of personal finance, the
+            cash flow statement records the income and expenditures of an
+            individual with less detail than its corporate version. In contrast,
+            a budget is an approximation of revenue and expenses in a
+            <strong class="strong">future</strong>
+            period that is regularly updated .<sup
+              class="citation"
+              data-id="budget"
+            ></sup>
+            Implementing a budget helps individuals and families to have greater
+            control of their financial situation and provides more safety in
+            unexpected times. It is paramount to analyze past cash flow to
+            create a realistic and achievable budget.
+          </p>
+          <p class="paragraph post__paragraph">
+            Generally, Canadian banks provide their customers with digital
+            account statements, which are downloadable from the banks’ websites.
+            This program consumes CSV files of the statements and outputs an
+            Excel worksheet containing the result. Currently, the application
+            only supports
+            <strong class="strong">CIBC statements</strong>. However, support
+            for other banks might be added in the future.
+          </p>
+          <p class="paragraph post__paragraph">
+            This software is a great tool for people who want to analyze and
+            manage their or their clients’ finances. However, please read the
+            <a
+              class="link"
+              href="https://github.com/imaginarynil/bank-statement-cleaner/blob/main/LICENSE"
+            >
+              LICENSE
+            </a>
+            before using the software. Note that the software is provided as is
+            and without any warranty.
+          </p>
+          <h2 class="heading-2 post__heading-2" id="Data-Analysis">
+            Data Analysis
+          </h2>
+          <h3 class="heading-3 post__heading-3" id="CIBC-Statements">
+            CIBC Statements
+          </h3>
+          <p class="paragraph post__paragraph">
+            Bank statements consist of debit and credit statements. Savings and
+            chequing statements are categorized as debit statements. The debit
+            statements have 4 headerless columns. Based on the content of the
+            column, the headers can be inferred as follows.
+          </p>
+          <ul class="list post__list">
+            <li class="list__item">
+              <strong class="strong">Date</strong>: date when the transaction
+              occurs
+            </li>
+            <li class="list__item">
+              <strong class="strong">Description</strong>: text containing
+              transaction details, such as the counterparty’s name
+            </li>
+            <li class="list__item">
+              <strong class="strong">Debit</strong>: the amount debited from an
+              account
+            </li>
+            <li class="list__item">
+              <strong class="strong">Credit</strong>: the amount credited from
+              an account
+            </li>
+          </ul>
+          <p class="paragraph post__paragraph">
+            <strong class="strong"
+              >All debit transaction descriptions have at least a transaction
+              method and type</strong
+            >. Nevertheless, some transactions have more elements in their
+            descriptions. The following is an example of a complete description.
+          </p>
+          <p class="paragraph post__paragraph">
+            <span class="highlight highlight_color_red"
+              >Point of Sale - Interac</span
+            >
+            <span class="highlight highlight_color_yellow"
+              >RETAIL PURCHASE</span
+            >
+            <span class="highlight highlight_color_green">111001001111</span>
+            <span class="highlight highlight_color_blue">NO FRILLS</span>
+          </p>
+          <p class="paragraph">
+            The anatomy of a debit description is as follows.
+          </p>
+          <ul class="list post__list">
+            <li class="list__item">
+              <strong class="strong">Method</strong>: the device that
+              facilitates the transaction, e.g.,
+              <span class="highlight highlight_color_red"
+                >Point of Sale - Interac</span
+              >
+            </li>
+            <li class="list__item">
+              <strong class="strong">Type</strong>: the purpose of the
+              transaction, e.g.,
+              <span class="highlight highlight_color_yellow"
+                >RETAIL PURCHASE</span
+              >
+            </li>
+            <li class="list__item">
+              <strong class="strong">ID</strong>: a series of characters that
+              acts as an identifier for a transaction, e.g.,
+              <span class="highlight highlight_color_green">111001001111</span>.
+              Usually, an ID consists of 12 characters, and
+              <strong class="strong">not all transactions have it</strong>.
+            </li>
+            <li class="list__item">
+              <strong class="strong">Party</strong>: the individual or
+              institution that is on the other side of the transaction, e.g.,
+              <span class="highlight highlight_color_blue">NO FRILLS</span>
+            </li>
+          </ul>
+          <p class="paragraph post__paragraph">
+            Transactions in both the debit and credit accounts have either a
+            debit or credit amount.
+            <strong class="strong"
+              >Cash coming into an account is recorded as a credit to the
+              account</strong
+            >. This might seem counterintuitive at first because more cash
+            entails an increase in assets. Consequently, the account should have
+            been debited. However, the statement is created from the perspective
+            of the bank. Deposits are a liability to the bank as deposits are
+            owed by the bank to the depositors,<sup
+              class="citation"
+              data-id="bank-deposits"
+            ></sup>
+            coupled with the fact that depositors can withdraw their funds at
+            any time. When a depositor adds money to their account, the bank’s
+            liability increases. As a result, the liability account is
+            credited.<sup class="citation" data-id="accounting-101"></sup>
+            <strong class="strong">Fun fact:</strong> Banks lend out most of
+            their deposits as loans. The interest rates on the loans are higher
+            than the interest paid to the depositors.<sup
+              class="citation"
+              data-id="lending-process"
+            ></sup>
+            The difference, or usually called the net interest rate spread, is
+            the <strong class="strong">sweet and succulent profit</strong> for
+            the bank.
+          </p>
+          <p class="paragraph post__paragraph">
+            Likewise, the credit statement has all the columns of debit
+            statements with one additional column that is filled with only the
+            same censored card number, which can be discarded. Credit
+            transaction descriptions can be grouped either as a charge or a
+            payment. All credit payments have “PAYMENT THANK YOU/PAIEMEN T
+            MERCI” as the description, whereas purchase descriptions contain the
+            party’s name and location. For example, “IKEA TORONTO, ON” where
+            “IKEA” is the party and “TORONTO, ON” is the location.
+          </p>
+          <p class="paragraph post__paragraph">
+            Lastly, pending transactions are not included in the statements.
+            Only posted transactions are present in the statements. Pending
+            transactions are already approved but have not been posted to an
+            account. It takes up to 5 days for a pending transaction to be
+            posted.<sup class="citation" data-id="pending-tx"></sup>
+          </p>
+          <h2 class="heading-2 post__heading-2" id="Problem">Problem</h2>
+          <p class="paragraph post__paragraph">
+            Two critical problems hindering our analysis of the bank statements:
+            double counting and unorganized data.
+          </p>
+          <h3 class="heading-3 post__heading-3" id="Double-Counting">
+            Double Counting
+          </h3>
+          <p class="paragraph post__paragraph">
+            The error of including an item in a calculation more than once,
+            which inflates figures and leads to inaccuracies.<sup
+              class="citation"
+              data-id="double-counting"
+            ></sup>
+            This problem occurs if internal transfers and internal payments are
+            not separated from the bank statements. The raw statements contain
+            both transfers between chequing and savings, and also payments from
+            debit accounts to a credit account.
+          </p>
+          <p class="paragraph post__paragraph">
+            <strong class="strong">Internal transfers</strong>
+            are exchanges of money between debit accounts. An account holder can
+            transfer their funds from savings to chequing and vice versa. One of
+            the reasons to do an internal transfer is to limit the amount of
+            money in the chequing account to avoid overspending. Internal
+            exchanges pose a double-counting problem because the amount of
+            income and expenses will be gradually increased by each transfer
+            amount. The problem is illustrated in the schedule below.
+          </p>
+          <table class="table post__table">
+            <thead class="table__header">
+              <tr class="table__row">
+                <th class="table__heading">Transaction</th>
+                <th class="table__heading">Income</th>
+                <th class="table__heading">Expense</th>
+              </tr>
+            </thead>
+            <tbody class="table__body">
+              <tr class="table__row">
+                <td class="table__data table__data_align_left">
+                  Deposit cash to savings
+                </td>
+                <td class="table__data">100</td>
+                <td class="table__data"></td>
+              </tr>
+              <tr class="table__row">
+                <td class="table__data table__data_align_left">
+                  Transfer funds from savings to chequing
+                </td>
+                <td class="table__data">
+                  50<br />(chequing account receives the funds)
+                </td>
+                <td class="table__data">
+                  -50<br />(savings account loses the funds)
+                </td>
+              </tr>
+              <tr class="table__row">
+                <td class="table__data table__data_align_left">Buy pizza</td>
+                <td class="table__data"></td>
+                <td class="table__data">-20</td>
+              </tr>
+            </tbody>
+            <tfoot class="table__footer">
+              <tr class="table__row">
+                <td class="table__data">Total</td>
+                <td class="table__data">150</td>
+                <td class="table__data">-70</td>
+              </tr>
+            </tfoot>
+          </table>
+          <p class="paragraph post__paragraph">
+            The total income and expenses should have been
+            <strong class="strong">$100</strong> and
+            <strong class="strong">$20</strong>. However, because the internal
+            transfer of $50 is still in the record, the income and expense are
+            both overstated to <strong class="strong">$150</strong> and
+            <strong class="strong">$70</strong>, respectively. Although the net
+            cash flow is unaffected, this still produces inaccurate income and
+            expenses.
+          </p>
+          <p class="paragraph post__paragraph">
+            <strong class="strong">Internal payments</strong> are payments from
+            a debit account to a credit account to decrease the credit balance.
+            When savings, chequing, and credit statements are merged into one
+            statement, the records of inbound and outbound from each account
+            still persist, leading to double-counting. Paying using a credit
+            card can be a good thing if it is paid afterwards in a timely
+            manner. By paying bills on time, the account holder’s credit score
+            will increase.<sup class="citation" data-id="credit-score"></sup> A
+            high credit score opens avenues to attractive offers when applying
+            for a loan. Moreover, account holders are rewarded with cashback
+            when paying with credit cards, which, if redeemed, can decrease the
+            overall credit payment. The double-counting problem caused by
+            internal payments is illustrated in the following table.
+          </p>
+          <table class="table post__table">
+            <thead class="table__header">
+              <tr class="table__row">
+                <th class="table__heading">Transaction</th>
+                <th class="table__heading">Income</th>
+                <th class="table__heading">Expense</th>
+              </tr>
+            </thead>
+            <tbody class="table__body">
+              <tr class="table__row">
+                <td class="table__data table__data_align_left">
+                  Credit purchase at Tim Hortons
+                </td>
+                <td class="table__data"></td>
+                <td class="table__data">-10</td>
+              </tr>
+              <tr class="table__row">
+                <td class="table__data table__data_align_left">
+                  Credit purchase at Eaton Centre
+                </td>
+                <td class="table__data"></td>
+                <td class="table__data">-20</td>
+              </tr>
+              <tr class="table__row">
+                <td class="table__data table__data_align_left">
+                  Pay for the credit balance owing
+                </td>
+                <td class="table__data">
+                  30<br />(credit account receives the funds)
+                </td>
+                <td class="table__data">
+                  -30<br />(debit account surrenders the funds)
+                </td>
+              </tr>
+            </tbody>
+            <tfoot class="table__footer">
+              <tr class="table__row">
+                <td class="table__data">Total</td>
+                <td class="table__data">30</td>
+                <td class="table__data">-60</td>
+              </tr>
+            </tfoot>
+          </table>
+          <p class="paragraph post__paragraph">
+            The actual total of the expenses is
+            <strong class="strong">$30</strong> because that is the amount spent
+            using the credit card, and there is
+            <strong class="strong">no income</strong>. Conversely, if the
+            internal payments are not separated, the income can be inflated to
+            <strong class="strong">$30</strong>, and the expenses can hike to
+            <strong class="strong">$60</strong>, which distorts the results. To
+            calculate the cash flow, only the actual credit expenditures are
+            required.
+          </p>
+          <p class="paragraph post__paragraph">
+            A payment can cover one or more charges. If we only consider the
+            payment from the debit account to the credit account as an expense
+            and ignore the credit purchases, we will lose valuable information
+            because the payment does not reflect the different categories of the
+            actual expenses, namely food and beverages (i.e., Tim Hortons) and
+            clothing (i.e., Eaton Centre).
+          </p>
+          <p class="paragraph post__paragraph">
+            What if we pay more than we owe? The excess amount will go to our
+            credit balance, and it is irreversible. However, it will be used to
+            pay for future credit purchases. Curiously, the credit balance will
+            be negative.
+          </p>
+          <h3 class="heading-3 post__heading-3" id="Unrefined-Data">
+            Unrefined Data
+          </h3>
+          <p class="paragraph post__paragraph">
+            <strong class="strong">Some useful data is lumped together</strong>
+            that needs to be separated to allow further analysis. In bank
+            statements, the transaction description contains important tokens
+            that describe the exchange. Unfortunately, the tokens are fused
+            together. If we want to query certain transactions based on their
+            method or type, the description needs to be deconstructed and tokens
+            put into separate columns first. Additionally, the number of records
+            can be hundreds or even thousands, which requires a significant
+            amount of work to process each description manually.
+          </p>
+          <p class="paragraph post__paragraph">
+            The transaction date is another example. The components of year,
+            month, and day need to be extracted to allow more meaningful
+            transaction groupings. By separating the date components, we can
+            organize transactions temporally and gain insights into our
+            financial activities. For instance, group by year and month to
+            analyze month-to-month income and expenses.
+          </p>
+          <p class="paragraph post__paragraph">
+            In creating a personal cash flow statement, our concern is to know
+            the inflows and outflows. Classifying each transaction as debit and
+            credit may be useful to create more formal statements, but not all
+            people understand the concept of debit and credit. Moreover, I think
+            that format is harder to read in general. Therefore, the debit and
+            credit columns need to be combined into one signed value. Positive
+            for inflows and negative for outflows.
+          </p>
+          <h2 class="heading-2 post__heading-2" id="Solution">Solution</h2>
+          <p class="paragraph post__paragraph">
+            To solve the double-counting problem, the internal transfers and
+            internal payments need to be removed from the records. Instead of
+            deleting them, they are transferred into different sheets for future
+            analysis.
+          </p>
+          <p class="paragraph post__paragraph">
+            An internal transfer can be found by searching for a transaction
+            pair from the savings and chequing accounts that have an
+            <strong class="strong">identical description</strong>. After
+            internal transfers are removed, the residual transactions that have
+            “<strong class="strong">internet banking</strong>” as their method
+            and are categorized as “<strong class="strong"
+              >internet transfer</strong
+            >” are the internal payments from the debit accounts. Further, the
+            payments that are received by the credit account all have a
+            description of “PAYMENT THANK YOU/PAIEMEN T MERCI”. Knowing that
+            condition, internal payments can be queried and transferred to a
+            separate sheet. Hence, the remainders contain only refined fund
+            inflows and outflows representing external transactions.
+          </p>
+          <p class="paragraph post__paragraph">
+            Tokens required for analysis need to be extracted from the
+            description using regular expressions (regex). Regex can be used to
+            find specific patterns in text.<sup
+              class="citation"
+              data-id="regex"
+            ></sup>
+            Based on observation, transactions always have a method and type,
+            and a transaction type is always written in
+            <strong class="strong">capital letters</strong>, therefore, regex
+            can be utilized to extract the substring with only capital letters
+            and spaces. The method can be obtained as the piece preceding the
+            transaction type denotes the method. The remaining string consists
+            of the transaction ID and party. To distill the party, the ID must
+            be eliminated. Regex is utilized to find a substring that contains
+            only digits or a mix of letters and digits with at least 1 letter
+            and a digit. Finally, the method, type, and party (if it exists) can
+            be forwarded to the next process.
+          </p>
+          <p class="paragraph post__paragraph">
+            The original date format from the statements is
+            <strong class="strong">[month]/[day]/[year]</strong>, which can be
+            broken down and stored into their respective columns to allow for
+            more specific groupings. The debit and credit amounts need to be
+            melded into one value for ease of querying. If the debit is empty,
+            then the income is the credited amount; else, the debit amount is
+            the expense. Additionally, a new column is created to clarify the
+            flow with “income” as the entry if the amount is positive and
+            “expense” otherwise.
+          </p>
+          <h2 class="heading-2 post__heading-2" id="Usage">Usage</h2>
+          <h3
+            class="heading-3 post__heading-3"
+            id="Data-and-Application-Preparation"
+          >
+            Data and Application Preparation
+          </h3>
+          <p class="paragraph post__paragraph">
+            Prior to executing the program, bank statements need to be
+            downloaded, grouped, and renamed first. For CIBC clients, the
+            transaction history can be downloaded as CSVs on the CIBC Banking
+            web application. It is recommended to download all transactions from
+            the opening of the account. You can follow the
+            <a
+              class="link"
+              href="https://www.cibc.com/en/personal-banking/ways-to-bank/how-to/account-balance-and-transfers.html"
+              >guide</a
+            >
+            on the CIBC website for the complete steps.
+          </p>
+          <p class="paragraph">Required steps to create the input:</p>
+          <ul class="list post__list">
+            <li class="list__item">
+              Put all of the CSV files in
+              <strong class="strong">one folder</strong>
+            </li>
+            <li class="list__item">
+              Rename the chequing statement to
+              <strong class="strong">chequing.csv</strong>
+            </li>
+            <li class="list__item">
+              Rename the savings statement to
+              <strong class="strong">savings.csv</strong>
+            </li>
+            <li class="list__item">
+              Rename the credit statement to
+              <strong class="strong">credit.csv</strong>
+            </li>
+          </ul>
+          <p class="paragraph post__paragraph">
+            For this guide, the folder will be referred to as the
+            <strong class="strong">dataset directory</strong>. In addition, the
+            synthetic dataset in the “synthetic_data” folder can be used as an
+            example and input for testing the features.
+          </p>
+          <p class="paragraph post__paragraph">
+            You can <strong class="strong">download</strong> the program at this
+            <a
+              class="link"
+              href="https://github.com/imaginarynil/bank-statement-cleaner/releases"
+              >link</a
+            >. I suggest using the latest release.
+          </p>
+          <p class="paragraph post__paragraph">
+            To see all arguments and options, type
+            <span class="code">cleaner.exe -h</span>
+            or
+            <span class="code">cleaner.exe -help</span>.
+          </p>
+          <h3 class="heading-3 post__heading-3" id="Create-a-New-Worksheet">
+            Create a New Worksheet
+          </h3>
+          <p class="paragraph post__paragraph">
+            Construct a worksheet using the debit and credit statements. This
+            command makes a new file with a customizable filename.
+          </p>
+          <ol class="list post__list">
+            <li class="list__item">
+              Open Command Prompt and navigate to the directory where the
+              program (i.e., cleaner.exe) is located
+            </li>
+            <li class="list__item">
+              Type
+              <span class="code"
+                >cleaner.exe [path to the dataset directory] -c [output
+                filename]</span
+              >
+            </li>
+            <li class="list__item">
+              A novel worksheet will appear in the current working directory
+            </li>
+          </ol>
+          <div class="code-block post__code-block">
+            <strong class="strong">Example</strong>: cleaner.exe synthetic_data
+            -c out
+          </div>
+          <p class="paragraph post__paragraph">
+            Build a worksheet with the filename “out” (input is without file
+            extension) using the dataset in the “synthetic_data” folder.
+          </p>
+          <h4 class="heading-4 post__heading-4" id="Get-Complements">
+            Get Complements
+          </h4>
+          <p class="paragraph post__paragraph">
+            Build a worksheet that only contains entries that are not in an
+            existing worksheet. The existing worksheet is an Excel file. This is
+            an extension to the create command.
+          </p>
+          <ol class="list post__list">
+            <li class="list__item">
+              Type
+              <span class="code"
+                >cleaner.exe [path to the dataset directory] -c [output
+                filename] --complement [path to the existing worksheet]</span
+              >
+            </li>
+            <li class="list__item">
+              A new worksheet will appear in the current working directory
+            </li>
+          </ol>
+          <div class="code-block post__code-block">
+            <strong class="strong">Example</strong>: cleaner.exe synthetic_data
+            -c new_out --complement out.xlsx
+          </div>
+          <p class="paragraph post__paragraph">
+            A worksheet named “new_out” will appear in the current working
+            directory that has complementary entries that are present in
+            “synthetic_data” but not in the existing worksheet “out.xlsx” yet.
+          </p>
+          <h3
+            class="heading-3 post__heading-3"
+            id="Update-an-Existing-Worksheet"
+          >
+            Update an Existing Worksheet
+          </h3>
+          <p class="paragraph post__paragraph">
+            Append all new entries to the existing worksheet in a new file. This
+            will create a new worksheet instead of modifying the existing one.
+          </p>
+          <ol class="list post__list">
+            <li class="list__item">
+              Type
+              <span class="code"
+                >cleaner.exe [path to the dataset directory] -u [path to the
+                existing worksheet] [output filename]</span
+              >
+            </li>
+            <li class="list__item">
+              A new worksheet named
+              <span class="code">[output filename]</span> will appear in the
+              current working directory
+            </li>
+          </ol>
+          <div class="code-block post__code-block">
+            <strong class="strong">Example</strong>: cleaner.exe synthetic_data
+            -u synthetic_data/outdated.xlsx updated
+          </div>
+          <img
+            class="post__image"
+            src="/post/bank-statement-cleaner/update_worksheet.png"
+            alt=""
+            width="945"
+          />
+          <p class="paragraph post__paragraph">
+            Make an updated worksheet named “updated” using the data from
+            “synthetic_data” and the existing worksheet
+            “synthetic_data/outdated.xlsx”.
+          </p>
+          <div class="callout post__callout">
+            <strong class="strong">Note</strong>: Banks provide the option to
+            download statements from a certain start date and an end date. Note
+            that the complement and update functions work properly only if the
+            <strong class="strong">beginning date</strong> of the existing
+            worksheet and the input statements are the
+            <strong class="strong">same</strong>. For example, the current
+            worksheet was built using statements that started from January 1,
+            2025. To update or complement that worksheet, the new dataset must
+            also start from January 1, 2025.
+          </div>
+          <h3 class="heading-3 post__heading-3" id="Customize-Output-Path">
+            Customize Output Path
+          </h3>
+          <p class="paragraph post__paragraph">
+            If we want to change the path of the output file to something other
+            than the current working directory, we can set a different directory
+            path. This applies to all commands, but for this example, the create
+            command will be used.
+          </p>
+          <ol class="list post__list">
+            <li class="list__item">
+              Type
+              <span class="code"
+                >cleaner.exe [path to the dataset directory] -c [output
+                filename] --dirpath [path to the custom directory]</span
+              >
+            </li>
+            <li class="list__item">
+              A worksheet will appear in the directory at
+              <span class="code">[path to the custom directory]</span>
+            </li>
+          </ol>
+          <div class="code-block post__code-block">
+            <strong class="strong">Example</strong>: cleaner.exe synthetic_data
+            -c out --dirpath output
+          </div>
+          <p class="paragraph post__paragraph">
+            Create a worksheet “out” based on data from “synthetic_data” and
+            save it in the “output” directory.
+          </p>
+          <p class="paragraph post__paragraph">
+            With these features and your
+            <strong class="strong">willingness to learn</strong>, you can now
+            periodically update your worksheet so that you have the latest data
+            from your bank statements. You are free to choose the update period.
+            I recommend updating the worksheet
+            <strong class="strong">weekly</strong>.
+          </p>
+          <h2 class="heading-2 post__heading-2" id="Method">Method</h2>
+          <p class="paragraph post__paragraph">
+            Before building this program, the bank statements were first
+            investigated to find issues and patterns using
+            <a
+              class="link"
+              href="https://www.microsoft.com/en-ca/microsoft-365/excel"
+              >Excel</a
+            >. Transaction records on the banking application were used as a
+            comparison to make sense of the dataset. Moreover, the list items in
+            the filters of the application are used to determine possible
+            transaction types and methods.
+          </p>
+          <p class="paragraph post__paragraph">
+            Ideas on how to organize the statements are experimented with in a
+            Jupyter notebook. A notebook is a collection of text and code where
+            authors can swiftly explore, visualize, and test their code in one
+            document.<sup class="citation" data-id="jupyter"></sup> The main
+            libraries to query and manipulate the data are
+            <a class="link" href="https://pandas.pydata.org/docs/index.html"
+              >Pandas</a
+            >
+            and <a class="link" href="https://numpy.org/doc/stable/">numpy</a>.
+            Additionally,
+            <a class="link" href="https://docs.python.org/3/library/re.html"
+              >re</a
+            >
+            is used to find tokens with specific patterns. I highly recommend
+            the
+            <a
+              class="link"
+              href="https://www.regular-expressions.info/quickstart.html"
+              >Regular Expressions Quick Start by Jan Goyvaerts</a
+            >
+            if you want to start learning regex. In fact, I used that guide to
+            write the expressions in this program. Lastly, the regex expressions
+            were tested using
+            <a class="link" href="https://regex101.com/">regex101</a>.
+          </p>
+          <p class="paragraph post__paragraph">
+            After the ideas have ripened and the prototype is built, the code is
+            translated into a command-line application.
+            <a class="link" href="https://www.jetbrains.com/pycharm/download/"
+              >PyCharm</a
+            >
+            is the development environment for this project because it provides
+            many features that accelerates the development process. Features
+            such as the virtual environment and debugger make the development
+            process more convenient in isolating dependencies and tracing
+            issues. The main library to create the command-line interface is the
+            <a
+              class="link"
+              href="https://docs.python.org/3/library/argparse.html"
+              >argparse</a
+            >, with the help of a GeeksforGeeks article titled “<a
+              class="link"
+              href="https://www.geeksforgeeks.org/command-line-interface-programming-python/"
+              >Command Line Interface Programming in Python</a
+            >”.
+          </p>
+          <p class="paragraph post__paragraph">
+            Finally, the scripts and their dependencies are bundled into one
+            single executable using the
+            <a class="link" href="https://pyinstaller.org/en/stable/"
+              >pyinstaller</a
+            >
+            library with the guidance of another useful post titled “<a
+              class="link"
+              href="https://www.geeksforgeeks.org/convert-python-script-to-exe-file/"
+              >Convert Python Script to .exe File</a
+            >” by GeeksforGeeks.
+          </p>
+          <p class="paragraph post__paragraph">
+            To create a continuously updatable database, which in this case is
+            the worksheet, a
+            <a
+              class="link"
+              href="https://en.wikipedia.org/wiki/Unique_identifier"
+              >unique identifier</a
+            >
+            (UID) must be established. This program uses incrementing integers
+            starting from 1. A UID is used to identify new and existing
+            transactions, which makes database updates possible. However, I was
+            thinking about a way of making a unique ID using transaction
+            details. It occurs to me that it is possible to create one by
+            concatenating the date, description, and amount, but this raises a
+            problem when there is more than one transaction with an identical
+            description, e.g., “CREDIT MEMO”, with the same amount. The
+            resulting ID of these transactions will not be unique. To solve this
+            potential problem, each transaction can be augmented with the order
+            of its occurrence, starting from 1 up to infinity. Nevertheless,
+            this is still an untested idea, and I put it here just for food for
+            thought.
+          </p>
+          <h2 class="heading-2 post__heading-2" id="Benefits-and-Limitations">
+            Benefits and Limitations
+          </h2>
+          <p class="paragraph post__paragraph">
+            Naturally, this program has its advantages and constraints, which
+            will be discussed further in this section.
+          </p>
+          <h3 class="heading-3 post__heading-3" id="Advantages">Advantages</h3>
+          <p class="paragraph post__paragraph">
+            <strong class="strong"
+              >This application assists us in understanding our habits in
+              handling our money</strong
+            >. We can find a highly accurate approximation of our monthly and
+            annual income and spending. Furthermore, through building a cash
+            flow statement, our financial capacity can be revealed, which helps
+            us set future limits and plan our budget more confidently. As a
+            consequence, we can stay on track in our arduous and challenging
+            journey to our financial goals.
+          </p>
+          <p class="paragraph post__paragraph">
+            The worksheet produced by the program can be accessed using
+            <strong class="strong">Microsoft Excel</strong> or other spreadsheet
+            programs, such as
+            <a
+              class="link"
+              href="https://www.libreoffice.org/download/download-libreoffice/"
+              >LibreOffice</a
+            >. This allows us to do
+            <strong class="strong">more advanced analysis</strong> on our
+            financial situation. Features such as Pivot Tables and Charts can
+            group and visualize data so that we can unearth insights from our
+            financial condition. The output of this program can be processed
+            further <strong class="strong">locally</strong> where you can group
+            it in one place, such that you have a
+            <strong class="strong"
+              >one true source of your personal information</strong
+            >
+            easing the access to your critical information.
+          </p>
+          <p class="paragraph post__paragraph">
+            Equally important, not a single penny is charged to use this
+            program. All it needs is time and effort to understand how to use
+            it. As The Ink Spots beautifully serenades, “<a
+              class="link"
+              href="https://www.youtube.com/watch?v=CQE8LVamYFk"
+              >The best things in life are free</a
+            >”.
+          </p>
+          <p class="paragraph post__paragraph">
+            Below is an example of a basic analysis using a Pivot Table based on
+            the output. The rows consist of year and month fields, respectively,
+            the sign field as the columns, and the amount field is grouped and
+            summed.
+          </p>
+          <img
+            class="post__image"
+            src="/post/bank-statement-cleaner/pivot_table.png"
+            width="344"
+            alt=""
+          />
+          <p class="paragraph post__paragraph">
+            As mentioned in
+            <a class="link" href="#Update-an-Existing-Worksheet"
+              >Update an Existing Worksheet</a
+            >, this program works with entries that are inserted manually.
+            Adding a cash account to our cash flow statement is a case in point.
+            A cash account means a group of transactions that we perform using
+            cash. We may want to track it along with our digital balance cash
+            flow to obtain a more complete image. Moreover, with the
+            <a class="link" href="#Get-Complements">Get Complements</a> feature,
+            we can obtain entries that are missing due to certain reasons (e.g.,
+            forgetting to record some transactions manually) from the existing
+            worksheet and reconcile our records.
+          </p>
+          <h3 class="heading-3 post__heading-3" id="Constraints">
+            Constraints
+          </h3>
+          <p class="paragraph post__paragraph">
+            At this stage,
+            <strong class="strong"
+              >the program can only process CIBC bank statements</strong
+            >. It might work for other banks if the structure is identical to
+            CIBC’s, however, this is not a guarantee. More samples and data are
+            needed to further enhance the support for various banks.
+          </p>
+          <p class="paragraph post__paragraph">
+            <strong class="strong"
+              >Some names of parties need more refinement</strong
+            >. There are some entries where the party still includes details,
+            which might not be relevant. For example, “steam purchase 15.00 cad
+            @ 1.000000”. The party is “steam” but it also includes the price and
+            quantity, which might be irrelevant since we only want to know if
+            the transaction is related to Steam.
+          </p>
+          <p class="paragraph post__paragraph">
+            Another instance is “7 eleven store #12345”. Some institutions that
+            have branches attach certain codes to the institution’s name in the
+            bank statements. This might obstruct our analysis as we might only
+            be concerned about the name “7 eleven” instead of the specific
+            branch. The cause of this is that the program assumes that the
+            remaining string after the method and type have been extracted is
+            the party. This allows impurities to still attach to the party.
+            Further data refinement is necessary to produce more structured data
+            and accurate analysis.
+          </p>
+          <p class="paragraph post__paragraph">
+            The cash flow only reflects the inflows and outflows in the bank
+            account.
+            <strong class="strong"
+              >It does not reflect spending in accounts other than the bank
+              account</strong
+            >. For example, Presto can be used to store funds from the bank
+            account for paying the public transport in Ontario.<sup
+              class="citation"
+              data-id="presto"
+            ></sup>
+            We might only see that there is a lump sum payment from the bank to
+            the Presto, but we cannot see the actual usage from the Presto, at
+            least for now. As a result, the inflows and outflows are not exact,
+            but they provide a good approximation for a basic cash flow
+            statement.
+          </p>
+          <p class="paragraph post__paragraph">
+            Let us assume that we have a bank account and a Presto card. We
+            deposit $100 from the bank account to the Presto card on January 1,
+            2025. Suppose that the current date is May 31, 2025. In our cash
+            flow statement, it may seem that $100 was spent on transportation
+            (i.e., Presto) in January 2025, but the following months have $0
+            transaction expense. Meanwhile, in the Presto account, the remaining
+            balance is $50. If we want to approximate how much we spent each
+            month, we can evenly distribute the total spent, which is $50,
+            calculated by subtracting $50 (Presto’s current balance) from the
+            $100 (Presto’s initial balance), over 5 months. The estimation is
+            $10 per month on transportation.
+          </p>
+          <p class="paragraph post__paragraph">
+            Moreover, you may notice that the net cash flow in the output
+            <strong class="strong">does not equal</strong> the current balance
+            of deposit accounts. This might be caused by paying credit purchases
+            using <strong class="strong">cash backs</strong>, which is not
+            explicitly shown in the cash flow statement.
+          </p>
+          <h2 class="heading-2 post__heading-2" id="Recommendation-and-Credits">
+            Recommendation and Credits
+          </h2>
+          <p class="paragraph post__paragraph">
+            Moving forward, I would like to add more support for other banks,
+            starting with major banks in Canada, such as TD, RBC, and
+            Scotiabank. I plan to extend the input to other non-bank accounts,
+            e.g., Presto. The reason is that more data on our financial
+            activities may gradually lead to a more precise financial plan.
+          </p>
+          <p class="paragraph post__paragraph">
+            I am excited to announce that I am currently drafting
+            <strong class="strong">a guide on cash management</strong> using
+            various tools and how to apply this program to a real-world
+            scenario. I will publish the article by June 21, 2025.
+          </p>
+          <p class="paragraph post__paragraph">
+            I would love to hear your honest questions, critiques, comments, or
+            ideas on this project. You can contact me through
+            <a class="link" href="/about/index.html">email</a> or
+            <a class="link" href="/about/index.html">LinkedIn</a>. Please let me
+            know if you find a problem with this project. If you are motivated
+            to contribute to this project, feel free to send a pull request on
+            the
+            <a
+              class="link"
+              href="https://github.com/imaginarynil/bank-statement-cleaner"
+              >Github repository</a
+            >.
+          </p>
+          <p class="paragraph post__paragraph">
+            I hope that you are
+            <strong class="strong"
+              >inspired to explore more about your finances</strong
+            >
+            and create at least a basic
+            <strong class="strong">financial plan</strong> going forward. If we
+            know where we are going, even though it might not be the best or
+            most correct direction, at least we can start to work on our
+            <strong class="strong">wishes</strong>, which leads to
+            <strong class="strong">learning</strong> a variety of lessons,
+            notably dealing with failures and making decisions ourselves. This
+            idea resonates with a Bible passage that says, “<strong
+              class="strong"
+              >The plans of the diligent lead to profit as surely as haste leads
+              to poverty</strong
+            >” (Proverbs 21:5, NIV).<sup
+              class="citation"
+              data-id="proverb"
+            ></sup>
+          </p>
+          <p class="paragraph post__paragraph">
+            Lastly, I would like to give my special thanks to
+            <a class="link" href="https://www.youtube.com/@NinomaeInanis"
+              >Ninomae Ina'nis</a
+            >
+            for the
+            <a class="link" href="https://www.youtube.com/watch?v=NIv_yYKl9tQ"
+              >thumbnail art</a
+            >. I am grateful that she introduced me to
+            <a class="link" href="https://en.wikipedia.org/wiki/Spice_and_Wolf"
+              >Spice and Wolf</a
+            >, which inspires me to study more about
+            <a class="link" href="https://en.wikipedia.org/wiki/Economics"
+              >economics</a
+            >. Wah!
+          </p>
+          <p class="paragraph post__paragraph">
+            <strong class="strong">Sampai jumpa di waktu berikutnya!</strong>
+          </p>
+          <div class="tags">
+            <p class="paragraph post__tag-title">Tags:</p>
+            <ul class="tag-list"></ul>
+          </div>
+          <div class="reference-list"></div>
+        </article>
+        <footer class="footer"></footer>
+      </div>
+    </main>
+    <script type="module">
+      import { initSinglePostPage } from "/module/initSinglePostPage.js";
+      initSinglePostPage({
+        postId: "2",
+        headings: [
+          {
+            name: "Abstract",
+            level: 2,
+            id: "Abstract",
+          },
+          {
+            name: "Introduction",
+            level: 2,
+            id: "Introduction",
+          },
+          {
+            name: "Data Analysis",
+            level: 2,
+            id: "Data-Analysis",
+          },
+          {
+            name: "CIBC Statements",
+            level: 3,
+            id: "CIBC-Statements",
+          },
+          {
+            name: "Problem",
+            level: 2,
+            id: "Problem",
+          },
+          {
+            name: "Double Counting",
+            level: 3,
+            id: "Double-Counting",
+          },
+          {
+            name: "Unrefined Data",
+            level: 3,
+            id: "Unrefined-Data",
+          },
+          {
+            name: "Solution",
+            level: 2,
+            id: "Solution",
+          },
+          {
+            name: "Usage",
+            level: 2,
+            id: "Usage",
+          },
+          {
+            name: "Data and Application Preparation",
+            level: 3,
+            id: "Data-and-Application-Preparation",
+          },
+          {
+            name: "Create a New Worksheet",
+            level: 3,
+            id: "Create-a-New-Worksheet",
+          },
+          {
+            name: "Get Complements",
+            level: 4,
+            id: "Get-Complements",
+          },
+          {
+            name: "Update an Existing Worksheet",
+            level: 3,
+            id: "Update-an-Existing-Worksheet",
+          },
+          {
+            name: "Customize Output Path",
+            level: 3,
+            id: "Customize-Output-Path",
+          },
+          {
+            name: "Method",
+            level: 2,
+            id: "Method",
+          },
+          {
+            name: "Benefits and Limitations",
+            level: 2,
+            id: "Benefits-and-Limitations",
+          },
+          {
+            name: "Advantages",
+            level: 3,
+            id: "Advantages",
+          },
+          {
+            name: "Constraints",
+            level: 3,
+            id: "Constraints",
+          },
+          {
+            name: "Recommendation and Credits",
+            level: 2,
+            id: "Recommendation-and-Credits",
+          },
+        ],
+        references: [
+          {
+            identifier: "cash-flow-statements",
+            authors: ["Cedric Thompson"],
+            title: "Cash Flow Statements: How to Prepare and Read One",
+            year: "2025",
+            linkText:
+              "https://www.investopedia.com/investing/what-is-a-cash-flow-statement/",
+            linkAddress:
+              "https://www.investopedia.com/investing/what-is-a-cash-flow-statement/",
+            retrievalDate: "",
+          },
+          {
+            identifier: "budget",
+            authors: ["Akhilesh Ganti"],
+            title: "What Is a Budget? Plus 11 Budgeting Myths Holding You Back",
+            year: "2025",
+            linkText: "https://www.investopedia.com/terms/b/budget.asp",
+            linkAddress: "https://www.investopedia.com/terms/b/budget.asp",
+            retrievalDate: "",
+          },
+          {
+            identifier: "bank-deposits",
+            authors: ["Julia Kagan"],
+            title: "Bank Deposits",
+            year: "2023",
+            linkText: "https://www.investopedia.com/terms/b/bank-deposits.asp",
+            linkAddress:
+              "https://www.investopedia.com/terms/b/bank-deposits.asp",
+            retrievalDate: "",
+          },
+          {
+            identifier: "accounting-101",
+            authors: ["Rebeca Bichachi"],
+            title: "Accounting 101: Debits and Credits",
+            year: "2025",
+            linkText:
+              "https://www.netsuite.com/portal/resource/articles/accounting/debits-credits.shtml",
+            linkAddress:
+              "https://www.netsuite.com/portal/resource/articles/accounting/debits-credits.shtml",
+            retrievalDate: "",
+          },
+          {
+            identifier: "lending-process",
+            authors: ["René Bennett"],
+            title: "What banks do with your money after you deposit it",
+            year: "2024",
+            linkText:
+              "https://www.bankrate.com/banking/what-banks-do-with-deposits/#lending-process",
+            linkAddress:
+              "https://www.bankrate.com/banking/what-banks-do-with-deposits/#lending-process",
+            retrievalDate: "",
+          },
+          {
+            identifier: "pending-tx",
+            authors: ["CIBC"],
+            title: "What is a pending transaction?",
+            year: "2025",
+            linkText:
+              "https://cibc.intelliresponse.com/public/en/index.jsp?requestType=NormalRequest&question=What+is+a+pending+transaction",
+            linkAddress:
+              "https://cibc.intelliresponse.com/public/en/index.jsp?requestType=NormalRequest&question=What+is+a+pending+transaction",
+            retrievalDate: "",
+          },
+          {
+            identifier: "double-counting",
+            authors: ["Quickonomics"],
+            title: "Double Counting",
+            year: "2024",
+            linkText: "https://quickonomics.com/terms/double-counting/",
+            linkAddress: "https://quickonomics.com/terms/double-counting/",
+            retrievalDate: "",
+          },
+          {
+            identifier: "credit-score",
+            authors: ["Government of Canada"],
+            title: "Improving your credit score",
+            year: "2025",
+            linkText:
+              "https://www.canada.ca/en/financial-consumer-agency/services/credit-reports-score/improve-credit-score.html",
+            linkAddress:
+              "https://www.canada.ca/en/financial-consumer-agency/services/credit-reports-score/improve-credit-score.html",
+            retrievalDate: "",
+          },
+          {
+            identifier: "regex",
+            authors: ["Wikipedia"],
+            title: "Regular expression",
+            year: "2025",
+            linkText: "https://en.wikipedia.org/wiki/Regular_expression",
+            linkAddress: "https://en.wikipedia.org/wiki/Regular_expression",
+            retrievalDate: "",
+          },
+          {
+            identifier: "jupyter",
+            authors: ["Jupyter Team"],
+            title: "Project Jupyter Documentation",
+            year: "2015",
+            linkText: "https://docs.jupyter.org/en/latest/#what-is-a-notebook",
+            linkAddress:
+              "https://docs.jupyter.org/en/latest/#what-is-a-notebook",
+            retrievalDate: "",
+          },
+          {
+            identifier: "presto",
+            authors: ["Wikipedia"],
+            title: "Presto card",
+            year: "2025",
+            linkText: "https://en.wikipedia.org/wiki/Presto_card",
+            linkAddress: "https://en.wikipedia.org/wiki/Presto_card",
+            retrievalDate: "",
+          },
+          {
+            identifier: "proverb",
+            authors: ["Bible Study Tools"],
+            title: "New International Version (NIV)",
+            year: "2011",
+            linkText: "https://www.biblestudytools.com/proverbs/21.html",
+            linkAddress: "https://www.biblestudytools.com/proverbs/21.html",
+            retrievalDate: "",
+          },
+        ],
+      });
+    </script>
+  </body>
+</html>
+
+<!-- 
+
+
+-->

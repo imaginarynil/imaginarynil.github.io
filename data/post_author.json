@@ -2,5 +2,9 @@
   "1": {
     "postId": "1",
     "authorId": "1"
+  },
+  "2": {
+    "postId": "2",
+    "authorId": "1"
   }
 }

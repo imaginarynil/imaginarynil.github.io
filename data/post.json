@@ -3,9 +3,18 @@
     "url": "/post/personal-website/index.html",
     "title": "Personal Website",
     "subtitle": "Website to archive my writings and document software projects",
-    "excerpt": "Hello, World! I have finished my personal website. I want to explain why I made this website, what is this website about, and how I built it.",
-    "creationDate": "2025/04/06",
-    "updateDate": "",
+    "excerpt": "Hello, World! I have created my personal website, yay! This is a website for sharing my ideas, findings, and creations with the intention of educating both the readers and myself.",
+    "creationDate": "2025/05/25",
+    "updateDate": "2025/05/26",
     "imgUrl": "/post/personal-website/thumbnail.png"
+  },
+  "2": {
+    "url": "/post/bank-statement-cleaner/index.html",
+    "title": "Bank Statement Cleaner",
+    "subtitle": "How to start investigating our earnings and expenses so that we can make more sound financial decisions?",
+    "excerpt": "A program that processes bank statements and outputs structured data that can be used to create a personal cash flow statement, which is the foundation of a budget.",
+    "creationDate": "2025/05/27",
+    "updateDate": "",
+    "imgUrl": "/post/bank-statement-cleaner/thumbnail.png"
   }
 }

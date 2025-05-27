@@ -80,6 +80,9 @@ class ReferenceItem {
       const [_, value] = cleanedItemEntries[i];
       const rawText = value.val;
       let text = `${rawText}. `;
+      if (["?", "!"].includes(rawText[rawText.length - 1])) {
+        text = `${rawText} `;
+      }
       switch (value.style) {
         case this.TEXT_STYLE_ITALIC:
           const italicEl = document.createElement("em");
