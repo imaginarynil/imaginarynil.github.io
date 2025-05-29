@@ -278,16 +278,17 @@
   font-family: "Space Mono";
   font-size: 0.925rem;
   color: var(--text-primary);
+  overflow-wrap: break-word;
 }
 
 .code-block {
   font-family: "Space Mono";
   font-size: 0.925rem;
-  width: 100%;
   padding: 1rem 1rem 1rem 1rem;
   color: var(--text-primary);
   background-color: hsla(210, 14%, 13%, 0.4);
   border-radius: 12px 12px 0 0;
+  overflow-wrap: break-word;
 }
 
 .tag-list {
